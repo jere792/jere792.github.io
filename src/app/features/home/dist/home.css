@@ -1,0 +1,267 @@
+.home-container {
+  min-height: calc(100vh - 80px);
+  background: #0d1117;
+  color: #c9d1d9;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+@media (max-width: 768px) {
+  .home-container {
+    padding: 2rem 1rem;
+    gap: 3rem;
+  }
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+@media (max-width: 968px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.hero-content {
+  max-width: 100%;
+  text-align: left;
+}
+
+.hero-name {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: #c9d1d9;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  font-family: "Courier New", monospace;
+}
+
+.typed-text {
+  background: linear-gradient(135deg, #2e5684 0%, #2f6c8f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cursor {
+  color: #2e5684;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+.hero-role {
+  font-size: 1.75rem;
+  color: #7ee787;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.hero-description {
+  color: #8b949e;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0 0 2.5rem 0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.cta-buttons ::ng-deep .p-button {
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+.social-links .social-icon {
+  width: 52px;
+  height: 52px;
+  border: 1px solid #30363d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b949e;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.social-links .social-icon:hover {
+  background: #21262d;
+  border-color: #58a6ff;
+  color: #58a6ff;
+  transform: translateY(-3px);
+}
+
+.hero-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+@media (max-width: 968px) {
+  .hero-image {
+    order: -1;
+  }
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1;
+}
+.image-container::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(135deg, #2e5684, #7ee787, #58a6ff);
+  border-radius: 50%;
+  z-index: -1;
+  animation: rotate 3s linear infinite;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #0d1117;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.tech-stack-section {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #c9d1d9;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.section-heading i {
+  color: #58a6ff;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  }
+}
+
+.tech-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 1.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.tech-card:hover {
+  background: #21262d;
+  border-color: #58a6ff;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(88, 166, 255, 0.2);
+}
+.tech-card:hover .tech-icon i {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.tech-icon i {
+  font-size: 3.5rem;
+  transition: transform 0.3s ease;
+}
+
+.tech-name {
+  color: #8b949e;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cta-buttons ::ng-deep .p-button {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+  }
+}
