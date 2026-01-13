@@ -19,7 +19,7 @@ export class Contact {
   
   profile = {
     name: 'Jeremy Yazid Anton Rojas',
-    role: 'Full Stack Developer',
+    role: 'Frontend Developer',
     status: 'open_for_projects',
     preferred_contact: 'email',
     response_time: '24-48h',
