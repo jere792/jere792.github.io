@@ -9,9 +9,10 @@
 main {
   margin: 0;
   padding: 0;
-  padding-top: 80px; // 30px header + ~50px navbar
+  padding-top: 80px;
   min-height: calc(100vh - 0px);
   background-color: #0d1117;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
