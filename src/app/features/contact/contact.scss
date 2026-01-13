@@ -81,6 +81,7 @@
   }
 }
 
+
 .terminal-card {
   background: #161b22;
   border: 1px solid #30363d;
@@ -214,7 +215,7 @@
   flex-direction: column;
   
   @media (max-width: 968px) {
-    order: -1;
+    order: 2;
   }
 }
 
