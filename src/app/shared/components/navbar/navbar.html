@@ -1,0 +1,13 @@
+<nav class="code-navbar">
+  <ul class="nav-tabs">
+    <li *ngFor="let item of menuItems" class="nav-tab">
+      <a 
+        [routerLink]="item.route" 
+        routerLinkActive="active"
+        class="tab-link">
+        <i [class]="item.icon"></i>
+        <span>{{ item.label }}</span>
+      </a>
+    </li>
+  </ul>
+</nav>

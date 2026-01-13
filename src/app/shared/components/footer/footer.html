@@ -1,0 +1,72 @@
+<footer class="footer-container">
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="terminal-controls">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <span class="terminal-title">jeremy&#64;portfolio:~</span>
+      <span class="terminal-badge">bash</span>
+    </div>
+    
+    <div class="terminal-body">
+      <div class="footer-grid">
+        <div class="left-column">
+          <div class="command-block">
+            <p class="command-line">
+              <span class="command">git status</span>
+            </p>
+          </div>
+
+          <div class="git-output">
+            <p class="output-comment"># Please enter the commit message for your changes. Lines starting</p>
+            <p class="output-comment"># On branch <span class="highlight-red">main</span></p>
+            <p class="output-comment"># Your branch is up to date with <span class="highlight-green">'origin/main'</span>.</p>
+            <p class="output-comment">#</p>
+            <p class="output-info"># Changes to be committed:</p>
+            <p class="output-comment"># (use "git reset HEAD &lt;file&gt;..." to unstage)</p>
+            <p class="output-comment">#</p>
+            <p class="output-modified" *ngFor="let file of modifiedFiles"># <span class="modified-label">modified:</span> {{ file }}</p>
+          </div>
+
+          <div class="command-input">
+            <p class="prompt-line">~ git commit -m "feat(ui): implement portfolio footer"<span class="cursor">█</span></p>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="command-block">
+            <p class="section-title">.GIT/CONFIG [USER]</p>
+            <p class="config-line"><span class="config-key">name</span> = {{ userInfo.name }}</p>
+            <p class="config-line"><span class="config-key">email</span> = {{ userInfo.email }}</p>
+            <p class="config-line"><span class="config-key">role</span> = {{ userInfo.role }}</p>
+          </div>
+
+          <div class="command-block">
+            <p class="section-title">.GIT/CONFIG [NAVIGATION]</p>
+            <p class="config-line" *ngFor="let cmd of navigationCommands">
+              <span class="highlight-cyan">{{ cmd.command }}</span> {{ cmd.page }}
+            </p>
+          </div>
+
+          <div class="terminal-footer">
+            <p>~ © {{ currentYear }} {{ userInfo.name }}.</p>
+            <p>All systems operational.</p>
+            <p>Built with {{ siteInfo.framework }}, {{ siteInfo.language }} & SCSS.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="terminal-status-bar">
+      <div class="status-left">
+        <span class="status-mode insert">INSERT</span>
+        <span class="status-branch">MAIN</span>
+      </div>
+      <div class="status-right">
+        <span>UTF-8 | UNIX | {{ siteInfo.framework }} + {{ siteInfo.language }}</span>
+      </div>
+    </div>
+  </div>
+</footer>

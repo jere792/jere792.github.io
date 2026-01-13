@@ -1,0 +1,204 @@
+<div class="projects-container">
+  <div class="code-editor">
+    <div class="line-numbers">
+      <span *ngFor="let line of [].constructor(88); let i = index">{{ i + 1 }}</span>
+    </div>
+
+    <div class="code-content">
+      <header class="projects-header">
+        <h1 class="page-title"># Proyectos</h1>
+        <p class="page-subtitle">// Soluciones que transforman ideas en código</p>
+      </header>
+
+      <section class="projects-section">
+        <div
+          class="project-card"
+          *ngFor="let project of projects; let i = index"
+          [class.reverse]="i % 2 !== 0"
+        >
+          <div class="project-header">
+            <div class="project-status"></div>
+            <h2 class="project-title">{{ project.title }}</h2>
+          </div>
+
+          <div class="project-grid">
+            <div class="project-info">
+              <div class="info-box">
+                <div class="info-item">
+                  <span class="info-label">CLIENT:</span>
+                  <span class="info-value">{{ project.client }}</span>
+                </div>
+                <div class="info-item" *ngIf="project.company">
+                  <span class="info-label">COMPANY:</span>
+                  <span class="info-value">{{ project.company }}</span>
+                </div>
+                <div class="info-item" *ngIf="project.ruc">
+                  <span class="info-label">RUC:</span>
+                  <span class="info-value">{{ project.ruc }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">DATE:</span>
+                  <span class="info-value">{{ project.date }}</span>
+                </div>
+              </div>
+
+              <p class="project-description">{{ project.description }}</p>
+
+              <div class="tech-badges">
+                <span class="tech-badge" *ngFor="let tech of project.technologies">{{ tech }}</span>
+              </div>
+
+              <div class="project-links">
+                <a
+                  *ngIf="project.githubFrontend"
+                  [href]="project.githubFrontend"
+                  target="_blank"
+                  class="github-link"
+                >
+                  <i class="devicon-github-original"></i>
+                  ./frontend
+                </a>
+                <a
+                  *ngIf="project.githubBackend"
+                  [href]="project.githubBackend"
+                  target="_blank"
+                  class="github-link"
+                >
+                  <i class="devicon-github-original"></i>
+                  ./backend
+                </a>
+                <a
+                  *ngIf="project.githubSocial"
+                  [href]="project.githubSocial"
+                  target="_blank"
+                  class="github-link"
+                >
+                  <i class="pi pi-share-alt"></i>
+                  ./social
+                </a>
+              </div>
+            </div>
+
+            <div class="project-image">
+              <div class="image-wrapper">
+                <button
+                  class="carousel-btn prev"
+                  (click)="prevImage(project)"
+                  *ngIf="project.images.length > 1"
+                >
+                  <i class="pi pi-chevron-left"></i>
+                </button>
+
+                <img
+                  [src]="getCurrentImage(project)"
+                  [alt]="project.title"
+                  (click)="openLightbox(project)"
+                />
+
+                <button
+                  class="carousel-btn next"
+                  (click)="nextImage(project)"
+                  *ngIf="project.images.length > 1"
+                >
+                  <i class="pi pi-chevron-right"></i>
+                </button>
+
+                <div class="carousel-indicators" *ngIf="project.images.length > 1">
+                  <span
+                    *ngFor="let img of project.images; let i = index"
+                    class="indicator"
+                    [class.active]="i === project.currentImageIndex"
+                    (click)="project.currentImageIndex = i"
+                  ></span>
+                </div>
+
+                <button class="fullscreen-btn" (click)="openLightbox(project)">
+                  <i class="pi pi-window-maximize"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-left">
+      <span><i class="pi pi-check-circle"></i> TypeScript</span>
+      <span><i class="pi pi-code"></i> UTF-8</span>
+    </div>
+    <div class="status-right">
+      <span>Ln 50, Col 18</span>
+    </div>
+  </div>
+
+  <div
+    class="lightbox-overlay"
+    *ngIf="lightboxProject"
+    (click)="closeLightbox()"
+    (mousemove)="showControlsTemporarily()"
+  >
+    <div class="lightbox-container" (click)="$event.stopPropagation()">
+      <button
+        class="close-corner-btn"
+        [class.visible]="showControls"
+        (click)="closeLightbox(); $event.stopPropagation()"
+      >
+        <i class="pi pi-times"></i>
+      </button>
+
+      <button
+        class="nav-corner-btn left"
+        [class.visible]="showControls"
+        (click)="prevImageLightbox(); $event.stopPropagation()"
+        *ngIf="lightboxProject.images.length > 1"
+      >
+        <i class="pi pi-chevron-left"></i>
+      </button>
+
+      <button
+        class="nav-corner-btn right"
+        [class.visible]="showControls"
+        (click)="nextImageLightbox(); $event.stopPropagation()"
+        *ngIf="lightboxProject.images.length > 1"
+      >
+        <i class="pi pi-chevron-right"></i>
+      </button>
+
+      <div class="lightbox-image-container">
+        <img [src]="getCurrentImage(lightboxProject)" [alt]="lightboxProject.title" />
+      </div>
+
+      <div
+        class="lightbox-controls"
+        [class.visible]="showControls"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="controls-left">
+          <h3>{{ lightboxProject.title }}</h3>
+        </div>
+
+        <div class="controls-center">
+          <div class="thumbnail-strip" *ngIf="lightboxProject.images.length > 1">
+            <div
+              *ngFor="let img of lightboxProject.images; let i = index"
+              class="thumbnail-item"
+              [class.active]="i === lightboxProject.currentImageIndex"
+              (click)="lightboxProject.currentImageIndex = i; resetControlsTimer()"
+            >
+              <img [src]="img" [alt]="'Preview ' + (i + 1)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-right">
+          <span class="counter"
+            >{{ (lightboxProject.currentImageIndex || 0) + 1 }} /
+            {{ lightboxProject.images.length }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

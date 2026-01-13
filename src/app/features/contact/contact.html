@@ -1,0 +1,117 @@
+<div class="contact-container">
+  <div class="code-editor">
+    <div class="line-numbers">
+      <span *ngFor="let line of [].constructor(40); let i = index">{{ i + 1 }}</span>
+    </div>
+
+    <div class="code-content">
+      <header class="contact-header">
+        <h1 class="page-title"># Contacto</h1>
+        <p class="page-subtitle">// Conectemos y creemos soluciones innovadoras</p>
+      </header>
+
+      <section class="contact-section">
+        <div class="contact-grid">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <span class="terminal-button red"></span>
+              <span class="terminal-button yellow"></span>
+              <span class="terminal-button green"></span>
+              <span class="terminal-title">contact.ts</span>
+            </div>
+
+            <div class="terminal-content">
+              <div class="terminal-block">
+                <p class="terminal-line">
+                  <span class="terminal-user">jeremy@portfolio:</span>
+                  <span class="terminal-path">~/contact$</span>
+                  <span class="terminal-command"> whoami</span>
+                </p>
+                <div class="terminal-output">
+                  <p class="output-name">{{ profile.name }}</p>
+                  <p class="output-role">{{ profile.role }}</p>
+                </div>
+              </div>
+
+              <div class="terminal-block">
+                <p class="terminal-line">
+                  <span class="terminal-user">jeremy@portfolio:</span>
+                  <span class="terminal-path">~/contact$</span>
+                  <span class="terminal-command"> cat profile.json</span>
+                </p>
+                <div class="terminal-output json-output">
+                  <pre>{{ '{' }}
+  <span class="json-key">"role"</span>: <span class="json-string">"{{ profile.role }}"</span>,
+  <span class="json-key">"status"</span>: <span class="json-string">"{{ profile.status }}"</span>,
+  <span class="json-key">"availability"</span>: <span class="json-string">"{{ profile.availability }}"</span>,
+  <span class="json-key">"preferred_contact"</span>: <span class="json-string">"{{ profile.preferred_contact }}"</span>,
+  <span class="json-key">"response_time"</span>: <span class="json-string">"{{ profile.response_time }}"</span>,
+  <span class="json-key">"timezone"</span>: <span class="json-string">"{{ profile.timezone }}"</span>,
+  <span class="json-key">"languages"</span>: <span class="json-array">[<ng-container *ngFor="let lang of profile.languages; let last = last">"{{ lang }}"<span *ngIf="!last">, </span></ng-container>]</span>
+{{ '}' }}</pre>
+                </div>
+              </div>
+
+              <div class="terminal-block">
+                <p class="terminal-line">
+                  <span class="terminal-user">jeremy@portfolio:</span>
+                  <span class="terminal-path">~/contact$</span>
+                  <span class="terminal-command"> cat services.txt</span>
+                </p>
+                <div class="terminal-output">
+                  <ul class="services-list">
+                    <li *ngFor="let service of services">{{ service }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-wrapper">
+            <div class="social-card">
+              <h2 class="social-title">
+                <i class="pi pi-share-alt"></i>
+                # Canales de Comunicación
+              </h2>
+
+              <div class="social-links">
+                <a
+                  *ngFor="let social of socialLinks"
+                  [href]="social.url"
+                  target="_blank"
+                  class="social-link"
+                >
+                  <i [class]="social.icon" [style.color]="social.color"></i>
+                  <div class="social-info">
+                    <span class="social-name">{{ social.name }}</span>
+                    <span class="social-username">{{ social.username }}</span>
+                  </div>
+                </a>
+              </div>
+
+              <div class="contact-note">
+                <i class="pi pi-info-circle"></i>
+                <p>
+                  <strong>Horario de respuesta:</strong> {{ profile.response_time }}<br />
+                  Para colaboraciones profesionales o consultas técnicas, el contacto preferido es
+                  por <strong>{{ profile.preferred_contact }}</strong
+                  >.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-left">
+      <span><i class="pi pi-check-circle"></i> TypeScript</span>
+      <span><i class="pi pi-code"></i> UTF-8</span>
+    </div>
+    <div class="status-right">
+      <span>Ln 35, Col 22</span>
+    </div>
+  </div>
+</div>
