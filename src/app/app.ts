@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { Navbar } from './shared/components/navbar/navbar';
 import { Header } from './shared/components/header/header';
 import { Footer } from './shared/components/footer/footer';
@@ -12,8 +13,16 @@ import { routeAnimations } from './animations/route-animations';
   styleUrl: './app.scss',
   animations: [routeAnimations]
 })
-export class App {
-  title = 'Portafolio - Jeremy Anton';
+export class App implements OnInit {
+  title = 'Portafolio - Jeremy';
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  }
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.['animation'];

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class About {
 
-  image = 'assets/images/foto-git.jpg';
+  image = 'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773368005/foto-git_viukel.jpg';
 
   skills = {
     backend:  ['Node.js', 'Express', 'TypeScript', 'GraphQL', 'REST APIs', 'ASP.NET Core', 'Spring Boot', 'C#', 'Java'],

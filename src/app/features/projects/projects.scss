@@ -41,10 +41,91 @@
   margin-top: 0;
 }
 
+// ─── Section comment ──────────────────────────────────────────
+.section-comment {
+  @include code-comment;
+  @include page-container;
+  margin-bottom: $space-6;
+  margin-top: $space-3;
+}
+
+// ─── Section divider ─────────────────────────────────────────
+.section-divider {
+  @include page-container;
+  display: flex;
+  align-items: center;
+  gap: $space-5;
+  margin: $space-12 0 0 0;
+
+  &:first-of-type { margin-top: 0; }
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: $border-default;
+  opacity: 0.6;
+}
+
+.divider-label {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  white-space: nowrap;
+  padding: $space-2 $space-5;
+  border-radius: $radius-xl;
+  border: 1px solid $border-default;
+  background: $bg-surface;
+  font-family: $font-mono;
+
+  i {
+    font-size: $fs-body;
+  }
+}
+
+.divider-title {
+  font-size: $fs-body-sm;
+  font-weight: $fw-semibold;
+  color: $text-white;
+}
+
+.divider-count {
+  font-size: $fs-caption;
+  color: $text-secondary;
+  padding-left: $space-2;
+  border-left: 1px solid $border-default;
+}
+
+// Category accent colors for dividers
+.divider-business {
+  .divider-label {
+    border-color: rgba(#58a6ff, 0.4);
+    i { color: #58a6ff; }
+  }
+  .divider-line { background: linear-gradient(90deg, transparent, #58a6ff, transparent); opacity: 0.3; }
+}
+
+.divider-personal {
+  .divider-label {
+    border-color: rgba(#7ee787, 0.4);
+    i { color: #7ee787; }
+  }
+  .divider-line { background: linear-gradient(90deg, transparent, #7ee787, transparent); opacity: 0.3; }
+}
+
+.divider-university {
+  .divider-label {
+    border-color: rgba(#ffd700, 0.4);
+    i { color: #ffd700; }
+  }
+  .divider-line { background: linear-gradient(90deg, transparent, #ffd700, transparent); opacity: 0.3; }
+}
+
 // ─── Projects section ─────────────────────────────────────────
 .projects-section {
   @include page-container;
   @include flex-col($gap: 3rem);
+  margin-bottom: $space-6;
 }
 
 // ─── Project card ─────────────────────────────────────────────
@@ -59,6 +140,11 @@
     .project-image { direction: ltr; }
   }
 
+  // Category left-border accent
+  &.card-business  { border-left: 3px solid rgba(#58a6ff, 0.6); }
+  &.card-personal  { border-left: 3px solid rgba(#7ee787, 0.6); }
+  &.card-university { border-left: 3px solid rgba(#ffd700, 0.6); }
+
   @include md-down { padding: $space-6; }
 }
 
@@ -67,14 +153,23 @@
   align-items: center;
   gap: $space-4;
   margin-bottom: $space-8;
+  flex-wrap: wrap;
 }
 
 .project-status {
   width: 12px;
   height: 12px;
   border-radius: $radius-full;
-  background: $gradient-border;
-  @include pulse-animation;
+  flex-shrink: 0;
+
+  &.status-business  { background: #58a6ff; box-shadow: 0 0 8px rgba(#58a6ff, 0.6); animation: pulse-dot 2s infinite; }
+  &.status-personal  { background: #7ee787; box-shadow: 0 0 8px rgba(#7ee787, 0.6); animation: pulse-dot 2s infinite; }
+  &.status-university { background: #ffd700; box-shadow: 0 0 8px rgba(#ffd700, 0.6); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.85); }
 }
 
 .project-title {
@@ -82,8 +177,30 @@
   color: $text-white;
   margin: 0;
   font-family: $font-mono;
+  flex: 1;
 
   @include md-down { font-size: $fs-h4; }
+}
+
+// Category badge
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-1 $space-3;
+  border-radius: $radius-xl;
+  font-size: $fs-caption;
+  font-family: $font-mono;
+  font-weight: $fw-medium;
+  border: 1px solid;
+
+  &.badge-business  { color: #58a6ff; border-color: rgba(#58a6ff, 0.3); background: rgba(#58a6ff, 0.06); }
+  &.badge-personal  { color: #7ee787; border-color: rgba(#7ee787, 0.3); background: rgba(#7ee787, 0.06); }
+  &.badge-university { color: #ffd700; border-color: rgba(#ffd700, 0.3); background: rgba(#ffd700, 0.06); }
+
+  i { font-size: 0.7rem; }
+
+  @include md-down { display: none; }
 }
 
 // ─── Project grid ─────────────────────────────────────────────
@@ -110,6 +227,10 @@
   padding: $space-5;
   border-radius: $radius-sm;
   @include flex-col($gap: $space-3);
+
+  &.info-box-business  { border-left-color: #58a6ff; }
+  &.info-box-personal  { border-left-color: #7ee787; }
+  &.info-box-university { border-left-color: #ffd700; }
 }
 
 .info-item {
@@ -128,6 +249,16 @@
 .info-value {
   color: $text-primary;
   font-size: $fs-ui-sm;
+}
+
+.ruc-value {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  color: #58a6ff;
+  font-weight: $fw-medium;
+
+  i { font-size: $fs-body; color: #7ee787; }
 }
 
 .project-description {
@@ -156,27 +287,61 @@
   flex-wrap: wrap;
 }
 
-.github-link {
+.project-link {
   @include flex-center;
   gap: $space-2;
   padding: $space-2 $space-5;
-  background: $bg-elevated;
-  border: 1px solid $border-default;
   border-radius: $radius-md;
-  color: $text-primary;
   text-decoration: none;
   font-family: $font-mono;
   font-size: $fs-ui-sm;
+  font-weight: $fw-medium;
   transition: $transition-base;
+  border: 1px solid;
 
   i { font-size: $fs-body-lg; }
 
-  &:hover {
-    background: $border-default;
-    border-color: $accent-blue;
-    color: $accent-blue;
-    transform: translateY(-2px);
+  &.link-live {
+    background: rgba(#58a6ff, 0.08);
+    border-color: rgba(#58a6ff, 0.35);
+    color: #58a6ff;
+
+    &:hover {
+      background: rgba(#58a6ff, 0.16);
+      border-color: #58a6ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(#58a6ff, 0.2);
+    }
   }
+
+  &.link-video {
+    background: rgba(#ff7b72, 0.08);
+    border-color: rgba(#ff7b72, 0.35);
+    color: #ff7b72;
+
+    &:hover {
+      background: rgba(#ff7b72, 0.16);
+      border-color: #ff7b72;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(#ff7b72, 0.2);
+    }
+  }
+}
+
+// ─── No links placeholder ─────────────────────────────────────
+.no-links {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-3 $space-4;
+  background: $bg-elevated;
+  border: 1px dashed $border-default;
+  border-radius: $radius-md;
+  color: $text-tertiary;
+  font-size: $fs-ui-sm;
+  font-family: $font-mono;
+
+  i { font-size: $fs-body; }
 }
 
 // ─── Project image ────────────────────────────────────────────
