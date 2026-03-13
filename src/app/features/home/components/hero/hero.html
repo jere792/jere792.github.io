@@ -1,0 +1,40 @@
+<!-- src/app/features/home/components/hero/hero.html -->
+
+<section class="hero-section">
+  <div class="hero-grid">
+
+    <div class="hero-content">
+      <h1 class="hero-name">
+        <span class="typed-text">{{ typedText }}</span>
+        <span class="cursor">|</span>
+      </h1>
+
+      <p class="hero-role">{{ userInfo.role }}</p>
+      <p class="hero-description">{{ userInfo.description }}</p>
+
+      <div class="cta-buttons">
+        <button pButton label="Ver Proyectos" icon="pi pi-arrow-right" iconPos="right"
+                class="p-button-raised" (click)="goToProjects()"></button>
+        <button pButton label="Contáctame" icon="pi pi-envelope"
+                class="p-button-outlined" (click)="goToContact()"></button>
+      </div>
+
+      <div class="social-links">
+        <a *ngFor="let social of socialLinks"
+           [href]="social.url"
+           [target]="social.external ? '_blank' : '_self'"
+           [attr.aria-label]="social.label"
+           class="social-icon">
+          <i [class]="social.icon"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="image-container">
+        <img [src]="userInfo.image" [alt]="userInfo.name" class="profile-image" />
+      </div>
+    </div>
+
+  </div>
+</section>

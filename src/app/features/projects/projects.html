@@ -89,11 +89,13 @@
                   <i class="pi pi-chevron-left"></i>
                 </button>
 
-                <img
-                  [src]="getCurrentImage(project)"
-                  [alt]="project.title"
-                  (click)="openLightbox(project)"
-                />
+                <div class="image-frame">
+                  <img
+                    [src]="getCurrentImage(project)"
+                    [alt]="project.title"
+                    (click)="openLightbox(project)"
+                  />
+                </div>
 
                 <button
                   class="carousel-btn next"

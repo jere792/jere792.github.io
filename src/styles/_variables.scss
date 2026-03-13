@@ -1,0 +1,148 @@
+// ─── COLORS: Backgrounds ────────────────────────────────────
+$bg-base:        #0d1117;   // fondo principal de todas las páginas
+$bg-surface:     #161b22;   // cards, panels, terminal
+$bg-elevated:    #21262d;   // hover states, badges, inputs
+$bg-overlay:     #0d1117;   // info-box dentro de cards
+$bg-header:      #1e1e1e;   // header VSCode bar
+$bg-navbar:      #1e1e1e;   // navbar tab bar
+
+
+// ─── COLORS: Borders ────────────────────────────────────────
+$border-default: #30363d;   // borde estándar de cards y elementos
+$border-subtle:  #21262d;   // borde más sutil (line-numbers)
+$border-navbar:  #334155;   // borde navbar
+$border-dark:    #1a2030;   // borde muy oscuro (galaxy, overlays)
+
+
+// ─── COLORS: Text ───────────────────────────────────────────
+$text-primary:   #c9d1d9;   // texto principal
+$text-secondary: #8b949e;   // texto secundario / muted
+$text-tertiary:  #6e7681;   // line numbers, placeholders
+$text-white:     #ffffff;   // títulos en blanco puro
+
+
+// ─── COLORS: Accents ────────────────────────────────────────
+$accent-blue:    #58a6ff;   // accent principal — links, íconos, borders activos
+$accent-blue-lt: #79c0ff;   // accent azul claro — JSON keys, info keys
+$accent-green:   #7ee787;   // comentarios, status badge, modified labels
+$accent-yellow:  #ffd700;   // section titles, git commands
+$accent-red:     #ff7b72;   // errores, highlight-red, branch names
+$accent-pink:    #e10098;   // GraphQL, decorative
+
+
+// ─── COLORS: UI Semantic ────────────────────────────────────
+$color-success:  #238636;   // INSERT badge en terminal footer
+$color-info:     $accent-blue;
+$color-warning:  $accent-yellow;
+$color-error:    $accent-red;
+
+
+// ─── COLORS: Gradients ──────────────────────────────────────
+$gradient-hero:      linear-gradient(135deg, #2e5684 0%, #2f6c8f 100%);
+$gradient-border:    linear-gradient(135deg, #2e5684, #7ee787, #58a6ff);
+$gradient-card-bg:   linear-gradient(135deg, #161b22, #0d1117);
+$gradient-rotate:    conic-gradient(from 0deg, $accent-blue, $accent-green, $accent-blue);
+
+
+// ─── TYPOGRAPHY: Font Families ──────────────────────────────
+$font-mono:  'Courier New', 'Consolas', 'Monaco', monospace;  // código, terminal, UI principal
+$font-sans:  'Segoe UI', system-ui, sans-serif;               // descripciones, texto corrido
+
+
+// ─── TYPOGRAPHY: Font Sizes ─────────────────────────────────
+// Escala modular basada en los valores existentes
+$fs-hero:    clamp(2.5rem, 6vw, 3.5rem);  // hero name (home)
+$fs-h1:      2.5rem;    // page titles (# Sobre Mí, # Proyectos)
+$fs-h2:      2rem;      // section headings
+$fs-h3:      1.75rem;   // hero role, social title grande
+$fs-h4:      1.5rem;    // social title, project title
+$fs-h5:      1.25rem;   // output name en terminal
+$fs-body-lg: 1.1rem;    // hero description
+$fs-body:    0.95rem;   // texto about, tech tags, descriptions
+$fs-body-sm: 0.9rem;    // subtitles, page subtitle
+$fs-ui:      0.875rem;  // line numbers, terminal body
+$fs-ui-sm:   0.85rem;   // contact items, config lines, git output
+$fs-label:   0.82rem;   // info-key, status badge
+$fs-tag:     0.8rem;    // tech tags, stat label
+$fs-caption: 0.75rem;   // status bar, terminal badge
+$fs-micro:   0.7rem;    // footnotes, tiny labels
+
+
+// ─── TYPOGRAPHY: Font Weights ───────────────────────────────
+$fw-normal:  400;
+$fw-medium:  500;
+$fw-semibold: 600;
+$fw-bold:    700;
+
+
+// ─── TYPOGRAPHY: Line Heights ───────────────────────────────
+$lh-tight:   1.2;
+$lh-normal:  1.7;
+$lh-relaxed: 1.8;
+
+
+// ─── TYPOGRAPHY: Letter Spacing ─────────────────────────────
+$ls-tight:  0.3px;
+$ls-normal: 0.5px;
+$ls-wide:   1px;
+$ls-wider:  2px;
+$ls-widest: 4px;
+
+
+// ─── SPACING ────────────────────────────────────────────────
+// Escala de 4px base
+$space-1:  0.25rem;   //  4px
+$space-2:  0.5rem;    //  8px
+$space-3:  0.75rem;   // 12px
+$space-4:  1rem;      // 16px
+$space-5:  1.25rem;   // 20px
+$space-6:  1.5rem;    // 24px
+$space-8:  2rem;      // 32px
+$space-10: 2.5rem;    // 40px
+$space-12: 3rem;      // 48px
+$space-16: 4rem;      // 64px
+$space-32: 8rem;      // 128px
+
+
+// ─── BORDER RADIUS ──────────────────────────────────────────
+$radius-sm:   6px;    // badges pequeños, json outputs
+$radius-md:   8px;    // tech tags, github links, buttons
+$radius-lg:   12px;   // cards principales, modals
+$radius-xl:   20px;   // status badge (pill)
+$radius-full: 50%;    // avatares, dots, status dot
+
+
+// ─── SHADOWS ────────────────────────────────────────────────
+$shadow-card:       0 8px 24px rgba(88, 166, 255, 0.15);   // card hover glow
+$shadow-card-dark:  0 8px 32px rgba(0, 0, 0, 0.5);        // image shadow
+$shadow-glow-blue:  0 0 20px rgba(88, 166, 255, 0.3);      // center glow
+$shadow-glow-sm:    0 0 12px rgba(88, 166, 255, 0.35);     // icon hover
+$shadow-terminal:   0 8px 32px rgba(0, 0, 0, 0.5);        // terminal widget
+
+
+// ─── TRANSITIONS ────────────────────────────────────────────
+$transition-fast:   all 0.2s ease;
+$transition-base:   all 0.3s ease;
+$transition-bounce: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+
+// ─── BREAKPOINTS ────────────────────────────────────────────
+$bp-xl:  1200px;
+$bp-lg:  968px;
+$bp-md:  768px;
+$bp-sm:  480px;
+
+
+// ─── Z-INDEX SCALE ──────────────────────────────────────────
+$z-base:     1;
+$z-card:     5;
+$z-navbar:   1000;
+$z-header:   2000;
+$z-lightbox: 9999;
+
+
+// ─── LAYOUT ─────────────────────────────────────────────────
+$max-width:        1400px;   // max-width de secciones principales
+$navbar-height:    50px;     // altura navbar (top: 30px + 20px aprox)
+$header-height:    30px;     // altura header VSCode bar
+$content-offset:   80px;     // padding-top del main (header + navbar)

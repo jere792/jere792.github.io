@@ -39,27 +39,32 @@
             "styles": [
               "src/styles.scss",
               "node_modules/devicon/devicon.min.css"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src"
+              ]
+            }
           },
           "configurations": {
             "production": {
-            "budgets": [
-              {
-                "type": "initial",
-                "maximumWarning": "1mb",
-                "maximumError": "2mb"
-              },
-              {
-                "type": "anyComponentStyle",
-                "maximumWarning": "15kb",
-                "maximumError": "20kb"
-              },
-              {
-                "type": "bundle",
-                "maximumWarning": "1mb",
-                "maximumError": "2mb"
-              }
-            ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "15kb",
+                  "maximumError": "20kb"
+                },
+                {
+                  "type": "bundle",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                }
+              ],
               "outputHashing": "all"
             },
             "development": {

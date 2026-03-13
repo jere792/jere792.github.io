@@ -1,0 +1,122 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins'    as *;
+
+.github-section {
+  width: 100%;
+  @include page-container;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: $fs-h1;
+  color: $text-primary;
+  margin-bottom: $space-12;
+  @include flex-center;
+  gap: $space-4;
+  font-family: $font-mono;
+
+  i { font-size: $fs-h1; }
+
+  @include md-down { font-size: $fs-h2; }
+}
+
+.loading-state {
+  @include flex-center;
+  gap: $space-2;
+  padding: $space-16;
+  font-family: $font-mono;
+  color: $text-secondary;
+  font-size: $fs-ui;
+}
+
+.terminal-prompt { color: $accent-green; }
+
+.blink {
+  color: $accent-blue;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50%   { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.error-state {
+  @include flex-center;
+  gap: $space-3;
+  color: $accent-red;
+  font-family: $font-mono;
+  font-size: $fs-ui;
+  padding: $space-10;
+
+  i { font-size: $fs-h3; }
+}
+
+.github-content {
+  @include flex-col($gap: $space-6);
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.stats-card {
+  @include card-base;
+  padding: $space-6;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.stat {
+  @include flex-col($gap: $space-1);
+  align-items: center;
+}
+
+.stat-value {
+  font-size: $fs-h2;
+  font-weight: $fw-bold;
+  color: $accent-blue;
+  font-family: $font-mono;
+}
+
+.stat-label {
+  font-size: $fs-caption;
+  color: $text-secondary;
+  font-family: $font-mono;
+  text-transform: uppercase;
+  letter-spacing: $ls-wider;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: $border-default;
+}
+
+.contrib-card {
+  @include card-base;
+  padding: $space-6;
+  width: 100%;
+}
+
+.card-label {
+  @include flex-center;
+  justify-content: flex-start;
+  gap: $space-2;
+  font-family: $font-mono;
+  font-size: $fs-caption;
+  color: $text-secondary;
+  text-transform: uppercase;
+  letter-spacing: $ls-wider;
+  margin-bottom: $space-4;
+
+  i { color: $accent-blue; }
+}
+
+.contrib-img {
+  width: 100%;
+  border-radius: $radius-md;
+  filter: invert(1) hue-rotate(180deg);
+  opacity: 0.85;
+}

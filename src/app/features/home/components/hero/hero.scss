@@ -1,0 +1,152 @@
+// src/app/features/home/components/hero/hero.scss
+
+@use 'styles/variables' as *;
+@use 'styles/mixins'    as *;
+
+.hero-section {
+  @include flex-center;
+  min-height: 60vh;
+  @include page-container;
+}
+
+.hero-grid {
+  @include two-col-grid($gap: $space-16);
+  align-items: center;
+  width: 100%;
+}
+
+// ── Contenido ────────────────────────────────────────────────
+.hero-content {
+  @include flex-col($gap: 0);
+}
+
+.hero-name {
+  font-size: $fs-hero;
+  font-weight: $fw-bold;
+  color: $text-primary;
+  margin: 0 0 $space-4 0;
+  line-height: $lh-tight;
+  font-family: $font-mono;
+}
+
+.typed-text {
+  background: $gradient-hero;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cursor {
+  color: #2e5684;
+  animation: blink 1s step-end infinite;
+}
+
+.hero-role {
+  font-size: $fs-h3;
+  color: $accent-green;
+  margin-bottom: $space-6;
+  font-weight: $fw-medium;
+  font-family: $font-mono;
+}
+
+.hero-description {
+  color: $text-secondary;
+  font-size: $fs-body-lg;
+  line-height: $lh-normal;
+  margin: 0 0 $space-10 0;
+  font-family: $font-sans;
+
+  @include md-down { font-size: $fs-body; }
+}
+
+// ── CTA ──────────────────────────────────────────────────────
+.cta-buttons {
+  display: flex;
+  gap: $space-4;
+  margin-bottom: $space-10;
+  flex-wrap: wrap;
+
+  ::ng-deep .p-button {
+    font-family: $font-sans;
+    font-weight: $fw-medium;
+    padding: $space-3 $space-6;
+  }
+
+  @include md-down {
+    flex-direction: column;
+    align-items: flex-start;
+
+    ::ng-deep .p-button { width: 100%; max-width: 300px; justify-content: center; }
+  }
+}
+
+// ── Social ───────────────────────────────────────────────────
+.social-links {
+  display: flex;
+  gap: $space-4;
+}
+
+.social-icon {
+  width: 52px;
+  height: 52px;
+  border: 1px solid $border-default;
+  border-radius: $radius-full;
+  @include flex-center;
+  color: $text-secondary;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: $transition-base;
+
+  &:hover {
+    background: $bg-elevated;
+    border-color: $accent-blue;
+    color: $accent-blue;
+    transform: translateY(-3px);
+  }
+}
+
+// ── Imagen ───────────────────────────────────────────────────
+.hero-image {
+  @include flex-center;
+
+  @include lg-down { order: -1; }
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: $gradient-border;
+    border-radius: $radius-full;
+    z-index: -1;
+    animation: rotate 3s linear infinite;
+  }
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: $radius-full;
+  object-fit: cover;
+  border: 4px solid $bg-base;
+  box-shadow: $shadow-card-dark;
+  transition: $transition-base;
+
+  &:hover { transform: scale(1.05); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

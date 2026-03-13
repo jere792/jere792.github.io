@@ -1,400 +1,284 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins'    as *;
+
+// ─── Contenedor ───────────────────────────────────────────────
 .contact-container {
   min-height: 100vh;
-  background: #0d1117;
-  color: #c9d1d9;
-  display: flex;
-  flex-direction: column;
+  background: $bg-base;
+  color: $text-primary;
+  @include flex-col;
 }
 
+// ─── Code editor ─────────────────────────────────────────────
 .code-editor {
-  display: flex;
-  flex: 1;
-  overflow-x: auto;
+  @include code-editor-layout;
 }
 
 .line-numbers {
-  background: #0d1117;
-  color: #6e7681;
-  padding: 2rem 1rem;
-  text-align: right;
-  font-size: 0.875rem;
-  line-height: 1.8;
-  user-select: none;
-  border-right: 1px solid #21262d;
-  min-width: 60px;
-  font-family: 'Courier New', monospace;
-  
-  span {
-    display: block;
-  }
-  
-  @media (max-width: 968px) {
-    display: none;
-  }
+  @include line-numbers;
 }
 
 .code-content {
   flex: 1;
-  padding: 2rem 3rem;
-  line-height: 1.8;
-  
-  @media (max-width: 768px) {
-    padding: 1.5rem 1rem;
-  }
+  padding: $space-8 3rem;
+  line-height: $lh-relaxed;
+
+  @include md-down { padding: $space-6 $space-4; }
 }
 
+// ─── Header ───────────────────────────────────────────────────
 .contact-header {
-  margin-bottom: 1rem;
+  margin-bottom: $space-4;
 }
 
 .page-title {
-  font-size: 2.5rem;
-  color: #fff;
-  margin: 1rem 0 2.5rem 0;
-  font-weight: 600;
-  font-family: 'Courier New', monospace;
+  @include page-title;
 }
 
 .page-subtitle {
-  font-size: 0.90rem;
-  color: #7ee787;
-  margin: 0;
-  font-style: italic;
+  @include code-comment;
+  margin-top: 0;
 }
 
-.contact-section {
-  margin: 0;
-}
-
+// ─── Contact grid ─────────────────────────────────────────────
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  
-  @media (max-width: 1200px) {
-    gap: 2rem;
-  }
-  
-  @media (max-width: 968px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+
+  @include xl-down { gap: $space-8; }
+  @include lg-down { grid-template-columns: 1fr; gap: $space-8; }
 }
 
-
+// ─── Terminal card ────────────────────────────────────────────
 .terminal-card {
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  @include terminal-card;
   height: fit-content;
-  
-  &:hover {
-    border-color: #58a6ff;
-    box-shadow: 0 8px 24px rgba(88, 166, 255, 0.15);
-  }
-  
-  @media (max-width: 968px) {
-    order: 1;
-  }
+
+  @include lg-down { order: 1; }
 }
 
 .terminal-header {
-  background: #21262d;
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-bottom: 1px solid #30363d;
+  @include terminal-header;
 }
 
 .terminal-button {
   width: 12px;
   height: 12px;
-  border-radius: 50%;
-  
-  &.red { background: #ff5f56; }
+  border-radius: $radius-full;
+
+  &.red    { background: #ff5f56; }
   &.yellow { background: #ffbd2e; }
-  &.green { background: #27c93f; }
+  &.green  { background: #27c93f; }
 }
 
 .terminal-title {
   margin-left: auto;
-  font-size: 0.85rem;
-  color: #8b949e;
-  font-family: 'Courier New', monospace;
+  font-size: $fs-ui-sm;
+  color: $text-secondary;
+  font-family: $font-mono;
 }
 
 .terminal-content {
-  padding: 2rem;
-  font-family: 'Courier New', monospace;
-  
-  @media (max-width: 768px) {
-    padding: 1.5rem;
-  }
+  padding: $space-8;
+  font-family: $font-mono;
+
+  @include md-down { padding: $space-6; }
 }
 
 .terminal-block {
-  margin-bottom: 2.5rem;
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
+  margin-bottom: $space-10;
+
+  &:last-child { margin-bottom: 0; }
 }
 
 .terminal-line {
-  margin: 0 0 0.75rem 0;
-  font-size: 0.95rem;
-  
-  .terminal-user { color: #7ee787; }
-  .terminal-path { color: #58a6ff; }
-  .terminal-command { color: #c9d1d9; }
+  margin: 0 0 $space-3 0;
+  font-size: $fs-body;
+
+  .terminal-user    { color: $accent-green; }
+  .terminal-path    { color: $accent-blue;  }
+  .terminal-command { color: $text-primary; }
 }
 
 .terminal-output {
-  padding-left: 1rem;
-  border-left: 2px solid #30363d;
-  
+  padding-left: $space-4;
+  border-left: 2px solid $border-default;
+
   .output-name {
-    margin: 0 0 0.25rem 0;
-    font-size: 1.25rem;
-    color: #fff;
-    font-weight: 600;
+    margin: 0 0 $space-1 0;
+    font-size: $fs-h5;
+    color: $text-white;
+    font-weight: $fw-semibold;
   }
-  
+
   .output-role {
     margin: 0;
-    color: #8b949e;
-    font-size: 0.95rem;
+    color: $text-secondary;
+    font-size: $fs-body;
   }
 }
 
+// ─── JSON output ──────────────────────────────────────────────
 .json-output {
   pre {
     margin: 0;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: #c9d1d9;
+    font-family: $font-mono;
+    font-size: $fs-ui-sm;
+    line-height: $lh-relaxed;
+    color: $text-primary;
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-  
-  .json-key { color: #79c0ff; }
-  .json-string { color: #a5d6ff; }
-  .json-boolean { color: #ff7b72; }
-  .json-array { color: #7ee787; }
+
+  .json-key     { color: $accent-blue-lt; }
+  .json-string  { color: #a5d6ff;         }
+  .json-boolean { color: $accent-red;     }
+  .json-array   { color: $accent-green;   }
 }
 
+// ─── Services list ────────────────────────────────────────────
 .services-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  
+  @include flex-col($gap: $space-2);
+
   li {
-    color: #8b949e;
-    font-size: 0.9rem;
-    padding-left: 1.25rem;
+    color: $text-secondary;
+    font-size: $fs-ui-sm;
+    padding-left: $space-5;
     position: relative;
-    
-    &:before {
+
+    &::before {
       content: '→';
       position: absolute;
       left: 0;
-      color: #7ee787;
+      color: $accent-green;
     }
   }
 }
 
+// ─── Social wrapper ───────────────────────────────────────────
 .social-wrapper {
-  display: flex;
-  flex-direction: column;
-  
-  @media (max-width: 968px) {
-    order: 2;
-  }
+  @include flex-col;
+
+  @include lg-down { order: 2; }
 }
 
 .social-card {
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 12px;
-  padding: 2rem;
-  transition: all 0.3s ease;
+  @include card-base;
+  padding: $space-8;
   height: fit-content;
-  
-  &:hover {
-    border-color: #58a6ff;
-    box-shadow: 0 8px 24px rgba(88, 166, 255, 0.15);
-  }
 }
 
 .social-title {
-  font-size: 1.5rem;
-  color: #fff;
-  margin: 0 0 1.5rem 0;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: 'Courier New', monospace;
-  
-  i {
-    color: #58a6ff;
-    font-size: 1.3rem;
-  }
+  font-size: $fs-h4;
+  color: $text-white;
+  margin: 0 0 $space-6 0;
+  @include flex-center;
+  justify-content: flex-start;
+  gap: $space-3;
+  font-family: $font-mono;
+
+  i { color: $accent-blue; font-size: $fs-h5; }
 }
 
 .social-links {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  @include flex-col($gap: $space-4);
+  margin-bottom: $space-8;
 }
 
 .social-link {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  padding: 1.25rem 1.5rem;
-  background: #0d1117;
-  border: 1px solid #30363d;
-  border-radius: 8px;
+  gap: $space-5;
+  padding: $space-5 $space-6;
+  background: $bg-base;
+  border: 1px solid $border-default;
+  border-radius: $radius-md;
   text-decoration: none;
-  transition: all 0.3s;
-  
-  i {
-    font-size: 2.5rem;
-    flex-shrink: 0;
-  }
-  
+  transition: $transition-base;
+
+  i { font-size: 2.5rem; flex-shrink: 0; }
+
   &:hover {
-    background: #21262d;
-    border-color: #58a6ff;
+    background: $bg-elevated;
+    border-color: $accent-blue;
     transform: translateX(5px);
-    
-    .social-name {
-      color: #58a6ff;
-    }
+
+    .social-name { color: $accent-blue; }
+  }
+
+  @include md-down {
+    padding: $space-4;
+    i { font-size: 2rem; }
   }
 }
 
 .social-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  @include flex-col($gap: $space-1);
   flex: 1;
 }
 
 .social-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #c9d1d9;
-  font-family: 'Courier New', monospace;
+  font-size: $fs-body-lg;
+  font-weight: $fw-semibold;
+  color: $text-primary;
+  font-family: $font-mono;
   transition: color 0.3s;
 }
 
 .social-username {
-  font-size: 0.9rem;
-  color: #8b949e;
+  font-size: $fs-ui-sm;
+  color: $text-secondary;
 }
 
+// ─── Contact note ─────────────────────────────────────────────
 .contact-note {
-  background: linear-gradient(135deg, #161b22, #0d1117);
-  border: 1px solid #30363d;
-  border-radius: 8px;
-  padding: 1.25rem;
+  background: $gradient-card-bg;
+  border: 1px solid $border-default;
+  border-radius: $radius-md;
+  padding: $space-5;
   display: flex;
-  gap: 1rem;
+  gap: $space-4;
   align-items: flex-start;
-  
+
   i {
-    color: #58a6ff;
-    font-size: 1.25rem;
-    margin-top: 0.125rem;
+    color: $accent-blue;
+    font-size: $fs-body-lg;
+    margin-top: 2px;
     flex-shrink: 0;
   }
-  
+
   p {
     margin: 0;
-    color: #8b949e;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    
-    strong {
-      color: #c9d1d9;
-      font-weight: 600;
-    }
-    
-    br {
-      content: "";
-      display: block;
-      margin-bottom: 0.5rem;
-    }
+    color: $text-secondary;
+    font-size: $fs-ui-sm;
+    line-height: $lh-normal;
+    font-family: $font-sans;
+
+    strong { color: $text-primary; font-weight: $fw-semibold; }
+
+    br { content: ""; display: block; margin-bottom: $space-2; }
   }
 }
 
+// ─── Status bar ───────────────────────────────────────────────
 .status-bar {
-  background: #161b22;
-  border-top: 1px solid #30363d;
-  padding: 0.5rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  color: #8b949e;
-  font-family: 'Courier New', monospace;
+  @include status-bar;
 }
 
-.status-left, 
+.status-left,
 .status-right {
   display: flex;
-  gap: 1.5rem;
-  
-  span {
-    display: flex;
-    align-items: center;
-    gap: 0.375rem;
-  }
-  
-  i {
-    color: #58a6ff;
-    font-size: 0.85rem;
-  }
-}
+  gap: $space-6;
 
-@media (max-width: 968px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-}
+  span { @include flex-center; gap: $space-1; }
+  i    { color: $accent-blue; font-size: $fs-ui-sm; }
 
-@media (max-width: 768px) {
-  .page-title {
-    font-size: 2rem;
-  }
-  
-  .page-subtitle {
-    font-size: 0.9rem;
-  }
-  
-  .social-link {
-    padding: 1rem;
-    
-    i {
-      font-size: 2rem;
-    }
-  }
-  
-  .status-bar {
-    padding: 0.5rem 1rem;
-    font-size: 0.7rem;
-  }
-  
-  .status-left,
-  .status-right {
-    gap: 1rem;
+  @include md-down {
+    gap: $space-4;
+    font-size: $fs-micro;
   }
 }

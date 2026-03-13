@@ -1,144 +1,156 @@
-    <div class="about-container">
-    <div class="code-editor">
-        <div class="line-numbers">
-        <span *ngFor="let line of [].constructor(42); let i = index">{{ i + 1 }}</span>
-        </div>
+<div class="about-container">
+  <div class="code-editor">
 
-        <div class="code-content">
-        <h1 class="page-title"># Sobre Mí</h1>
-
-        <div class="main-layout">
-            <div class="left-column">
-            <p class="code-comment">// Personal Information</p>
-
-            <div class="profile-card">
-                <div class="avatar">
-                <img [src]="image_git" alt="Jeremy Anton" />
-                </div>
-
-                <div class="status-badge">
-                <span class="status-dot"></span>
-                Disponible para oportunidades
-                </div>
-
-                <div class="info-list">
-                <div class="info-item">
-                    <span class="info-key">name:</span>
-                    <span class="info-value">"{{ personalInfo.name }}"</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-key">role:</span>
-                    <span class="info-value">"{{ personalInfo.role }}"</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-key">location:</span>
-                    <span class="info-value">"{{ personalInfo.location }}"</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-key">experience:</span>
-                    <span class="info-value">{{ personalInfo.monthsOfExperience }}+ months</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-key">university:</span>
-                    <span class="info-value">"{{ personalInfo.university }}"</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-key">degree:</span>
-                    <span class="info-value">"{{ personalInfo.degree }}"</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-key">semester:</span>
-                    <span class="info-value">"{{ personalInfo.semester }}"</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-key">Focus:</span>
-                    <span class="info-value">"{{ personalInfo.focus }}"</span>
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="right-column">
-            <div class="section">
-                <p class="code-comment">// About Me</p>
-                <div class="about-text">
-                <p [innerHTML]="aboutMe.intro"></p>
-                <p [innerHTML]="aboutMe.description"></p>
-                </div>
-            </div>
-
-            <div class="section">
-                <p class="code-comment">// Stack Tecnológico</p>
-                <div class="tech-stack">
-                <div class="tech-category">
-                    <h3>Backend</h3>
-                    <div class="tech-tags">
-                    <span class="tech-tag" *ngFor="let tech of skills.backend">{{ tech }}</span>
-                    </div>
-                </div>
-
-                <div class="tech-category">
-                    <h3>Frontend</h3>
-                    <div class="tech-tags">
-                    <span class="tech-tag" *ngFor="let tech of skills.frontend">{{ tech }}</span>
-                    </div>
-                </div>
-
-                <div class="tech-category">
-                    <h3>Database</h3>
-                    <div class="tech-tags">
-                    <span class="tech-tag" *ngFor="let tech of skills.database">{{ tech }}</span>
-                    </div>
-                </div>
-
-                <div class="tech-category">
-                    <h3>Tools & Other</h3>
-                    <div class="tech-tags">
-                    <span class="tech-tag" *ngFor="let tech of skills.tools">{{ tech }}</span>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <div class="bottom-grid">
-                <div class="bottom-item">
-                    <p class="code-comment">// Contact</p>
-                    <div class="contact-card">
-                    <div class="contact-item">
-                        <i class="pi pi-envelope"></i>
-                        <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="pi pi-phone"></i>
-                        <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>
-                    </div>
-                    </div>
-                </div>
-
-                <div class="bottom-item">
-                    <p class="code-comment">// GitHub Stats</p>
-                    <div class="stats-card">
-                    <div class="stat-item">
-                        <span class="stat-number">{{ githubStats.projects }}</span>
-                        <span class="stat-label">Proyectos</span>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
+    <div class="line-numbers">
+      <span *ngFor="let line of [].constructor(42); let i = index">{{ i + 1 }}</span>
     </div>
 
-    <div class="status-bar">
-        <div class="status-left">
-        <span><i class="pi pi-check-circle"></i> TypeScript</span>
-        <span><i class="pi pi-code"></i> UTF-8</span>
+    <div class="code-content">
+      <h1 class="page-title"># Sobre Mí</h1>
+
+      <div class="main-layout">
+
+        <div class="left-column">
+          <p class="code-comment">// Personal Information</p>
+
+          <div class="profile-card">
+            <div class="avatar">
+              <img [src]="image" alt="Jeremy Anton" />
+            </div>
+
+            <div class="status-badge">
+              <span class="status-dot"></span>
+              Disponible para oportunidades
+            </div>
+
+            <div class="info-list">
+              <div class="info-item">
+                <span class="info-key">name:</span>
+                <span class="info-value">"Jeremy Anton"</span>
+              </div>
+              <div class="info-item">
+                <span class="info-key">role:</span>
+                <span class="info-value">"Systems Engineer"</span>
+              </div>
+              <div class="info-item">
+                <span class="info-key">location:</span>
+                <span class="info-value">"Lima, Peru"</span>
+              </div>
+              <div class="info-item">
+                <span class="info-key">experience:</span>
+                <span class="info-value">6+ months</span>
+              </div>
+              <div class="info-item">
+                <span class="info-key">university:</span>
+                <span class="info-value">"UPN"</span>
+              </div>
+              <div class="info-item">
+                <span class="info-key">degree:</span>
+                <span class="info-value">"Ing. de Sistemas"</span>
+              </div>
+              <div class="info-item">
+                <span class="info-key">semester:</span>
+                <span class="info-value">"8vo ciclo"</span>
+              </div>
+              <div class="info-item">
+                <span class="info-key">focus:</span>
+                <span class="info-value">"Frontend Development"</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="status-right">
-        <span>Ln 42, Col 18</span>
+
+        <div class="right-column">
+
+          <div class="section">
+            <p class="code-comment">// About Me</p>
+            <div class="about-text">
+              <p>
+                Soy <strong class="name">Jeremy Yazid Anton Rojas</strong>, estudiante de octavo ciclo
+                de Ingeniería de Sistemas Computacionales en la
+                <strong class="university">Universidad Privada del Norte</strong>, enfocado en el
+                desarrollo de aplicaciones web modernas y administración de sistemas.
+              </p>
+              <p>
+                Me especializo en desarrollo <strong class="tech">frontend con Angular y TypeScript</strong>,
+                creando interfaces modernas y responsivas con <strong class="tech">PrimeNG y SCSS</strong>.
+                Complemento mi perfil con conocimientos de <strong class="tech">backend (Node.js, Express)</strong>,
+                bases de datos <strong class="tech">(SQL Server, MySQL, MongoDB)</strong>, lo que me permite
+                desarrollar soluciones completas de extremo a extremo.
+              </p>
+            </div>
+          </div>
+
+          <div class="section">
+            <p class="code-comment">// Stack Tecnológico</p>
+            <div class="tech-stack">
+              <div class="tech-category">
+                <h3>Backend</h3>
+                <div class="tech-tags">
+                  <span class="tech-tag" *ngFor="let tech of skills.backend">{{ tech }}</span>
+                </div>
+              </div>
+              <div class="tech-category">
+                <h3>Frontend</h3>
+                <div class="tech-tags">
+                  <span class="tech-tag" *ngFor="let tech of skills.frontend">{{ tech }}</span>
+                </div>
+              </div>
+              <div class="tech-category">
+                <h3>Database</h3>
+                <div class="tech-tags">
+                  <span class="tech-tag" *ngFor="let tech of skills.database">{{ tech }}</span>
+                </div>
+              </div>
+              <div class="tech-category">
+                <h3>Tools</h3>
+                <div class="tech-tags">
+                  <span class="tech-tag" *ngFor="let tech of skills.tools">{{ tech }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="bottom-grid">
+              <div class="bottom-item">
+                <p class="code-comment">// Contact</p>
+                <div class="contact-card">
+                  <div class="contact-item">
+                    <i class="pi pi-envelope"></i>
+                    <a href="mailto:jeremyar792@gmail.com">jeremyar792@gmail.com</a>
+                  </div>
+                  <div class="contact-item">
+                    <i class="pi pi-phone"></i>
+                    <a href="tel:+51907851879">+51 907 851 879</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bottom-item">
+                <p class="code-comment">// GitHub Stats</p>
+                <div class="stats-card">
+                  <div class="stat-item">
+                    <span class="stat-number">+5</span>
+                    <span class="stat-label">Proyectos</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
+      </div>
     </div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-left">
+      <span><i class="pi pi-check-circle"></i> TypeScript</span>
+      <span><i class="pi pi-code"></i> UTF-8</span>
     </div>
+    <div class="status-right">
+      <span>Ln 42, Col 18</span>
+    </div>
+  </div>
+</div>

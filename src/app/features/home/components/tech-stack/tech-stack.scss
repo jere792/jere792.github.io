@@ -1,0 +1,113 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins'    as *;
+
+.tech-stack-section {
+  width: 100%;
+  @include page-container;
+  @include flex-col($gap: $space-12);
+}
+
+// ─── Header centrado ─────────────────────────────────────────
+.section-header {
+  @include flex-col($gap: $space-3);
+  align-items: center;
+  text-align: center;
+}
+
+.section-eyebrow {
+  @include flex-center;
+  gap: $space-2;
+  font-family: $font-mono;
+  font-size: $fs-caption;
+  color: $accent-blue;
+  text-transform: uppercase;
+  letter-spacing: $ls-widest;
+
+  i { font-size: $fs-caption; }
+}
+
+.section-heading {
+  font-size: $fs-h1;
+  font-weight: $fw-bold;
+  color: $text-primary;
+  font-family: $font-mono;
+  margin: 0;
+  line-height: $lh-tight;
+
+  @include md-down { font-size: $fs-h2; }
+}
+
+// ─── Grid izq/der ────────────────────────────────────────────
+.tech-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-32;
+  align-items: center;
+
+  @include lg-down {
+    grid-template-columns: 1fr;
+  }
+}
+
+.col-collage {
+  @include flex-center;
+
+  @include lg-down { order: 2; }
+}
+
+.col-info {
+  @include flex-col($gap: $space-6);
+
+  @include lg-down { order: 1; }
+}
+
+.section-desc {
+  font-size: $fs-body;
+  color: $text-secondary;
+  font-family: $font-sans;
+  line-height: $lh-relaxed;
+  margin: 0;
+}
+
+.highlight {
+  color: $accent-blue;
+  font-weight: $fw-medium;
+}
+
+// ─── Categorías ───────────────────────────────────────────────
+.categories {
+  @include flex-col($gap: $space-3);
+  padding-top: $space-2;
+}
+
+.category {
+  display: grid;
+  grid-template-columns: 10px 90px 1fr;
+  align-items: center;
+  gap: $space-3;
+}
+
+.cat-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: $radius-full;
+  flex-shrink: 0;
+
+  &.frontend { background: $accent-blue;   box-shadow: 0 0 6px $accent-blue;   }
+  &.backend  { background: $accent-green;  box-shadow: 0 0 6px $accent-green;  }
+  &.database { background: $accent-yellow; box-shadow: 0 0 6px $accent-yellow; }
+  &.tools    { background: $accent-pink;   box-shadow: 0 0 6px $accent-pink;   }
+}
+
+.cat-label {
+  font-family: $font-mono;
+  font-size: $fs-ui-sm;
+  font-weight: $fw-medium;
+  color: $text-primary;
+}
+
+.cat-techs {
+  font-family: $font-mono;
+  font-size: $fs-ui-sm;
+  color: $text-secondary;
+}

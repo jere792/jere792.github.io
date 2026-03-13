@@ -1,0 +1,244 @@
+@use 'variables' as *;
+
+
+// ─── RESPONSIVE ─────────────────────────────────────────────
+
+/// Breakpoint: pantallas <= 1200px
+@mixin xl-down {
+  @media (max-width: #{$bp-xl}) { @content; }
+}
+
+/// Breakpoint: pantallas <= 968px (tablets)
+@mixin lg-down {
+  @media (max-width: #{$bp-lg}) { @content; }
+}
+
+/// Breakpoint: pantallas <= 768px (mobile landscape)
+@mixin md-down {
+  @media (max-width: #{$bp-md}) { @content; }
+}
+
+/// Breakpoint: pantallas <= 480px (mobile portrait)
+@mixin sm-down {
+  @media (max-width: #{$bp-sm}) { @content; }
+}
+
+
+// ─── FLEXBOX ────────────────────────────────────────────────
+
+/// Flex row centrado
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Flex row con separación entre items
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/// Flex column
+@mixin flex-col($gap: null) {
+  display: flex;
+  flex-direction: column;
+  @if $gap { gap: $gap; }
+}
+
+
+// ─── TYPOGRAPHY ─────────────────────────────────────────────
+
+/// Texto truncado con ellipsis
+@mixin text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/// Estilo de comentario de código (verde)
+@mixin code-comment {
+  color: $accent-green;
+  font-style: italic;
+  font-family: $font-mono;
+  font-size: $fs-body-sm;
+}
+
+/// Estilo de título de página con hash (#)
+@mixin page-title {
+  font-size: $fs-h1;
+  color: $text-white;
+  font-weight: $fw-semibold;
+  font-family: $font-mono;
+  margin: $space-4 0 $space-10 0;
+
+  @include md-down { font-size: $fs-h2; }
+}
+
+
+// ─── CARDS & SURFACES ───────────────────────────────────────
+
+/// Card estándar del portfolio (dark surface + border)
+@mixin card-base {
+  background: $bg-surface;
+  border: 1px solid $border-default;
+  border-radius: $radius-lg;
+  transition: $transition-base;
+
+  &:hover {
+    border-color: $accent-blue;
+    box-shadow: $shadow-card;
+  }
+}
+
+/// Badge/pill pequeño
+@mixin badge($color: $accent-blue) {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-1 $space-3;
+  border-radius: $radius-xl;
+  background: $bg-elevated;
+  color: $color;
+  font-size: $fs-label;
+  font-family: $font-mono;
+  font-weight: $fw-medium;
+}
+
+/// Tech tag (tech-badge, tech-tag)
+@mixin tech-tag {
+  background: $bg-elevated;
+  border: 1px solid $border-default;
+  color: $accent-blue;
+  padding: $space-1 $space-3;
+  border-radius: $radius-md;
+  font-size: $fs-tag;
+  font-family: $font-mono;
+  transition: $transition-base;
+
+  &:hover {
+    background: $border-default;
+    border-color: $accent-blue;
+    transform: translateY(-2px);
+  }
+}
+
+
+// ─── GLOW EFFECTS ───────────────────────────────────────────
+
+/// Glow azul estándar
+@mixin glow-blue($intensity: 0.3) {
+  box-shadow: 0 0 20px rgba(88, 166, 255, $intensity);
+}
+
+/// Drop shadow glow para íconos
+@mixin icon-glow($color: $accent-blue) {
+  filter: drop-shadow(0 0 8px #{$color});
+}
+
+/// Animación pulse (status dot, center dot)
+@mixin pulse-animation($name: pulse) {
+  @keyframes #{$name} {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.5; }
+  }
+  animation: #{$name} 2s infinite;
+}
+
+
+// ─── LAYOUT ─────────────────────────────────────────────────
+
+/// Contenedor centrado con max-width
+@mixin page-container {
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+/// Grid de 2 columnas (layout principal de páginas)
+@mixin two-col-grid($gap: $space-10) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $gap;
+
+  @include lg-down {
+    grid-template-columns: 1fr;
+    gap: $space-8;
+  }
+}
+
+/// Code editor layout (line-numbers + content)
+@mixin code-editor-layout {
+  display: flex;
+  flex: 1;
+  overflow-x: auto;
+}
+
+
+// ─── LINE NUMBERS (sidebar) ─────────────────────────────────
+@mixin line-numbers {
+  background: $bg-base;
+  color: $text-tertiary;
+  padding: $space-8 $space-4;
+  text-align: right;
+  font-size: $fs-ui;
+  line-height: $lh-relaxed;
+  user-select: none;
+  border-right: 1px solid $border-subtle;
+  min-width: 60px;
+  font-family: $font-mono;
+
+  span { display: block; }
+
+  @include lg-down { display: none; }
+}
+
+
+// ─── STATUS BAR (footer de páginas) ─────────────────────────
+@mixin status-bar {
+  background: $bg-surface;
+  border-top: 1px solid $border-default;
+  padding: $space-2 $space-6;
+  @include flex-between;
+  font-size: $fs-caption;
+  color: $text-secondary;
+  font-family: $font-mono;
+}
+
+
+// ─── TERMINAL CARD ───────────────────────────────────────────
+@mixin terminal-card {
+  background: $bg-surface;
+  border: 1px solid $border-default;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  transition: $transition-base;
+
+  &:hover {
+    border-color: $accent-blue;
+    box-shadow: 0 8px 24px rgba(88, 166, 255, 0.15);
+  }
+}
+
+@mixin terminal-header {
+  background: $bg-elevated;
+  padding: $space-3 $space-4;
+  @include flex-between;
+  border-bottom: 1px solid $border-default;
+  font-family: $font-mono;
+}
+
+
+// ─── SCROLLBAR ───────────────────────────────────────────────
+@mixin custom-scrollbar($size: 4px) {
+  scrollbar-width: thin;
+  scrollbar-color: $border-default transparent;
+
+  &::-webkit-scrollbar { width: $size; height: $size; }
+  &::-webkit-scrollbar-track { background: $bg-base; }
+  &::-webkit-scrollbar-thumb {
+    background: $border-default;
+    border-radius: $radius-full;
+    &:hover { background: $accent-blue; }
+  }
+}
