@@ -37,7 +37,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
         ruc: '20613016946',
         date: 'Diciembre 2025 - Actual',
         description:
-          'Web corporativa para empresa importadora especializada en administración, logística y ventas. Desarrollada con arquitectura de Microservicios Hexagonal, implementando comunicación en tiempo real mediante API REST y gestión dinámica de servicios en MySQL.',
+          'ERP empresarial completo para empresa importadora con operaciones en Lima. Cubre el ciclo completo de negocio: cotizaciones, ventas, cuentas por cobrar, logística y caja en tiempo real. Arquitectura de microservicios hexagonal con NestJS, comunicación en tiempo real vía WebSockets, generación de comprobantes PDF, envío automatizado por WhatsApp y correo, y control de caja con reportes térmicos.',
         technologies: [
           'Angular',
           'HTML',
@@ -120,19 +120,14 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
     icon: 'pi pi-user',
     comment: '// Turning ideas into functional systems',
     projects: [
-        {
+      {
         id: 'ocean-eye',
         title: 'Ocean-Eye.exe',
         client: 'Proyecto Personal',
         date: 'Febrero 2026',
         description:
-          'Sistema web para restaurante con 3 vistas: administración completa, caja de ventas y portal de clientes. Incluye gestión de mesas, pedidos en tiempo real, menú dinámico, control de usuarios por roles y reportes. Desarrollada con arquitectura en capas modular (Controller-Service-DAO), autenticación JWT y Cloudinary.',
-        technologies: [
-          'Angular',
-          'HTML',
-          'SCSS',
-          'Vercel',
-        ],
+          'Una Landing Page de una app movil para reportar pesca ilegal en tiempo real, orientada a pescadores y comunidades costeras del Perú. Permite enviar reportes anónimos con foto, video y geolocalización GPS, funciona en modo offline sincronizando al recuperar señal. Incluye monitoreo de floraciones algales (HABs), integración con entidades como IMARPE y DICAPI, e infraestructura con encriptación extremo a extremo.',
+        technologies: ['Angular', 'HTML', 'SCSS', 'Vercel'],
         images: [
           'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773368036/PAGE-1_gaajpz.png',
           'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773368018/PAGE-2_ux9bjv.png',

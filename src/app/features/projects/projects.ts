@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import {
   PROJECT_SECTIONS,
   type Project,
@@ -12,10 +13,11 @@ import {
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
-export class Projects {
+export class Projects implements OnInit {
   lightboxProject: Project | null = null;
   showControls = true;
   controlsTimeout: any;
+  showComingSoonModal = false;
 
   sections: ProjectSection[] = PROJECT_SECTIONS.map(section => ({
     ...section,
@@ -24,6 +26,38 @@ export class Projects {
 
   get allProjects(): Project[] {
     return this.sections.flatMap(s => s.projects);
+  }
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const id = params['highlight'];
+      if (id) {
+        setTimeout(() => this.scrollToProject(id), 300);
+      }
+    });
+  }
+
+  private scrollToProject(id: string): void {
+    const el = document.getElementById('project-' + id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.classList.add('highlighted');
+      setTimeout(() => el.classList.remove('highlighted'), 2000);
+    }
+  }
+
+  openVideoOrModal(url: string): void {
+    if (!url || url === 'https://...' || url.trim() === '') {
+      this.showComingSoonModal = true;
+    } else {
+      window.open(url, '_blank');
+    }
+  }
+
+  closeComingSoonModal(): void {
+    this.showComingSoonModal = false;
   }
 
   nextImage(project: Project) {

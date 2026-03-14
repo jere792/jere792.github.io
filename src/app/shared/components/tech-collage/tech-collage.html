@@ -1,26 +1,20 @@
 <div class="collage-host" (mousemove)="onMouseMove($event)">
 
-  <!-- Animated background grid -->
   <div class="bg-grid"></div>
   <div class="bg-vignette"></div>
 
-  <!-- Scene with parallax -->
   <div class="scene" [ngStyle]="getSceneStyle()">
 
-    <!-- Cross lines -->
     <div class="cross-lines"></div>
 
-    <!-- Concentric circles -->
     <div class="circles">
       <div class="circle" *ngFor="let c of circles"></div>
     </div>
 
-    <!-- Center dot -->
     <div class="center-node">
       <div class="cn-dot"></div>
     </div>
 
-    <!-- Tech cards -->
     <div
       *ngFor="let card of cards; trackBy: trackByName"
       class="card"
@@ -28,10 +22,11 @@
       [class.lg]="card.size === 'lg'"
       [class.md]="card.size === 'md'"
       [class.sm]="card.size === 'sm'"
+      [class.mobile]="isMobile"
       [ngStyle]="getCardStyle(card)"
     >
       <i [class]="card.icon"></i>
-      <span class="card-name">{{ card.name }}</span>
+      <span class="card-name" *ngIf="!isMobile">{{ card.name }}</span>
     </div>
 
   </div>

@@ -1,0 +1,73 @@
+<section class="recent-section">
+
+  <div class="section-header">
+    <div class="header-left">
+      <span class="eyebrow">
+        <i class="pi pi-code"></i>
+        En desarrollo
+      </span>
+      <h2 class="section-title">Proyectos Recientes</h2>
+    </div>
+    <button class="btn-more" (click)="goToProjects()">
+      <span>Ver todos</span>
+      <i class="pi pi-arrow-right"></i>
+    </button>
+  </div>
+
+  <div class="projects-grid">
+    <div
+      class="project-card"
+      *ngFor="let project of recentProjects; let i = index"
+      (click)="goToProject(project)"
+      [style.--accent]="getCategoryColor(i)"
+    >
+
+      <div class="card-image">
+        <img [src]="project.images[0]" [alt]="project.title" />
+        <div class="card-overlay">
+          <span class="overlay-label">
+            <i class="pi pi-external-link"></i>
+            Ver proyecto
+          </span>
+        </div>
+        <div class="card-status">
+          <span class="status-dot"></span>
+          En desarrollo
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-date">
+            <i class="pi pi-calendar"></i>
+            {{ project.date }}
+          </span>
+          <span class="card-client">{{ project.client }}</span>
+        </div>
+
+        <h3 class="card-title">{{ project.title }}</h3>
+        <p class="card-desc">{{ project.description }}</p>
+
+        <div class="card-techs">
+          <span
+            class="tech-badge"
+            *ngFor="let tech of project.technologies.slice(0, 4)"
+          >{{ tech }}</span>
+          <span class="tech-more" *ngIf="project.technologies.length > 4">
+            +{{ project.technologies.length - 4 }}
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-cta">
+    <button class="btn-all" (click)="goToProjects()">
+      <i class="pi pi-folder-open"></i>
+      <span>Ver todos los proyectos</span>
+      <i class="pi pi-arrow-right"></i>
+    </button>
+  </div>
+
+</section>

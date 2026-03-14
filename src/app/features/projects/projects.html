@@ -9,27 +9,26 @@
         <h1 class="page-title"># Proyectos</h1>
       </header>
 
-      <!-- ── CATEGORY SECTIONS ─────────────────────────────── -->
       <ng-container *ngFor="let section of sections; let si = index">
-
-        <!-- Section divider -->
         <div class="section-divider" [class]="'divider-' + section.category">
           <div class="divider-line"></div>
           <div class="divider-label">
             <i [class]="section.icon"></i>
             <span class="divider-title">{{ section.label }}</span>
-            <span class="divider-count">{{ section.projects.length }} proyecto{{ section.projects.length !== 1 ? 's' : '' }}</span>
+            <span class="divider-count">
+              {{ section.projects.length }} proyecto{{ section.projects.length !== 1 ? 's' : '' }}
+            </span>
           </div>
           <div class="divider-line"></div>
         </div>
 
         <p class="section-comment">{{ section.comment }}</p>
 
-        <!-- Project cards in this section -->
         <section class="projects-section">
           <div
             class="project-card"
             *ngFor="let project of section.projects; let i = index"
+            [id]="'project-' + project.id"
             [class.reverse]="i % 2 !== 0"
             [class]="'project-card card-' + section.category"
           >
@@ -69,32 +68,30 @@
                 <p class="project-description">{{ project.description }}</p>
 
                 <div class="tech-badges">
-                  <span class="tech-badge" *ngFor="let tech of project.technologies">{{ tech }}</span>
+                  <span class="tech-badge" *ngFor="let tech of project.technologies">
+                    {{ tech }}
+                  </span>
                 </div>
 
-                <!-- Links: Live URL and/or Video -->
                 <div class="project-links" *ngIf="project.liveUrl || project.videoUrl">
-                  <a
-                    *ngIf="project.liveUrl"
-                    [href]="project.liveUrl"
-                    target="_blank"
-                    class="project-link link-live"
-                  >
-                    <i class="pi pi-external-link"></i>
-                    Ver proyecto
-                  </a>
-                  <a
-                    *ngIf="project.videoUrl"
-                    [href]="project.videoUrl"
-                    target="_blank"
-                    class="project-link link-video"
-                  >
-                    <i class="pi pi-play-circle"></i>
-                    Ver demo
-                  </a>
+                  <ng-container *ngIf="project.liveUrl">
+                    <a [href]="project.liveUrl" target="_blank" class="project-link link-live">
+                      <i class="pi pi-external-link"></i>
+                      Ver proyecto
+                    </a>
+                  </ng-container>
+
+                  <ng-container *ngIf="project.videoUrl">
+                    <button
+                      (click)="openVideoOrModal(project.videoUrl)"
+                      class="project-link link-video"
+                    >
+                      <i class="pi pi-play-circle"></i>
+                      Ver demo
+                    </button>
+                  </ng-container>
                 </div>
 
-                <!-- No links placeholder -->
                 <div class="no-links" *ngIf="!project.liveUrl && !project.videoUrl">
                   <i class="pi pi-lock"></i>
                   <span>En desarrollo — sin despliegue público aún</span>
@@ -144,7 +141,6 @@
             </div>
           </div>
         </section>
-
       </ng-container>
     </div>
   </div>
@@ -159,7 +155,6 @@
     </div>
   </div>
 
-  <!-- ── LIGHTBOX ──────────────────────────────────────────── -->
   <div
     class="lightbox-overlay"
     *ngIf="lightboxProject"
@@ -226,6 +221,34 @@
           </span>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ── COMING SOON MODAL ─────────────────────────────────── -->
+  <div class="modal-overlay" *ngIf="showComingSoonModal" (click)="closeComingSoonModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeComingSoonModal()">
+        <i class="pi pi-times"></i>
+      </button>
+
+      <div class="modal-icon">
+        <i class="pi pi-video"></i>
+      </div>
+
+      <h3 class="modal-title">Demo en camino</h3>
+      <p class="modal-subtitle">// video_url: proximamente</p>
+
+      <p class="modal-desc">
+        Este proyecto aún no tiene una demo grabada disponible.<br />
+        Estará disponible próximamente.
+      </p>
+
+      <div class="modal-duration">
+        <i class="pi pi-clock"></i>
+        <span>Duración: 0:00</span>
+      </div>
+
+      <button class="modal-btn" (click)="closeComingSoonModal()">Entendido</button>
     </div>
   </div>
 </div>

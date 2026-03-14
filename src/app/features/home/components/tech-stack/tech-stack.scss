@@ -7,7 +7,6 @@
   @include flex-col($gap: $space-12);
 }
 
-// ─── Header centrado ─────────────────────────────────────────
 .section-header {
   @include flex-col($gap: $space-3);
   align-items: center;
@@ -37,7 +36,6 @@
   @include md-down { font-size: $fs-h2; }
 }
 
-// ─── Grid izq/der ────────────────────────────────────────────
 .tech-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -46,19 +44,31 @@
 
   @include lg-down {
     grid-template-columns: 1fr;
+    gap: $space-6;
   }
 }
 
 .col-collage {
   @include flex-center;
 
-  @include lg-down { order: 2; }
+  @include lg-down {
+    order: 2;
+    width: 100%;
+    overflow: hidden;
+    margin-top: $space-8;
+  }
+
+  @include md-down {
+    margin-top: $space-6;
+  }
 }
 
 .col-info {
   @include flex-col($gap: $space-6);
 
-  @include lg-down { order: 1; }
+  @include lg-down {
+    order: 1;
+  }
 }
 
 .section-desc {
@@ -74,7 +84,6 @@
   font-weight: $fw-medium;
 }
 
-// ─── Categorías ───────────────────────────────────────────────
 .categories {
   @include flex-col($gap: $space-3);
   padding-top: $space-2;
