@@ -17,23 +17,6 @@
 
   <div class="github-content" *ngIf="!loading && !error">
 
-    <div class="stats-card" *ngIf="profile">
-      <div class="stat">
-        <span class="stat-value">{{ profile.public_repos }}</span>
-        <span class="stat-label">repos</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <span class="stat-value">{{ profile.followers }}</span>
-        <span class="stat-label">followers</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <span class="stat-value">{{ profile.following }}</span>
-        <span class="stat-label">following</span>
-      </div>
-    </div>
-
     <div class="contrib-card">
       <span class="card-label">
         <i class="pi pi-chart-bar"></i>

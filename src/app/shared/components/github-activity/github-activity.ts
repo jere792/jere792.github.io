@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GithubService } from '../../../../services/github.service';
-import { type GithubProfile } from '../../../../shared/data/github.data';
+import { GithubService } from '../../../services/github.service';
+import { type GithubProfile } from '../../data/github.data';
 
 @Component({
   selector: 'app-github-activity',

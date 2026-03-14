@@ -2,7 +2,7 @@
   <div class="code-editor">
 
     <div class="line-numbers">
-      <span *ngFor="let line of [].constructor(42); let i = index">{{ i + 1 }}</span>
+      <span *ngFor="let line of [].constructor(60); let i = index">{{ i + 1 }}</span>
     </div>
 
     <div class="code-content">
@@ -131,16 +131,33 @@
                 <p class="code-comment">// GitHub Stats</p>
                 <div class="stats-card">
                   <div class="stat-item">
-                    <span class="stat-number">+5</span>
-                    <span class="stat-label">Proyectos</span>
+                    <span class="stat-number">{{ githubProfile?.public_repos ?? '...' }}</span>
+                    <span class="stat-label">Repos</span>
+                  </div>
+                  <div class="stat-divider"></div>
+                  <div class="stat-item">
+                    <span class="stat-number">{{ githubProfile?.followers ?? '...' }}</span>
+                    <span class="stat-label">Followers</span>
+                  </div>
+                  <div class="stat-divider"></div>
+                  <div class="stat-item">
+                    <span class="stat-number">{{ githubProfile?.following ?? '...' }}</span>
+                    <span class="stat-label">Following</span>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
 
         </div>
       </div>
+
+      <div class="section github-section-wrapper">
+        <p class="code-comment">// GitHub Activity</p>
+        <app-github-activity></app-github-activity>
+      </div>
+
     </div>
   </div>
 
@@ -150,7 +167,7 @@
       <span><i class="pi pi-code"></i> UTF-8</span>
     </div>
     <div class="status-right">
-      <span>Ln 42, Col 18</span>
+      <span>Ln 60, Col 18</span>
     </div>
   </div>
 </div>

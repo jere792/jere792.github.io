@@ -264,3 +264,25 @@
 
   i { margin-right: $space-1; color: $accent-blue; }
 }
+
+// ─── GitHub section wrapper ───────────────────────────────────
+.github-section-wrapper {
+  margin-top: $space-10;
+
+  ::ng-deep .github-section {
+    padding: 0;
+  }
+}
+
+// ─── Stats card con dividers (para los 3 stats de GitHub) ─────
+.stats-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: $border-default;
+}

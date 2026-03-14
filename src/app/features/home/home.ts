@@ -3,11 +3,10 @@
 import { Component } from '@angular/core';
 import { Hero } from './components/hero/hero';
 import { TechStack } from './components/tech-stack/tech-stack';
-import { GithubActivity } from './components/github-activity/github-activity';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [Hero, TechStack, GithubActivity],
+  imports: [Hero, TechStack],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

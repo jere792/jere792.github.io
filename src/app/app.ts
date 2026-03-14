@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { Navbar } from './shared/components/navbar/navbar';
-import { Header } from './shared/components/header/header';
-import { Footer } from './shared/components/footer/footer';
+import { Navbar } from './layout/navbar/navbar';
+import { Header } from './layout/header/header';
+import { Footer } from './layout/footer/footer';
 import { routeAnimations } from './animations/route-animations';
 
 @Component({
