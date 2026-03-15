@@ -1,6 +1,6 @@
-<section class="github-section">
+<section class="github-section" [class.compact]="compact">
 
-  <h2 class="section-heading">
+  <h2 class="section-heading" *ngIf="!compact">
     <i class="devicon-github-original"></i>
     GitHub Activity
   </h2>
@@ -16,18 +16,18 @@
   </div>
 
   <div class="github-content" *ngIf="!loading && !error">
-
     <div class="contrib-card">
       <span class="card-label">
         <i class="pi pi-chart-bar"></i>
         Contributions
       </span>
-      <img [src]="contribUrl"
-           alt="GitHub contribution graph"
-           class="contrib-img"
-           loading="lazy" />
+      <img
+        [src]="contribUrl"
+        alt="GitHub contribution graph"
+        class="contrib-img"
+        loading="lazy"
+      />
     </div>
-
   </div>
 
 </section>

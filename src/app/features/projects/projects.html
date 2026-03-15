@@ -92,10 +92,6 @@
                   </ng-container>
                 </div>
 
-                <div class="no-links" *ngIf="!project.liveUrl && !project.videoUrl">
-                  <i class="pi pi-lock"></i>
-                  <span>En desarrollo — sin despliegue público aún</span>
-                </div>
               </div>
 
               <div class="project-image">
@@ -236,17 +232,12 @@
       </div>
 
       <h3 class="modal-title">Demo en camino</h3>
-      <p class="modal-subtitle">// video_url: proximamente</p>
+      <p class="modal-subtitle">// video: proximamente</p>
 
       <p class="modal-desc">
         Este proyecto aún no tiene una demo grabada disponible.<br />
         Estará disponible próximamente.
       </p>
-
-      <div class="modal-duration">
-        <i class="pi pi-clock"></i>
-        <span>Duración: 0:00</span>
-      </div>
 
       <button class="modal-btn" (click)="closeComingSoonModal()">Entendido</button>
     </div>

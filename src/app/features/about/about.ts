@@ -19,7 +19,7 @@ export class About implements OnInit {
     backend:  ['Node.js', 'Express', 'TypeScript', 'GraphQL', 'REST APIs', 'ASP.NET Core', 'Spring Boot', 'C#', 'Java'],
     frontend: ['Angular', 'TypeScript', 'JavaScript', 'SCSS', 'PrimeNG', 'HTML5', 'CSS3'],
     database: ['SQL Server', 'MySQL', 'MongoDB', 'Stored Procedures'],
-    tools:    ['Git/GitHub', 'VS Code', 'Cloudinary', 'JWT Auth'],
+    tools:    ['Git/GitHub', 'Cloudinary', 'JWT Auth', 'Vercel'],
   };
 
   constructor(private github: GithubService) {}

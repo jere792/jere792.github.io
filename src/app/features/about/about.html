@@ -1,6 +1,5 @@
 <div class="about-container">
   <div class="code-editor">
-
     <div class="line-numbers">
       <span *ngFor="let line of [].constructor(60); let i = index">{{ i + 1 }}</span>
     </div>
@@ -9,7 +8,6 @@
       <h1 class="page-title"># Sobre Mí</h1>
 
       <div class="main-layout">
-
         <div class="left-column">
           <p class="code-comment">// Personal Information</p>
 
@@ -38,7 +36,7 @@
               </div>
               <div class="info-item">
                 <span class="info-key">experience:</span>
-                <span class="info-value">6+ months</span>
+                <span class="info-value">8+ months</span>
               </div>
               <div class="info-item">
                 <span class="info-key">university:</span>
@@ -61,21 +59,22 @@
         </div>
 
         <div class="right-column">
-
           <div class="section">
             <p class="code-comment">// About Me</p>
             <div class="about-text">
               <p>
-                Soy <strong class="name">Jeremy Yazid Anton Rojas</strong>, estudiante de octavo ciclo
-                de Ingeniería de Sistemas Computacionales en la
+                Soy <strong class="name">Jeremy Yazid Anton Rojas</strong>, estudiante de octavo
+                ciclo de Ingeniería de Sistemas Computacionales en la
                 <strong class="university">Universidad Privada del Norte</strong>, enfocado en el
                 desarrollo de aplicaciones web modernas y administración de sistemas.
               </p>
               <p>
-                Me especializo en desarrollo <strong class="tech">frontend con Angular y TypeScript</strong>,
-                creando interfaces modernas y responsivas con <strong class="tech">PrimeNG y SCSS</strong>.
-                Complemento mi perfil con conocimientos de <strong class="tech">backend (Node.js, Express)</strong>,
-                bases de datos <strong class="tech">(SQL Server, MySQL, MongoDB)</strong>, lo que me permite
+                Me especializo en desarrollo
+                <strong class="tech">frontend con Angular y TypeScript</strong>, creando interfaces
+                modernas y responsivas con <strong class="tech">PrimeNG y SCSS</strong>. Complemento
+                mi perfil con conocimientos de
+                <strong class="tech">backend (Node.js, Express)</strong>, bases de datos
+                <strong class="tech">(SQL Server, MySQL, MongoDB)</strong>, lo que me permite
                 desarrollar soluciones completas de extremo a extremo.
               </p>
             </div>
@@ -146,18 +145,17 @@
                   </div>
                 </div>
               </div>
-
             </div>
-          </div>
 
+            <div class="contrib-wrapper">
+  <div class="contrib-inner">
+    <p class="code-comment" style="margin-top: 0;">// GitHub Activity</p>
+    <app-github-activity [compact]="true"></app-github-activity>
+  </div>
+</div>
+          </div>
         </div>
       </div>
-
-      <div class="section github-section-wrapper">
-        <p class="code-comment">// GitHub Activity</p>
-        <app-github-activity></app-github-activity>
-      </div>
-
     </div>
   </div>
 

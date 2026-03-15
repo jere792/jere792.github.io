@@ -59,41 +59,6 @@
   margin: 0 auto;
 }
 
-.stats-card {
-  @include card-base;
-  padding: $space-6;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.stat {
-  @include flex-col($gap: $space-1);
-  align-items: center;
-}
-
-.stat-value {
-  font-size: $fs-h2;
-  font-weight: $fw-bold;
-  color: $accent-blue;
-  font-family: $font-mono;
-}
-
-.stat-label {
-  font-size: $fs-caption;
-  color: $text-secondary;
-  font-family: $font-mono;
-  text-transform: uppercase;
-  letter-spacing: $ls-wider;
-}
-
-.stat-divider {
-  width: 1px;
-  height: 40px;
-  background: $border-default;
-}
-
 .contrib-card {
   @include card-base;
   padding: $space-6;
@@ -119,4 +84,30 @@
   border-radius: $radius-md;
   filter: invert(1) hue-rotate(180deg);
   opacity: 0.85;
+}
+
+.github-section.compact {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  .github-content {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    align-items: stretch;
+  }
+
+  .contrib-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: $space-4;
+  }
+
+  .contrib-img {
+    width: 100%;
+    display: block;
+    opacity: 0.9;
+    border-radius: $radius-md;
+  }
 }

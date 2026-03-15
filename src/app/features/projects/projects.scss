@@ -1037,19 +1037,6 @@
   margin: $space-2 0;
 }
 
-.modal-duration {
-  @include flex-center;
-  gap: $space-2;
-  background: $bg-elevated;
-  border: 1px solid $border-default;
-  border-radius: $radius-md;
-  padding: $space-2 $space-5;
-  font-family: $font-mono;
-  font-size: $fs-ui-sm;
-  color: $text-tertiary;
-
-  i { color: $accent-blue; }
-}
 
 .modal-btn {
   margin-top: $space-2;

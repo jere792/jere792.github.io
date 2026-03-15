@@ -1,7 +1,6 @@
 @use 'styles/variables' as *;
-@use 'styles/mixins'    as *;
+@use 'styles/mixins' as *;
 
-// ─── Contenedor ───────────────────────────────────────────────
 .about-container {
   min-height: 100vh;
   background: $bg-base;
@@ -10,7 +9,6 @@
   @include flex-col;
 }
 
-// ─── Code editor layout ───────────────────────────────────────
 .code-editor {
   @include code-editor-layout;
 }
@@ -24,45 +22,47 @@
   padding: $space-8 3rem;
   line-height: $lh-relaxed;
 
-  @include md-down { padding: $space-6 $space-4; }
+  @include md-down {
+    padding: $space-6 $space-4;
+  }
 }
 
-// ─── Page title ───────────────────────────────────────────────
 .page-title {
   @include page-title;
 }
 
-// ─── Code comment ────────────────────────────────────────────
 .code-comment {
   @include code-comment;
   margin-bottom: $space-4;
   margin-top: $space-8;
 
-  &:first-of-type { margin-top: 0; }
+  &:first-of-type {
+    margin-top: 0;
+  }
 }
 
-// ─── Main layout ─────────────────────────────────────────────
 .main-layout {
   display: grid;
   grid-template-columns: 360px 1fr;
   gap: $space-10;
   align-items: start;
 
-  @include xl-down { grid-template-columns: 320px 1fr; gap: $space-8; }
-  @include lg-down { grid-template-columns: 1fr; }
+  @include xl-down {
+    grid-template-columns: 320px 1fr;
+    gap: $space-8;
+  }
+  @include lg-down {
+    grid-template-columns: 1fr;
+  }
 }
 
-// ─── Left column ─────────────────────────────────────────────
 .left-column {
-  @include lg-down { } // no sticky en mobile
-
   @media (min-width: #{$bp-lg}) {
     position: sticky;
     top: $space-8;
   }
 }
 
-// ─── Profile card ─────────────────────────────────────────────
 .profile-card {
   @include card-base;
   padding: 1.75rem;
@@ -78,7 +78,11 @@
   border: 3px solid $accent-blue;
   margin-bottom: $space-4;
 
-  img { width: 100%; height: 100%; object-fit: cover; }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .status-badge {
@@ -95,7 +99,6 @@
   @include pulse-animation;
 }
 
-// ─── Info list ────────────────────────────────────────────────
 .info-list {
   width: 100%;
   @include flex-col($gap: 0.85rem);
@@ -119,7 +122,6 @@
   padding-left: $space-2;
 }
 
-// ─── Right column ────────────────────────────────────────────
 .right-column {
   @include flex-col($gap: $space-8);
 }
@@ -128,7 +130,6 @@
   @include flex-col;
 }
 
-// ─── About text ───────────────────────────────────────────────
 .about-text {
   background: $bg-surface;
   border-left: 3px solid $accent-blue;
@@ -142,22 +143,36 @@
     font-size: $fs-body;
     font-family: $font-sans;
 
-    &:first-child { margin-top: 0; }
-    &:last-child  { margin-bottom: 0; }
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
-  .name       { color: $accent-yellow; font-weight: $fw-semibold; }
-  .university { color: $accent-blue;   font-weight: $fw-semibold; }
-  .tech       { color: $accent-green;  font-weight: $fw-medium;   }
+  .name {
+    color: $accent-yellow;
+    font-weight: $fw-semibold;
+  }
+  .university {
+    color: $accent-blue;
+    font-weight: $fw-semibold;
+  }
+  .tech {
+    color: $accent-green;
+    font-weight: $fw-medium;
+  }
 }
 
-// ─── Tech stack ───────────────────────────────────────────────
 .tech-stack {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: $space-5;
 
-  @include md-down { grid-template-columns: 1fr; }
+  @include md-down {
+    grid-template-columns: 1fr;
+  }
 }
 
 .tech-category {
@@ -184,20 +199,20 @@
   @include tech-tag;
 }
 
-// ─── Bottom grid ─────────────────────────────────────────────
 .bottom-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: $space-6;
 
-  @include md-down { grid-template-columns: 1fr; }
+  @include md-down {
+    grid-template-columns: 1fr;
+  }
 }
 
 .bottom-item {
   @include flex-col;
 }
 
-// ─── Contact card ─────────────────────────────────────────────
 .contact-card {
   @include card-base;
   padding: $space-8;
@@ -212,7 +227,11 @@
   gap: $space-3;
   font-size: $fs-ui-sm;
 
-  i { color: $accent-blue; font-size: $fs-body; min-width: 18px; }
+  i {
+    color: $accent-blue;
+    font-size: $fs-body;
+    min-width: 18px;
+  }
 
   a {
     color: $text-primary;
@@ -220,15 +239,18 @@
     transition: $transition-fast;
     word-break: break-all;
 
-    &:hover { color: $accent-blue; }
+    &:hover {
+      color: $accent-blue;
+    }
   }
 }
 
-// ─── Stats card ───────────────────────────────────────────────
 .stats-card {
   @include card-base;
   padding: $space-6;
-  @include flex-center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   height: 100%;
 }
 
@@ -252,7 +274,23 @@
   font-family: $font-mono;
 }
 
-// ─── Status bar ───────────────────────────────────────────────
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: $border-default;
+}
+
+.contrib-wrapper {
+  margin-top: $space-8;
+  width: 100%;
+}
+
+.contrib-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .status-bar {
   @include status-bar;
 }
@@ -262,27 +300,8 @@
   display: flex;
   gap: $space-6;
 
-  i { margin-right: $space-1; color: $accent-blue; }
-}
-
-// ─── GitHub section wrapper ───────────────────────────────────
-.github-section-wrapper {
-  margin-top: $space-10;
-
-  ::ng-deep .github-section {
-    padding: 0;
+  i {
+    margin-right: $space-1;
+    color: $accent-blue;
   }
-}
-
-// ─── Stats card con dividers (para los 3 stats de GitHub) ─────
-.stats-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.stat-divider {
-  width: 1px;
-  height: 40px;
-  background: $border-default;
 }

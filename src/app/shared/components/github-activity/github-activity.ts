@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GithubService } from '../../../services/github.service';
 import { type GithubProfile } from '../../data/github.data';
@@ -11,6 +11,8 @@ import { type GithubProfile } from '../../data/github.data';
   styleUrl: './github-activity.scss',
 })
 export class GithubActivity implements OnInit {
+
+  @Input() compact = false;
 
   profile:   GithubProfile | null = null;
   contribUrl = '';
