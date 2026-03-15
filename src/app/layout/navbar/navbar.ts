@@ -15,6 +15,6 @@ export class Navbar {
     { label: 'about.ts', route: '/about', icon: 'devicon-typescript-plain colored' },
     { label: 'contact.json', route: '/contact', icon: 'devicon-nodejs-plain colored' },
     { label: 'projects.css', route: '/projects', icon: 'devicon-css3-plain colored' },
-    { label: 'now.md', route: '/now', icon: 'pi pi-heart' },
+    { label: 'now.md', route: '/now', icon: 'pi pi-user' },
   ];
 }
