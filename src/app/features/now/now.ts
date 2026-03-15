@@ -10,7 +10,6 @@ export interface Track {
   song:     string;
   artist:   string;
   genre:    string;
-  comment:  string;
   audioUrl: string;
 }
 
@@ -33,10 +32,8 @@ export class Now implements OnInit, OnDestroy {
   lastUpdated = 'Marzo 2026';
   mood        = 'En modo construcción: proyectos reales, 8vo ciclo y aprendiendo algo nuevo cada semana.';
 
-  // ── Modal ──────────────────────────────────────────────
   showModal = false;
 
-  // ── Player ─────────────────────────────────────────────
   currentTrack: Track | null = null;
   isPlaying     = false;
   currentMs     = 0;
@@ -46,62 +43,53 @@ export class Now implements OnInit, OnDestroy {
   showVolume    = false;
   private tickSub?: Subscription;
 
-  // ── Letra ──────────────────────────────────────────────
   lyrics:          LrcLine[] = [];
   currentLyricIdx  = -1;
   lyricsLoading    = false;
   lyricsNotFound   = false;
   private lrcSub?: Subscription;
 
-  // ── Tracks ─────────────────────────────────────────────
   tracks: Track[] = [
     {
       song:     'Maldito Duende',
       artist:   'Héroes del Silencio',
       genre:    'Rock',
-      comment:  'un clásico que nunca falla',
       audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606707/maldito_duende-heroes_silencio-mp3_qisfwy.mp3',
     },
     {
       song:     'Bailando Solo',
       artist:   'Los Bunkers',
       genre:    'Rock Latino',
-      comment:  'para los días donde todo pesa',
       audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606714/bailando_solo-bunkers-mp3_wga0fb.mp3',
     },
     {
       song:     'Entre Dos Tierras',
       artist:   'Héroes del Silencio',
       genre:    'Rock',
-      comment:  'energía pura de principio a fin',
       audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606703/entre_dos_tierras-heroes_silencio-mp3_dywghq.mp3',
     },
     {
       song:     'Bye Bye',
       artist:   'Vicky Palma',
       genre:    'Pop',
-      comment:  'buena vibra para trabajar',
       audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606515/bye_bye-vicky_palma-mp3_jeo7k0.mp3',
     },
     {
       song:     'Mala Vida',
       artist:   'Mano Negra',
       genre:    'Rock/Ska',
-      comment:  'cuando necesito cambiar el ritmo',
       audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606489/mala_vida-rancheros-mp3_y14peq.mp3',
     },
     {
       song:     'Suna',
       artist:   'Mar Copas',
       genre:    'Rock Chileno',
-      comment:  'introspectiva, para pensar',
       audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606489/suna-mar_copas-mp3_busjj9.mp3',
     },
     {
       song:     'Sobre la Ciudad',
       artist:   'Los Bunkers',
       genre:    'Rock Latino',
-      comment:  'Lima de fondo, siempre',
       audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606487/sobre_la_ciudad-bunkers-mp3_ywaytz.mp3',
     },
   ];
@@ -110,7 +98,6 @@ export class Now implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
-  // ── Audio helpers ──────────────────────────────────────
   private get audio(): HTMLAudioElement {
     return this.audioElRef.nativeElement;
   }
@@ -191,7 +178,6 @@ export class Now implements OnInit, OnDestroy {
     return 'pi pi-volume-up';
   }
 
-  // ── Tick (progreso + letra) ────────────────────────────
   private startTick(): void {
     this.tickSub = interval(300).subscribe(() => {
       if (!this.audio) return;
@@ -220,7 +206,6 @@ export class Now implements OnInit, OnDestroy {
     }
   }
 
-  // ── Letra via LRCLIB ──────────────────────────────────
   private fetchLyrics(track: Track): void {
     this.lyricsLoading  = true;
     this.lyricsNotFound = false;
@@ -254,7 +239,6 @@ export class Now implements OnInit, OnDestroy {
     return lines.sort((a, b) => a.timeMs - b.timeMs);
   }
 
-  // ── Teclado ────────────────────────────────────────────
   @HostListener('document:keydown', ['$event'])
   onKey(e: KeyboardEvent): void {
     if (!this.showModal || !this.currentTrack) return;
@@ -267,7 +251,6 @@ export class Now implements OnInit, OnDestroy {
     }
   }
 
-  // ── Formato tiempo ─────────────────────────────────────
   fmt(ms: number): string {
     if (!ms || isNaN(ms)) return '0:00';
     const s = Math.floor(ms / 1000);
@@ -277,14 +260,12 @@ export class Now implements OnInit, OnDestroy {
   openModal():  void { this.showModal = true;  document.body.style.overflow = 'hidden'; }
   closeModal(): void { this.stop(); this.showModal = false; document.body.style.overflow = ''; }
 
-  // ── Learning ───────────────────────────────────────────
   learning = [
     { title: 'Docker & Contenedores',  source: 'docs oficiales + proyectos reales', percent: 29 },
     { title: 'Angular Signals',         source: 'angular.dev blog oficial',          percent: 75 },
     { title: 'Design Systems (Figma)',  source: 'referencias de Vercel + Linear',    percent: 58 },
   ];
 
-  // ── Workspace ──────────────────────────────────────────
   setup = [
     {
       category: 'editor',
@@ -305,7 +286,6 @@ export class Now implements OnInit, OnDestroy {
     },
   ];
 
-  // ── Nota personal ──────────────────────────────────────
   personalNote =
     'No todo está bien, pero el código sí. ' +
     'Hay días donde todo pesa un poco más de lo normal, ' +
@@ -314,7 +294,7 @@ export class Now implements OnInit, OnDestroy {
     'Estoy en 8vo ciclo, a un paso de terminar la carrera, ' +
     'con proyectos reales corriendo en paralelo. ' +
     'No es fácil equilibrar todo, pero cada semana encuentro la forma. ' +
-    'Construyendo, aprendiendo, avanzando — aunque sea de a poco.';
+    'Construyendo, aprendiendo, avanzando - aunque sea de a poco.';
 
   ngOnDestroy(): void {
     this.stopTick();
