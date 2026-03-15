@@ -1,0 +1,253 @@
+<div class="now-container">
+  <div class="code-editor">
+    <div class="line-numbers">
+      <span *ngFor="let line of [].constructor(70); let i = index">{{ i + 1 }}</span>
+    </div>
+    <div class="code-content">
+
+      <!-- HEADER -->
+      <header class="now-header">
+        <div class="header-top">
+          <div>
+            <h1 class="page-title"># /now</h1>
+            <p class="page-subtitle">// Lo que está pasando en mi vida ahora mismo.</p>
+          </div>
+          <button class="music-btn" (click)="openModal()" title="Ver mis canciones">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 11-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 01.207.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.52-.973c3.632-1.102 8.147-.568 11.233 1.329a.78.78 0 01.257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.793c3.563-1.08 9.484-.872 13.22 1.37a.937.937 0 01-.06 1.58z"/>
+            </svg>
+            <span class="music-badge" *ngIf="isPlaying">
+              <span class="badge-dot"></span>
+            </span>
+          </button>
+        </div>
+        <p class="last-updated">
+          <i class="pi pi-refresh"></i>
+          Última actualización: <span class="update-date">{{ lastUpdated }}</span>
+        </p>
+      </header>
+
+      <!-- FILA 1: NOTA PERSONAL -->
+      <section class="now-card note-card full-row">
+        <div class="section-label">
+          <span class="label-dot dot-pink"></span>
+          <span class="label-comment">// nota_personal.txt</span>
+        </div>
+        <p class="note-text">{{ personalNote }}</p>
+        <span class="note-sign">— Jeremy, {{ lastUpdated }}</span>
+      </section>
+
+      <!-- FILA 2: WORKSPACE + LEARNING -->
+      <div class="two-col-row">
+        <section class="now-card workspace-card">
+          <div class="section-label">
+            <span class="label-dot dot-yellow"></span>
+            <span class="label-comment">// workspace.config</span>
+          </div>
+          <div class="workspace-block">
+            <div class="ws-group" *ngFor="let cat of setup">
+              <span class="ws-cat">{{ cat.category }}:</span>
+              <div class="ws-items">
+                <div class="ws-item" *ngFor="let item of cat.items">
+                  <i [class]="item.icon"></i>
+                  <span class="ws-name">{{ item.name }}</span>
+                  <span class="ws-detail" *ngIf="item.detail">// {{ item.detail }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="now-card learning-card">
+          <div class="section-label">
+            <span class="label-dot dot-green"></span>
+            <span class="label-comment">// learning_log</span>
+          </div>
+          <div class="learning-list">
+            <div class="learning-row" *ngFor="let item of learning">
+              <div class="lr-top">
+                <span class="lr-name">{{ item.title }}</span>
+                <span class="lr-pct">{{ item.percent }}%</span>
+              </div>
+              <div class="lr-bar">
+                <div class="lr-fill" [style.width]="item.percent + '%'"></div>
+              </div>
+              <span class="lr-source">$ {{ item.source }}</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- FILA 3: MOOD -->
+      <section class="mood-row">
+        <div class="mood-line">
+          <span class="mood-prompt">&gt;</span>
+          <span class="mood-text">{{ mood }}</span>
+          <span class="mood-cursor">█</span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-left">
+      <span><i class="pi pi-check-circle"></i> now.md</span>
+      <span><i class="pi pi-map-marker"></i> Lima, Perú</span>
+    </div>
+    <div class="status-right">
+      <span>{{ lastUpdated }}</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL ──────────────────────────────────────────────── -->
+<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+  <div class="modal-player" (click)="$event.stopPropagation()">
+
+    <!-- Tab bar -->
+    <div class="modal-tab-bar">
+      <div class="modal-dots">
+        <span class="dot red" (click)="closeModal()"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <span class="modal-tab-title">music.json</span>
+      <button class="modal-close-btn" (click)="closeModal()">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- NOW PLAYING -->
+      <div class="now-playing-block" *ngIf="currentTrack; else noTrack">
+
+        <!-- Info canción -->
+        <div class="np-info">
+          <div class="np-vinyl" [class.spinning]="isPlaying">
+            <div class="np-vinyl-center"></div>
+          </div>
+          <div class="np-meta">
+            <span class="np-status">
+              <span class="np-dot" [class.active]="isPlaying"></span>
+              {{ isPlaying ? 'reproduciendo' : 'pausado' }}
+            </span>
+            <span class="np-song">{{ currentTrack.song }}</span>
+            <span class="np-artist">{{ currentTrack.artist }}</span>
+          </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="ctrl-row">
+          <button class="ctrl-btn" (click)="seek(-5)" title="−5s (←)">
+            <i class="pi pi-replay"></i>
+          </button>
+          <button class="ctrl-btn play-btn" (click)="togglePlay()">
+            <i [class]="isPlaying ? 'pi pi-pause' : 'pi pi-play'"></i>
+          </button>
+          <button class="ctrl-btn" (click)="seek(5)" title="+5s (→)">
+            <i class="pi pi-refresh"></i>
+          </button>
+          <button class="ctrl-btn stop-btn" (click)="stop()">
+            <i class="pi pi-stop"></i>
+          </button>
+          <!-- Volumen -->
+          <div class="volume-wrap">
+            <button class="ctrl-btn" (click)="toggleVolume()" title="Volumen">
+              <i [class]="volumeIcon"></i>
+            </button>
+            <div class="volume-slider-wrap" [class.visible]="showVolume">
+              <input
+                type="range"
+                min="0" max="100"
+                [value]="volume"
+                (input)="setVolume($event)"
+                class="volume-slider"
+              />
+              <span class="volume-pct">{{ volume }}%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra de progreso -->
+        <div class="progress-bar-wrap" (click)="seekFromBar($event)">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" [style.width]="progressPct + '%'"></div>
+            <div class="progress-bar-thumb" [style.left]="progressPct + '%'"></div>
+          </div>
+        </div>
+
+        <!-- Tiempo -->
+        <div class="time-row">
+          <span class="time-cur">{{ fmt(currentMs) }}</span>
+          <span class="time-hint">← → 5s · Shift ±1min · Space</span>
+          <span class="time-tot">{{ fmt(durationMs) }}</span>
+        </div>
+
+        <!-- Letra -->
+        <div class="lyrics-block">
+          <div class="lyrics-loading" *ngIf="lyricsLoading">
+            <span class="lyr-prompt">$ fetching lyrics</span>
+            <span class="lyr-cursor">_</span>
+          </div>
+          <div class="lyrics-nf" *ngIf="lyricsNotFound && !lyricsLoading">
+            <i class="pi pi-search"></i>
+            <span>// letra no encontrada</span>
+          </div>
+          <div class="lyrics-scroll" *ngIf="!lyricsLoading && lyrics.length > 0">
+            <p
+              *ngFor="let line of lyrics; let i = index"
+              class="lyric-line"
+              [class.active]="i === currentLyricIdx"
+              [class.past]="i < currentLyricIdx"
+            >{{ line.text }}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sin canción seleccionada -->
+      <ng-template #noTrack>
+        <div class="no-track">
+          <i class="pi pi-headphones"></i>
+          <span>// selecciona una canción</span>
+        </div>
+      </ng-template>
+
+      <!-- Divider -->
+      <div class="modal-divider">// canciones</div>
+
+      <!-- Track list -->
+      <div class="track-list">
+        <div
+          class="track-row"
+          *ngFor="let track of tracks; let i = index"
+          [class.active]="currentTrack?.song === track.song"
+          (click)="playTrack(track)"
+        >
+          <span class="track-num">
+            <i class="pi pi-volume-up" *ngIf="currentTrack?.song === track.song && isPlaying"></i>
+            <span *ngIf="currentTrack?.song !== track.song || !isPlaying">{{ (i+1).toString().padStart(2,'0') }}</span>
+          </span>
+          <div class="track-info">
+            <span class="track-song">{{ track.song }}</span>
+            <span class="track-artist">{{ track.artist }}</span>
+          </div>
+          <span class="track-comment">{{ track.comment }}</span>
+          <span class="track-genre">{{ track.genre }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Audio oculto -->
+    <audio #audioEl (ended)="onEnded()"></audio>
+
+    <div class="modal-status">
+      <span>{{ tracks.length }} canciones · cloudinary</span>
+      <span *ngIf="currentTrack">{{ fmt(currentMs) }} / {{ fmt(durationMs) }}</span>
+    </div>
+
+  </div>
+</div>

@@ -30,7 +30,7 @@ export const USER_INFO: UserInfo = {
     'Frontend Developer apasionado por Angular, TypeScript y diseño UI/UX. ' +
     'Creando aplicaciones web modernas con PrimeNG, SCSS y arquitecturas escalables. ' +
     'De la interfaz hasta la base de datos, construyendo soluciones completas.',
-  image: 'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773368005/JereMaki_husyzm.jpg',
+  image: 'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773540298/foto-perfil_mhaf1t.jpg',
 };
 
 export const SOCIAL_LINKS: SocialLink[] = [
