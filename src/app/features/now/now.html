@@ -1,11 +1,10 @@
 <div class="now-container">
   <div class="code-editor">
     <div class="line-numbers">
-      <span *ngFor="let line of [].constructor(70); let i = index">{{ i + 1 }}</span>
+      <span *ngFor="let line of [].constructor(39); let i = index">{{ i + 1 }}</span>
     </div>
     <div class="code-content">
 
-      <!-- HEADER -->
       <header class="now-header">
         <div class="header-top">
           <div>
@@ -27,7 +26,6 @@
         </p>
       </header>
 
-      <!-- FILA 1: NOTA PERSONAL -->
       <section class="now-card note-card full-row">
         <div class="section-label">
           <span class="label-dot dot-pink"></span>
@@ -37,7 +35,6 @@
         <span class="note-sign">— Jeremy, {{ lastUpdated }}</span>
       </section>
 
-      <!-- FILA 2: WORKSPACE + LEARNING -->
       <div class="two-col-row">
         <section class="now-card workspace-card">
           <div class="section-label">
@@ -78,7 +75,6 @@
         </section>
       </div>
 
-      <!-- FILA 3: MOOD -->
       <section class="mood-row">
         <div class="mood-line">
           <span class="mood-prompt">&gt;</span>
@@ -101,11 +97,9 @@
   </div>
 </div>
 
-<!-- ── MODAL ──────────────────────────────────────────────── -->
 <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
   <div class="modal-player" (click)="$event.stopPropagation()">
 
-    <!-- Tab bar -->
     <div class="modal-tab-bar">
       <div class="modal-dots">
         <span class="dot red" (click)="closeModal()"></span>
@@ -120,10 +114,8 @@
 
     <div class="modal-body">
 
-      <!-- NOW PLAYING -->
       <div class="now-playing-block" *ngIf="currentTrack; else noTrack">
 
-        <!-- Info canción -->
         <div class="np-info">
           <div class="np-vinyl" [class.spinning]="isPlaying">
             <div class="np-vinyl-center"></div>
@@ -138,7 +130,6 @@
           </div>
         </div>
 
-        <!-- Controles -->
         <div class="ctrl-row">
           <button class="ctrl-btn" (click)="seek(-5)" title="−5s (←)">
             <i class="pi pi-replay"></i>
@@ -152,7 +143,7 @@
           <button class="ctrl-btn stop-btn" (click)="stop()">
             <i class="pi pi-stop"></i>
           </button>
-          <!-- Volumen -->
+
           <div class="volume-wrap">
             <button class="ctrl-btn" (click)="toggleVolume()" title="Volumen">
               <i [class]="volumeIcon"></i>
@@ -170,7 +161,6 @@
           </div>
         </div>
 
-        <!-- Barra de progreso -->
         <div class="progress-bar-wrap" (click)="seekFromBar($event)">
           <div class="progress-bar-track">
             <div class="progress-bar-fill" [style.width]="progressPct + '%'"></div>
@@ -178,14 +168,12 @@
           </div>
         </div>
 
-        <!-- Tiempo -->
         <div class="time-row">
           <span class="time-cur">{{ fmt(currentMs) }}</span>
           <span class="time-hint">← → 5s · Shift ±1min · Space</span>
           <span class="time-tot">{{ fmt(durationMs) }}</span>
         </div>
 
-        <!-- Letra -->
         <div class="lyrics-block">
           <div class="lyrics-loading" *ngIf="lyricsLoading">
             <span class="lyr-prompt">$ fetching lyrics</span>
@@ -207,7 +195,6 @@
 
       </div>
 
-      <!-- Sin canción seleccionada -->
       <ng-template #noTrack>
         <div class="no-track">
           <i class="pi pi-headphones"></i>
@@ -215,10 +202,10 @@
         </div>
       </ng-template>
 
-      <!-- Divider -->
+
       <div class="modal-divider">// canciones</div>
 
-      <!-- Track list -->
+
       <div class="track-list">
         <div
           class="track-row"
@@ -240,7 +227,6 @@
 
     </div>
 
-    <!-- Audio oculto -->
     <audio #audioEl (ended)="onEnded()"></audio>
 
     <div class="modal-status">

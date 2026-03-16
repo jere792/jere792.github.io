@@ -21,7 +21,11 @@ export class App implements OnInit {
   ngOnInit(): void {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+      .subscribe(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        document.documentElement.scrollTo({ top: 0, behavior: 'instant' });
+        document.body.scrollTo({ top: 0, behavior: 'instant' });
+      });
   }
 
   prepareRoute(outlet: RouterOutlet) {

@@ -32,8 +32,6 @@ export const routes: Routes = [
     data: { animation: 'NowPage' },
   },
 
-  //{ path: 'experience', loadComponent: () => import('./features/experience/experience').then(m => m.Experience) }
-
   {
     path: '**',
     redirectTo: '/home',

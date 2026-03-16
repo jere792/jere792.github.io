@@ -1,63 +1,46 @@
 @use 'variables' as *;
 
 
-// ─── RESPONSIVE ─────────────────────────────────────────────
-
-/// Breakpoint: pantallas <= 1200px
 @mixin xl-down {
   @media (max-width: #{$bp-xl}) { @content; }
 }
 
-/// Breakpoint: pantallas <= 968px (tablets)
 @mixin lg-down {
   @media (max-width: #{$bp-lg}) { @content; }
 }
 
-/// Breakpoint: pantallas <= 768px (mobile landscape)
 @mixin md-down {
   @media (max-width: #{$bp-md}) { @content; }
 }
 
-/// Breakpoint: pantallas <= 480px (mobile portrait)
 @mixin sm-down {
   @media (max-width: #{$bp-sm}) { @content; }
 }
 
-
-// ─── FLEXBOX ────────────────────────────────────────────────
-
-/// Flex row centrado
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/// Flex row con separación entre items
 @mixin flex-between {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/// Flex column
 @mixin flex-col($gap: null) {
   display: flex;
   flex-direction: column;
   @if $gap { gap: $gap; }
 }
 
-
-// ─── TYPOGRAPHY ─────────────────────────────────────────────
-
-/// Texto truncado con ellipsis
 @mixin text-truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/// Estilo de comentario de código (verde)
 @mixin code-comment {
   color: $accent-green;
   font-style: italic;
@@ -65,7 +48,6 @@
   font-size: $fs-body-sm;
 }
 
-/// Estilo de título de página con hash (#)
 @mixin page-title {
   font-size: $fs-h1;
   color: $text-white;
@@ -76,10 +58,6 @@
   @include md-down { font-size: $fs-h2; }
 }
 
-
-// ─── CARDS & SURFACES ───────────────────────────────────────
-
-/// Card estándar del portfolio (dark surface + border)
 @mixin card-base {
   background: $bg-surface;
   border: 1px solid $border-default;
@@ -92,7 +70,6 @@
   }
 }
 
-/// Badge/pill pequeño
 @mixin badge($color: $accent-blue) {
   display: inline-flex;
   align-items: center;
@@ -105,7 +82,6 @@
   font-weight: $fw-medium;
 }
 
-/// Tech tag (tech-badge, tech-tag)
 @mixin tech-tag {
   background: $bg-elevated;
   border: 1px solid $border-default;
@@ -123,20 +99,14 @@
   }
 }
 
-
-// ─── GLOW EFFECTS ───────────────────────────────────────────
-
-/// Glow azul estándar
 @mixin glow-blue($intensity: 0.3) {
   box-shadow: 0 0 20px rgba(88, 166, 255, $intensity);
 }
 
-/// Drop shadow glow para íconos
 @mixin icon-glow($color: $accent-blue) {
   filter: drop-shadow(0 0 8px #{$color});
 }
 
-/// Animación pulse (status dot, center dot)
 @mixin pulse-animation($name: pulse) {
   @keyframes #{$name} {
     0%, 100% { opacity: 1; }
@@ -145,17 +115,12 @@
   animation: #{$name} 2s infinite;
 }
 
-
-// ─── LAYOUT ─────────────────────────────────────────────────
-
-/// Contenedor centrado con max-width
 @mixin page-container {
   width: 100%;
   max-width: $max-width;
   margin: 0 auto;
 }
 
-/// Grid de 2 columnas (layout principal de páginas)
 @mixin two-col-grid($gap: $space-10) {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -167,15 +132,12 @@
   }
 }
 
-/// Code editor layout (line-numbers + content)
 @mixin code-editor-layout {
   display: flex;
   flex: 1;
   overflow-x: auto;
 }
 
-
-// ─── LINE NUMBERS (sidebar) ─────────────────────────────────
 @mixin line-numbers {
   background: $bg-base;
   color: $text-tertiary;
@@ -193,8 +155,6 @@
   @include lg-down { display: none; }
 }
 
-
-// ─── STATUS BAR (footer de páginas) ─────────────────────────
 @mixin status-bar {
   background: $bg-surface;
   border-top: 1px solid $border-default;
@@ -205,8 +165,6 @@
   font-family: $font-mono;
 }
 
-
-// ─── TERMINAL CARD ───────────────────────────────────────────
 @mixin terminal-card {
   background: $bg-surface;
   border: 1px solid $border-default;
@@ -228,8 +186,6 @@
   font-family: $font-mono;
 }
 
-
-// ─── SCROLLBAR ───────────────────────────────────────────────
 @mixin custom-scrollbar($size: 4px) {
   scrollbar-width: thin;
   scrollbar-color: $border-default transparent;

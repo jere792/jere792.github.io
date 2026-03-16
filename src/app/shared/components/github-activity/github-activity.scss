@@ -63,6 +63,11 @@
   @include card-base;
   padding: $space-6;
   width: 100%;
+  overflow: hidden;
+
+  @include md-down {
+    padding: $space-4;
+  }
 }
 
 .card-label {
@@ -84,6 +89,11 @@
   border-radius: $radius-md;
   filter: invert(1) hue-rotate(180deg);
   opacity: 0.85;
+
+  @include md-down {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .github-section.compact {
@@ -101,11 +111,17 @@
   .contrib-card {
     width: 100%;
     box-sizing: border-box;
-    padding: $space-4;
+    overflow: hidden;
+    padding: $space-6 $space-4;
+
+    @include md-down {
+      padding: $space-6 $space-3;
+    }
   }
 
   .contrib-img {
     width: 100%;
+    max-width: 100%;
     display: block;
     opacity: 0.9;
     border-radius: $radius-md;

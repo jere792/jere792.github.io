@@ -10,12 +10,11 @@ import { TECH_CARDS, type TechCard } from '../../data/home.data';
   styleUrl: './tech-collage.scss',
 })
 export class TechCollage {
-
   cards: TechCard[] = TECH_CARDS;
-  circles           = [1, 2, 3, 4];
-  translateX        = 0;
-  translateY        = 0;
-  isMobile          = window.innerWidth <= 768;
+  circles = [1, 2, 3, 4];
+  translateX = 0;
+  translateY = 0;
+  isMobile = window.innerWidth <= 768;
 
   @HostListener('window:resize')
   onResize() {
@@ -24,7 +23,7 @@ export class TechCollage {
 
   @HostListener('mousemove', ['$event'])
   onMouseMove(e: MouseEvent) {
-    const cx = window.innerWidth  / 2;
+    const cx = window.innerWidth / 2;
     const cy = window.innerHeight / 2;
     this.translateX = ((e.clientX - cx) / cx) * -10;
     this.translateY = ((e.clientY - cy) / cy) * -8;
@@ -44,15 +43,15 @@ export class TechCollage {
       : { xl: '2.8rem', lg: '2.2rem', md: '1.75rem', sm: '1.4rem' };
 
     return {
-      left:                 card.left       + '%',
-      top:                  card.top        + '%',
-      '--glow':             card.glow,
-      '--float':            card.float      + 'px',
-      '--card-size':        sizeMap[card.size],
-      '--icon-size':        iconMap[card.size],
-      'animation-duration': card.duration   + 's',
-      'animation-delay':    card.delay      + 's',
-      'z-index':            card.z,
+      left: card.left + '%',
+      top: card.top + '%',
+      '--glow': card.glow,
+      '--float': card.float + 'px',
+      '--card-size': sizeMap[card.size],
+      '--icon-size': iconMap[card.size],
+      'animation-duration': card.duration + 's',
+      'animation-delay': card.delay + 's',
+      'z-index': card.z,
     };
   }
 
