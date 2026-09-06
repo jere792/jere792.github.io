@@ -25,13 +25,38 @@ export function Hero() {
   return (
     <section className="hero-section">
       <div className="hero-grid">
+
         <div className="hero-content">
+          <span className="availability-chip">
+            <span className="avail-dot"></span>
+            Disponible para proyectos
+          </span>
+
           <h1 className="hero-name">
             <span className="typed-text">{typedText}</span>
             <span className="cursor">|</span>
           </h1>
           <p className="hero-role">{USER_INFO.role}</p>
           <p className="hero-description">{USER_INFO.description}</p>
+
+          <div className="hero-skills">
+            {HERO_BADGES.map((badge) => (
+              <span key={badge.label} className="skill-chip">
+                <i className={badge.icon}></i>
+                <span>{badge.label}</span>
+              </span>
+            ))}
+          </div>
+
+          <div className="hero-stats">
+            {HERO_STATS.map((stat) => (
+              <div key={stat.label} className="stat-item">
+                <span className="stat-value">{stat.value}</span>
+                <span className="stat-label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+
           <div className="cta-buttons">
             <button className="btn-raised" onClick={() => router.push('/projects')}>
               Ver Proyectos <i className="pi pi-arrow-right"></i>
@@ -40,6 +65,7 @@ export function Hero() {
               Contáctame <i className="pi pi-envelope"></i>
             </button>
           </div>
+
           <div className="social-links">
             {SOCIAL_LINKS.map((social) => (
               <a
@@ -55,35 +81,13 @@ export function Hero() {
             ))}
           </div>
         </div>
+
         <div className="hero-image">
           <div className="image-container">
             <img src={USER_INFO.image} alt={USER_INFO.name} className="profile-image" />
-
-            <span className="availability-chip">
-              <span className="avail-dot"></span>
-              Disponible para proyectos
-            </span>
-
-            {HERO_BADGES.map((badge) => (
-              <span
-                key={badge.label}
-                className={`floating-badge badge-${badge.label.toLowerCase()}`}
-              >
-                <i className={badge.icon}></i>
-                <span>{badge.label}</span>
-              </span>
-            ))}
-          </div>
-
-          <div className="hero-stats">
-            {HERO_STATS.map((stat) => (
-              <div key={stat.label} className="stat-item">
-                <span className="stat-value">{stat.value}</span>
-                <span className="stat-label">{stat.label}</span>
-              </div>
-            ))}
           </div>
         </div>
+
       </div>
     </section>
   );
