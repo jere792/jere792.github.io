@@ -1,8 +1,6 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-
-// ─── RESET / BASE ───────────────────────────────────────────
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -29,7 +27,6 @@ a {
   color: $accent-blue;
   text-decoration: none;
   transition: $transition-fast;
-
   &:hover { color: $accent-blue-lt; }
 }
 
@@ -47,8 +44,6 @@ button {
 
 ul, ol { list-style: none; }
 
-
-// ─── TYPOGRAPHY UTILITIES ───────────────────────────────────
 .text-primary   { color: $text-primary !important; }
 .text-secondary { color: $text-secondary !important; }
 .text-accent    { color: $accent-blue !important; }
@@ -58,8 +53,6 @@ ul, ol { list-style: none; }
 .text-mono      { font-family: $font-mono !important; }
 .text-sans      { font-family: $font-sans !important; }
 
-
-// ─── SPACING UTILITIES ──────────────────────────────────────
 .mt-0  { margin-top: 0 !important; }
 .mb-0  { margin-bottom: 0 !important; }
 .mt-4  { margin-top: $space-4 !important; }
@@ -67,8 +60,6 @@ ul, ol { list-style: none; }
 .mt-8  { margin-top: $space-8 !important; }
 .mb-8  { margin-bottom: $space-8 !important; }
 
-
-// ─── SHARED: Page layout ────────────────────────────────────
 .page-container {
   min-height: 100vh;
   background: $bg-base;
@@ -90,8 +81,6 @@ ul, ol { list-style: none; }
   @include page-container;
 }
 
-
-// ─── SHARED: Code editor layout ─────────────────────────────
 .code-editor {
   @include code-editor-layout;
 }
@@ -104,12 +93,9 @@ ul, ol { list-style: none; }
   flex: 1;
   padding: $space-8 $space-12;
   line-height: $lh-relaxed;
-
   @include md-down { padding: $space-6 $space-4; }
 }
 
-
-// ─── SHARED: Status bar ─────────────────────────────────────
 .status-bar {
   @include status-bar;
 }
@@ -118,21 +104,17 @@ ul, ol { list-style: none; }
 .status-right {
   display: flex;
   gap: $space-6;
-
   span {
     display: flex;
     align-items: center;
     gap: $space-1;
   }
-
   i {
     color: $accent-blue;
     font-size: $fs-caption;
   }
 }
 
-
-// ─── SHARED: Tech tags ──────────────────────────────────────
 .tech-tag,
 .tech-badge {
   @include tech-tag;
@@ -145,35 +127,25 @@ ul, ol { list-style: none; }
   gap: $space-2;
 }
 
-
-// ─── SHARED: Code comment ───────────────────────────────────
 .code-comment {
   @include code-comment;
   margin-bottom: $space-4;
   margin-top: $space-8;
-
   &:first-of-type { margin-top: 0; }
 }
 
-
-// ─── SHARED: Terminal dots (rojo, amarillo, verde) ──────────
 .terminal-dots {
   display: flex;
   gap: 6px;
-
   .dot {
     width: 12px;
     height: 12px;
     border-radius: $radius-full;
-
     &.red    { background: #ff5f56; }
     &.yellow { background: #ffbd2e; }
     &.green  { background: #27c93f; }
   }
 }
-
-
-// ─── ANIMATIONS GLOBALES ────────────────────────────────────
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
@@ -205,16 +177,12 @@ ul, ol { list-style: none; }
   to   { transform: translateY(-8px); }
 }
 
-
-// ─── ANIMATION UTILITIES ────────────────────────────────────
 .anim-pulse    { animation: pulse 2s ease-in-out infinite; }
 .anim-blink    { animation: blink 1s step-end infinite; }
 .anim-fade-in  { animation: fadeIn 0.3s ease; }
 .anim-slide-up { animation: slideUp 0.4s ease; }
 .anim-float    { animation: float 3s ease-in-out infinite alternate; }
 
-
-// ─── CUSTOM SCROLLBAR global ────────────────────────────────
 ::-webkit-scrollbar       { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: $bg-base; }
 ::-webkit-scrollbar-thumb {

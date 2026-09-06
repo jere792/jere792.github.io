@@ -1,0 +1,218 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.contact-container {
+  min-height: 100vh;
+  background: $bg-base;
+  color: $text-primary;
+  @include flex-col;
+}
+
+.code-editor { @include code-editor-layout; }
+.line-numbers { @include line-numbers; }
+
+.code-content {
+  flex: 1;
+  padding: $space-8 3rem;
+  line-height: $lh-relaxed;
+  @include md-down { padding: $space-6 $space-4; }
+}
+
+.contact-header { margin-bottom: $space-4; }
+.page-title { @include page-title; }
+.page-subtitle { @include code-comment; margin-top: 0; }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  @include xl-down { gap: $space-8; }
+  @include lg-down { grid-template-columns: 1fr; gap: $space-8; }
+}
+
+.terminal-card {
+  @include terminal-card;
+  height: fit-content;
+  @include lg-down { order: 1; }
+}
+
+.terminal-header { @include terminal-header; }
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: $radius-full;
+  &.red    { background: #ff5f56; }
+  &.yellow { background: #ffbd2e; }
+  &.green  { background: #27c93f; }
+}
+
+.terminal-title {
+  margin-left: auto;
+  font-size: $fs-ui-sm;
+  color: $text-secondary;
+  font-family: $font-mono;
+}
+
+.terminal-content {
+  padding: $space-8;
+  font-family: $font-mono;
+  @include md-down { padding: $space-6; }
+}
+
+.terminal-block {
+  margin-bottom: $space-10;
+  &:last-child { margin-bottom: 0; }
+}
+
+.terminal-line {
+  margin: 0 0 $space-3 0;
+  font-size: $fs-body;
+  .terminal-user    { color: $accent-green; }
+  .terminal-path    { color: $accent-blue;  }
+  .terminal-command { color: $text-primary; }
+}
+
+.terminal-output {
+  padding-left: $space-4;
+  border-left: 2px solid $border-default;
+  .output-name {
+    margin: 0 0 $space-1 0;
+    font-size: $fs-h5;
+    color: $text-white;
+    font-weight: $fw-semibold;
+  }
+  .output-role {
+    margin: 0;
+    color: $text-secondary;
+    font-size: $fs-body;
+  }
+}
+
+.json-output {
+  pre {
+    margin: 0;
+    font-family: $font-mono;
+    font-size: $fs-ui-sm;
+    line-height: $lh-relaxed;
+    color: $text-primary;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .json-key     { color: $accent-blue-lt; }
+  .json-string  { color: #a5d6ff;         }
+  .json-boolean { color: $accent-red;     }
+  .json-array   { color: $accent-green;   }
+}
+
+.services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  @include flex-col($gap: $space-2);
+  li {
+    color: $text-secondary;
+    font-size: $fs-ui-sm;
+    padding-left: $space-5;
+    position: relative;
+    &::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: $accent-green;
+    }
+  }
+}
+
+.social-wrapper {
+  @include flex-col;
+  @include lg-down { order: 2; }
+}
+
+.social-card {
+  @include card-base;
+  padding: $space-8;
+  height: fit-content;
+}
+
+.social-title {
+  font-size: $fs-h4;
+  color: $text-white;
+  margin: 0 0 $space-6 0;
+  @include flex-center;
+  justify-content: flex-start;
+  gap: $space-3;
+  font-family: $font-mono;
+  i { color: $accent-blue; font-size: $fs-h5; }
+}
+
+.social-links {
+  @include flex-col($gap: $space-4);
+  margin-bottom: $space-8;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: $space-5;
+  padding: $space-5 $space-6;
+  background: $bg-base;
+  border: 1px solid $border-default;
+  border-radius: $radius-md;
+  text-decoration: none;
+  transition: $transition-base;
+  i { font-size: 2.5rem; flex-shrink: 0; }
+  &:hover {
+    background: $bg-elevated;
+    border-color: $accent-blue;
+    transform: translateX(5px);
+    .social-name { color: $accent-blue; }
+  }
+  @include md-down { padding: $space-4; i { font-size: 2rem; } }
+}
+
+.social-info { @include flex-col($gap: $space-1); flex: 1; }
+
+.social-name {
+  font-size: $fs-body-lg;
+  font-weight: $fw-semibold;
+  color: $text-primary;
+  font-family: $font-mono;
+  transition: color 0.3s;
+}
+
+.social-username {
+  font-size: $fs-ui-sm;
+  color: $text-secondary;
+}
+
+.contact-note {
+  background: $gradient-card-bg;
+  border: 1px solid $border-default;
+  border-radius: $radius-md;
+  padding: $space-5;
+  display: flex;
+  gap: $space-4;
+  align-items: flex-start;
+  i { color: $accent-blue; font-size: $fs-body-lg; margin-top: 2px; flex-shrink: 0; }
+  p {
+    margin: 0;
+    color: $text-secondary;
+    font-size: $fs-ui-sm;
+    line-height: $lh-normal;
+    font-family: $font-sans;
+    strong { color: $text-primary; font-weight: $fw-semibold; }
+    br { content: ""; display: block; margin-bottom: $space-2; }
+  }
+}
+
+.status-bar { @include status-bar; }
+
+.status-left,
+.status-right {
+  display: flex;
+  gap: $space-6;
+  span { @include flex-center; gap: $space-1; }
+  i { color: $accent-blue; font-size: $fs-ui-sm; }
+  @include md-down { gap: $space-4; font-size: $fs-micro; }
+}

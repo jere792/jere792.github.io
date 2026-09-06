@@ -1,0 +1,15 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.home-container {
+  min-height: calc(100vh - #{$content-offset});
+  background: $bg-base;
+  color: $text-primary;
+  padding: $space-16 $space-8;
+  @include flex-col($gap: $space-16);
+
+  @include md-down {
+    padding: $space-8 $space-4;
+    gap: $space-12;
+  }
+}

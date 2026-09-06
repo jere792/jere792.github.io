@@ -1,75 +1,61 @@
 @use 'variables' as *;
 
-
 @mixin xl-down {
   @media (max-width: #{$bp-xl}) { @content; }
 }
-
 @mixin lg-down {
   @media (max-width: #{$bp-lg}) { @content; }
 }
-
 @mixin md-down {
   @media (max-width: #{$bp-md}) { @content; }
 }
-
 @mixin sm-down {
   @media (max-width: #{$bp-sm}) { @content; }
 }
-
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 @mixin flex-between {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 @mixin flex-col($gap: null) {
   display: flex;
   flex-direction: column;
   @if $gap { gap: $gap; }
 }
-
 @mixin text-truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 @mixin code-comment {
   color: $accent-green;
   font-style: italic;
   font-family: $font-mono;
   font-size: $fs-body-sm;
 }
-
 @mixin page-title {
   font-size: $fs-h1;
   color: $text-white;
   font-weight: $fw-semibold;
   font-family: $font-mono;
   margin: $space-4 0 $space-10 0;
-
   @include md-down { font-size: $fs-h2; }
 }
-
 @mixin card-base {
   background: $bg-surface;
   border: 1px solid $border-default;
   border-radius: $radius-lg;
   transition: $transition-base;
-
   &:hover {
     border-color: $accent-blue;
     box-shadow: $shadow-card;
   }
 }
-
 @mixin badge($color: $accent-blue) {
   display: inline-flex;
   align-items: center;
@@ -81,7 +67,6 @@
   font-family: $font-mono;
   font-weight: $fw-medium;
 }
-
 @mixin tech-tag {
   background: $bg-elevated;
   border: 1px solid $border-default;
@@ -91,22 +76,18 @@
   font-size: $fs-tag;
   font-family: $font-mono;
   transition: $transition-base;
-
   &:hover {
     background: $border-default;
     border-color: $accent-blue;
     transform: translateY(-2px);
   }
 }
-
 @mixin glow-blue($intensity: 0.3) {
   box-shadow: 0 0 20px rgba(88, 166, 255, $intensity);
 }
-
 @mixin icon-glow($color: $accent-blue) {
   filter: drop-shadow(0 0 8px #{$color});
 }
-
 @mixin pulse-animation($name: pulse) {
   @keyframes #{$name} {
     0%, 100% { opacity: 1; }
@@ -114,30 +95,25 @@
   }
   animation: #{$name} 2s infinite;
 }
-
 @mixin page-container {
   width: 100%;
   max-width: $max-width;
   margin: 0 auto;
 }
-
 @mixin two-col-grid($gap: $space-10) {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: $gap;
-
   @include lg-down {
     grid-template-columns: 1fr;
     gap: $space-8;
   }
 }
-
 @mixin code-editor-layout {
   display: flex;
   flex: 1;
   overflow-x: auto;
 }
-
 @mixin line-numbers {
   background: $bg-base;
   color: $text-tertiary;
@@ -149,12 +125,9 @@
   border-right: 1px solid $border-subtle;
   min-width: 60px;
   font-family: $font-mono;
-
   span { display: block; }
-
   @include lg-down { display: none; }
 }
-
 @mixin status-bar {
   background: $bg-surface;
   border-top: 1px solid $border-default;
@@ -164,20 +137,17 @@
   color: $text-secondary;
   font-family: $font-mono;
 }
-
 @mixin terminal-card {
   background: $bg-surface;
   border: 1px solid $border-default;
   border-radius: $radius-lg;
   overflow: hidden;
   transition: $transition-base;
-
   &:hover {
     border-color: $accent-blue;
     box-shadow: 0 8px 24px rgba(88, 166, 255, 0.15);
   }
 }
-
 @mixin terminal-header {
   background: $bg-elevated;
   padding: $space-3 $space-4;
@@ -185,11 +155,9 @@
   border-bottom: 1px solid $border-default;
   font-family: $font-mono;
 }
-
 @mixin custom-scrollbar($size: 4px) {
   scrollbar-width: thin;
   scrollbar-color: $border-default transparent;
-
   &::-webkit-scrollbar { width: $size; height: $size; }
   &::-webkit-scrollbar-track { background: $bg-base; }
   &::-webkit-scrollbar-thumb {
