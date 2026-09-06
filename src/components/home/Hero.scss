@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
@@ -81,8 +82,8 @@
     color: #fff;
     border: 1px solid $accent-blue;
     &:hover {
-      background: lighten(#58a6ff, 10%);
-      border-color: lighten(#58a6ff, 10%);
+      background: color.adjust($accent-blue, $lightness: 10%);
+      border-color: color.adjust($accent-blue, $lightness: 10%);
       transform: translateY(-2px);
     }
   }
@@ -131,13 +132,15 @@
 
 .hero-image {
   @include flex-center;
+  flex-direction: column;
+  gap: $space-8;
   @include lg-down { order: -1; }
 }
 
 .image-container {
   position: relative;
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   aspect-ratio: 1;
 
   &::before {
@@ -146,12 +149,14 @@
     inset: -4px;
     background: $gradient-border;
     border-radius: $radius-full;
-    z-index: -1;
+    z-index: 0;
     animation: rotate 3s linear infinite;
   }
 }
 
 .profile-image {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   border-radius: $radius-full;
@@ -162,12 +167,127 @@
   &:hover { transform: scale(1.05); }
 }
 
+.availability-chip {
+  position: absolute;
+  top: 12%;
+  right: -8%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  background: $bg-elevated;
+  border: 1px solid $accent-green;
+  border-radius: $radius-xl;
+  padding: $space-2 $space-3;
+  font-size: $fs-caption;
+  font-family: $font-mono;
+  color: $accent-green;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: float 3s ease-in-out infinite alternate;
+}
+
+.avail-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  background: $accent-green;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.floating-badge {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  background: $bg-elevated;
+  border: 1px solid $border-default;
+  border-radius: $radius-xl;
+  padding: $space-2 $space-3;
+  font-size: $fs-caption;
+  font-family: $font-mono;
+  color: $text-primary;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: $transition-base;
+
+  &:hover {
+    border-color: $accent-blue;
+    transform: translateY(-2px);
+  }
+
+  i { font-size: 1.1rem; }
+}
+
+.badge-react {
+  bottom: 18%;
+  left: -4%;
+  animation: float 3.8s ease-in-out infinite alternate;
+  animation-delay: -0.5s;
+}
+
+.badge-typescript {
+  bottom: 6%;
+  right: 0%;
+  animation: float 4.2s ease-in-out infinite alternate;
+  animation-delay: -1.5s;
+}
+
+.hero-stats {
+  display: flex;
+  gap: $space-10;
+  justify-content: center;
+
+  @include md-down {
+    gap: $space-6;
+  }
+}
+
+.stat-item {
+  text-align: center;
+  animation: fadeIn 0.6s ease forwards;
+
+  &:nth-child(2) { animation-delay: 0.15s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+}
+
+.stat-value {
+  display: block;
+  font-size: $fs-h2;
+  font-weight: $fw-bold;
+  color: $accent-blue;
+  font-family: $font-mono;
+}
+
+.stat-label {
+  display: block;
+  font-size: $fs-caption;
+  color: $text-secondary;
+  font-family: $font-mono;
+  margin-top: $space-1;
+}
+
 @keyframes rotate {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
+  0%, 50%   { opacity: 1; }
   51%, 100% { opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+@keyframes float {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-8px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

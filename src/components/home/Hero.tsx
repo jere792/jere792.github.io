@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { USER_INFO, SOCIAL_LINKS } from '@/data/home';
+import { USER_INFO, SOCIAL_LINKS, HERO_STATS, HERO_BADGES } from '@/data/home';
 import './Hero.scss';
 
 export function Hero() {
@@ -58,6 +58,30 @@ export function Hero() {
         <div className="hero-image">
           <div className="image-container">
             <img src={USER_INFO.image} alt={USER_INFO.name} className="profile-image" />
+
+            <span className="availability-chip">
+              <span className="avail-dot"></span>
+              Disponible para proyectos
+            </span>
+
+            {HERO_BADGES.map((badge) => (
+              <span
+                key={badge.label}
+                className={`floating-badge badge-${badge.label.toLowerCase()}`}
+              >
+                <i className={badge.icon}></i>
+                <span>{badge.label}</span>
+              </span>
+            ))}
+          </div>
+
+          <div className="hero-stats">
+            {HERO_STATS.map((stat) => (
+              <div key={stat.label} className="stat-item">
+                <span className="stat-value">{stat.value}</span>
+                <span className="stat-label">{stat.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

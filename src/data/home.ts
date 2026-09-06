@@ -31,6 +31,17 @@ export const USER_INFO: UserInfo = {
   image: 'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773540298/foto-perfil_mhaf1t.jpg',
 };
 
+export const HERO_STATS = [
+  { value: '8+', label: 'Proyectos' },
+  { value: '18+', label: 'Tecnologías' },
+  { value: '8+', label: 'Meses exp.' },
+];
+
+export const HERO_BADGES = [
+  { icon: 'devicon-react-original colored', label: 'React', color: '#61dafb' },
+  { icon: 'devicon-typescript-plain colored', label: 'TypeScript', color: '#3178c6' },
+];
+
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     url: 'https://github.com/jere792',
