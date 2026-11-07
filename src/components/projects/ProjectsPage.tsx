@@ -1,21 +1,68 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { PROJECT_SECTIONS, type Project, type ProjectSection } from '@/data/projects';
+import {
+  PROJECT_SECTIONS,
+  type Project,
+  type ProjectCategory,
+  type ProjectSection,
+  type ProjectType,
+} from '@/data/projects';
+
+const TYPE_LABELS: Record<ProjectType, string> = {
+  erp: 'ERP',
+  landing: 'Landing',
+  ecommerce: 'E-commerce',
+  'app-mobile': 'App Mobile',
+  web: 'Web',
+};
+
+const CATEGORY_LABELS: Record<ProjectCategory, string> = {
+  business: 'Empresarial',
+  personal: 'Personal',
+  university: 'Universitario',
+};
+
+type ProjectWithContext = Project & {
+  category: ProjectCategory;
+  categoryLabel: string;
+};
 
 export function ProjectsPage() {
   const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
   const [showControls, setShowControls] = useState(true);
   const [showComingSoonModal, setShowComingSoonModal] = useState(false);
+  const [activeType, setActiveType] = useState<ProjectType | 'all'>('all');
   const controlsTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [sections] = useState<ProjectSection[]>(() =>
     PROJECT_SECTIONS.map((section) => ({
       ...section,
-      projects: section.projects.map((p) => ({
-        ...p,
-        currentImageIndex: p.currentImageIndex ?? 0,
+      projects: section.projects.map((project) => ({
+        ...project,
+        currentImageIndex: project.currentImageIndex ?? 0,
       })),
     })),
   );
+
+  const allProjects: ProjectWithContext[] = sections.flatMap((section) =>
+    section.projects.map((project) => ({
+      ...project,
+      category: section.category,
+      categoryLabel: CATEGORY_LABELS[section.category],
+    })),
+  );
+
+  const filteredProjects =
+    activeType === 'all'
+      ? allProjects
+      : allProjects.filter((project) => project.type === activeType);
+
+  const filterOptions: Array<{ value: ProjectType | 'all'; label: string }> = [
+    { value: 'all', label: 'Todos' },
+    ...Object.entries(TYPE_LABELS).map(([value, label]) => ({
+      value: value as ProjectType,
+      label,
+    })),
+  ];
 
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get('highlight');
@@ -97,7 +144,7 @@ export function ProjectsPage() {
     resetControlsTimer();
   }, [resetControlsTimer]);
 
-  // Force re-render for image carousel
+  // Force re-render for the lightbox carousel
   const [, setTick] = useState(0);
   const forceUpdate = () => setTick((t) => t + 1);
 
@@ -105,7 +152,7 @@ export function ProjectsPage() {
     <div className="projects-container">
       <div className="code-editor">
         <div className="line-numbers">
-          {Array.from({ length: 260 }, (_, i) => (
+          {Array.from({ length: 120 }, (_, i) => (
             <span key={i}>{i + 1}</span>
           ))}
         </div>
@@ -114,171 +161,120 @@ export function ProjectsPage() {
             <h1 className="page-title"># Proyectos</h1>
           </header>
 
-          {sections.map((section, si) => (
-            <div key={si}>
-              <div className={`section-divider divider-${section.category}`}>
-                <div className="divider-line"></div>
-                <div className="divider-label">
-                  <i className={section.icon}></i>
-                  <span className="divider-title">{section.label}</span>
-                  <span className="divider-count">
-                    {section.projects.length} proyecto{section.projects.length !== 1 ? 's' : ''}
-                  </span>
-                </div>
-                <div className="divider-line"></div>
-              </div>
-
-              <p className="section-comment">{section.comment}</p>
-
-              <section className="projects-section">
-                {section.projects.map((project, i) => (
-                  <div
-                    key={project.id}
-                    id={`project-${project.id}`}
-                    className={`project-card card-${section.category} ${i % 2 !== 0 ? 'reverse' : ''}`}
-                  >
-                    <div className="project-header">
-                      <div className={`project-status status-${section.category}`}></div>
-                      <h2 className="project-title">{project.title}</h2>
-                      <span className={`category-badge badge-${section.category}`}>
-                        <i className={section.icon}></i>
-                        {section.label}
-                      </span>
-                    </div>
-
-                    <div className="project-grid">
-                      <div className="project-info">
-                        <div className={`info-box info-box-${section.category}`}>
-                          <div className="info-item">
-                            <span className="info-label">CLIENT:</span>
-                            <span className="info-value">{project.client}</span>
-                          </div>
-                          {project.company && (
-                            <div className="info-item">
-                              <span className="info-label">COMPANY:</span>
-                              <span className="info-value">{project.company}</span>
-                            </div>
-                          )}
-                          {project.ruc && (
-                            <div className="info-item">
-                              <span className="info-label">RUC:</span>
-                              <span className="info-value ruc-value">
-                                <i className="pi pi-verified"></i>
-                                {project.ruc}
-                              </span>
-                            </div>
-                          )}
-                          <div className="info-item">
-                            <span className="info-label">DATE:</span>
-                            <span className="info-value">{project.date}</span>
-                          </div>
-                        </div>
-
-                        <p className="project-description">{project.description}</p>
-
-                        <div className="tech-badges">
-                          {project.technologies.map((tech) => (
-                            <span key={tech} className="tech-badge">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        {(project.liveUrl || project.videoUrl) && (
-                          <div className="project-links">
-                            {project.liveUrl && (
-                              <a
-                                href={project.liveUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="project-link link-live"
-                              >
-                                <i className="pi pi-external-link"></i>
-                                Ver proyecto
-                              </a>
-                            )}
-                            {project.videoUrl && (
-                              <button
-                                className="project-link link-video"
-                                onClick={() => openVideoOrModal(project.videoUrl!)}
-                              >
-                                <i className="pi pi-play-circle"></i>
-                                Ver demo
-                              </button>
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="project-image">
-                        {project.images.length > 0 ? (
-                          <div className="image-wrapper">
-                            {project.images.length > 1 && (
-                              <button
-                                className="carousel-btn prev"
-                                onClick={() => {
-                                  prevImage(project);
-                                  forceUpdate();
-                                }}
-                              >
-                                <i className="pi pi-chevron-left"></i>
-                              </button>
-                            )}
-                            <div className="image-frame">
-                              <img
-                                src={getCurrentImage(project)}
-                                alt={project.title}
-                                onClick={() => openLightbox(project)}
-                                loading="lazy"
-                              />
-                            </div>
-                            {project.images.length > 1 && (
-                              <button
-                                className="carousel-btn next"
-                                onClick={() => {
-                                  nextImage(project);
-                                  forceUpdate();
-                                }}
-                              >
-                                <i className="pi pi-chevron-right"></i>
-                              </button>
-                            )}
-                            {project.images.length > 1 && (
-                              <div className="carousel-indicators">
-                                {project.images.map((_, idx) => (
-                                  <span
-                                    key={idx}
-                                    className={`indicator ${idx === project.currentImageIndex ? 'active' : ''}`}
-                                    onClick={() => {
-                                      project.currentImageIndex = idx;
-                                      forceUpdate();
-                                    }}
-                                  ></span>
-                                ))}
-                              </div>
-                            )}
-                            <button
-                              className="fullscreen-btn"
-                              onClick={() => openLightbox(project)}
-                            >
-                              <i className="pi pi-window-maximize"></i>
-                            </button>
-                          </div>
-                        ) : (
-                          <div className="image-wrapper image-wrapper-empty">
-                            <div className="image-placeholder">
-                              <i className="pi pi-image"></i>
-                              <span>Imágenes referenciales próximamente</span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </section>
+          <div className="projects-toolbar">
+            <div className="projects-filters">
+              {filterOptions.map((option) => (
+                <button
+                  key={option.value}
+                  className={`filter-btn ${activeType === option.value ? 'active' : ''}`}
+                  onClick={() => setActiveType(option.value)}
+                >
+                  {option.label}
+                </button>
+              ))}
             </div>
-          ))}
+            <span className="projects-count">
+              {filteredProjects.length} proyecto{filteredProjects.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+
+          <div className="projects-grid-modern">
+            {filteredProjects.map((project) => (
+              <article
+                key={project.id}
+                id={`project-${project.id}`}
+                className={`project-tile tile-${project.type} category-${project.category}`}
+              >
+                <div
+                  className={`tile-media ${project.images.length === 0 ? 'tile-media-empty' : ''}`}
+                >
+                  {project.images.length > 0 ? (
+                    <img
+                      src={getCurrentImage(project)}
+                      alt={project.title}
+                      onClick={() => openLightbox(project)}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="image-placeholder">
+                      <i className="pi pi-image"></i>
+                      <span>Imágenes referenciales próximamente</span>
+                    </div>
+                  )}
+                  <span className={`tile-type type-${project.type}`}>
+                    {TYPE_LABELS[project.type]}
+                  </span>
+                  <span className="tile-category">{project.categoryLabel}</span>
+                  {project.images.length > 1 && (
+                    <span className="tile-photo-count">
+                      <i className="pi pi-images"></i> {project.images.length}
+                    </span>
+                  )}
+                </div>
+
+                <div className="tile-body">
+                  <div className="tile-meta">
+                    <span>{project.client}</span>
+                    <span>{project.date}</span>
+                  </div>
+                  <h2 className="tile-title">{project.title}</h2>
+                  <p className="tile-desc">{project.description}</p>
+
+                  <div className="tech-badges">
+                    {project.technologies.slice(0, 5).map((tech) => (
+                      <span key={tech} className="tech-badge">
+                        {tech}
+                      </span>
+                    ))}
+                    {project.technologies.length > 5 && (
+                      <span className="tech-badge">+{project.technologies.length - 5}</span>
+                    )}
+                  </div>
+
+                  {(project.liveUrl || project.videoUrl || project.images.length > 0) && (
+                    <div className="tile-actions">
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-link link-live"
+                        >
+                          <i className="pi pi-external-link"></i>
+                          Ver proyecto
+                        </a>
+                      )}
+                      {project.videoUrl && (
+                        <button
+                          className="project-link link-video"
+                          onClick={() => openVideoOrModal(project.videoUrl!)}
+                        >
+                          <i className="pi pi-play-circle"></i>
+                          Ver demo
+                        </button>
+                      )}
+                      {project.images.length > 0 && (
+                        <button
+                          className="project-link link-gallery"
+                          onClick={() => openLightbox(project)}
+                        >
+                          <i className="pi pi-images"></i>
+                          Ver imágenes
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {filteredProjects.length === 0 && (
+            <div className="projects-empty">
+              <i className="pi pi-search"></i>
+              <p>No hay proyectos en esta categoría.</p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -292,12 +288,16 @@ export function ProjectsPage() {
           </span>
         </div>
         <div className="status-right">
-          <span>Ln 50, Col 18</span>
+          <span>{filteredProjects.length} proyectos</span>
         </div>
       </div>
 
       {lightboxProject && (
-        <div className="lightbox-overlay" onClick={closeLightbox} onMouseMove={showControlsTemporarily}>
+        <div
+          className="lightbox-overlay"
+          onClick={closeLightbox}
+          onMouseMove={showControlsTemporarily}
+        >
           <div className="lightbox-container" onClick={(e) => e.stopPropagation()}>
             <button
               className={`close-corner-btn ${showControls ? 'visible' : ''}`}

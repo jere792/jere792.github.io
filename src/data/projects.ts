@@ -1,5 +1,6 @@
 export interface Project {
   id: string;
+  type: ProjectType;
   title: string;
   client: string;
   company?: string;
@@ -14,6 +15,8 @@ export interface Project {
 }
 
 export type ProjectCategory = 'business' | 'personal' | 'university';
+
+export type ProjectType = 'erp' | 'landing' | 'ecommerce' | 'app-mobile' | 'web';
 
 export interface ProjectSection {
   category: ProjectCategory;
@@ -32,6 +35,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
     projects: [
       {
         id: 'mkapu',
+        type: 'erp',
         title: 'SG ERP',
         client: 'Mkapu-Import S.A.C.',
         ruc: '20613016946',
@@ -58,6 +62,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'vestizo',
+        type: 'ecommerce',
         title: 'Vestizo Ecommerce Frontend',
         client: 'SEGAL UP MODA S.A.C.',
         ruc: '20610150277',
@@ -70,6 +75,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'gasfiteria',
+        type: 'ecommerce',
         title: 'Gasfitería en Línea',
         client: 'WHC',
         date: 'Por confirmar',
@@ -81,6 +87,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'sg-asthetix',
+        type: 'landing',
         title: 'SG Asthetix — Zona Fade',
         client: 'SG Asthetix',
         date: 'Por confirmar',
@@ -91,6 +98,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'mkpu-ecommerce',
+        type: 'ecommerce',
         title: 'MKPU Ecommerce',
         client: 'Mkapu-Import S.A.C.',
         date: 'Por confirmar',
@@ -102,6 +110,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'lunorion',
+        type: 'web',
         title: 'Lunorion Labs',
         client: 'LUNORION LABS',
         date: 'Por confirmar',
@@ -112,6 +121,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'tanish-ecommerce',
+        type: 'ecommerce',
         title: 'Tanish Ecommerce',
         client: 'Tanish',
         date: 'Por confirmar',
@@ -122,6 +132,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'mayori-boutique',
+        type: 'ecommerce',
         title: 'Mayori Boutique',
         client: 'Mayori Boutique',
         date: 'Por confirmar',
@@ -132,6 +143,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'caba-ingenieria',
+        type: 'landing',
         title: 'CABA Ingeniería',
         client: 'CABA Ingeniería',
         date: 'Por confirmar',
@@ -142,6 +154,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'sg-technology',
+        type: 'landing',
         title: 'SG Technology',
         client: 'SG Technology',
         date: 'Por confirmar',
@@ -160,6 +173,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
     projects: [
       {
         id: 'ocean-eye',
+        type: 'app-mobile',
         title: 'OceanEyesApp',
         client: 'Proyecto Personal',
         date: 'Febrero 2026',
@@ -178,6 +192,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'comunidev',
+        type: 'app-mobile',
         title: 'ComuniDev',
         client: 'Proyecto Personal',
         date: 'Por confirmar',
@@ -188,6 +203,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'guardaya',
+        type: 'web',
         title: 'Guardaya',
         client: 'Por confirmar',
         date: 'Por confirmar',
@@ -206,6 +222,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
     projects: [
       {
         id: 'comunired',
+        type: 'web',
         title: 'Comunired.exe',
         client: 'Proyecto Universitario',
         date: 'Julio - Noviembre 2025',
@@ -240,6 +257,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
       },
       {
         id: 'lead-upn',
+        type: 'web',
         title: 'Lead UPN',
         client: 'Universidad Privada del Norte',
         date: 'Por confirmar',
