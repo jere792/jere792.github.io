@@ -100,7 +100,7 @@ export function ProjectsPage() {
     <div className="projects-container">
       <div className="code-editor">
         <div className="line-numbers">
-          {Array.from({ length: 170 }, (_, i) => (
+          {Array.from({ length: 260 }, (_, i) => (
             <span key={i}>{i + 1}</span>
           ))}
         </div>
@@ -206,55 +206,67 @@ export function ProjectsPage() {
                       </div>
 
                       <div className="project-image">
-                        <div className="image-wrapper">
-                          {project.images.length > 1 && (
-                            <button
-                              className="carousel-btn prev"
-                              onClick={() => {
-                                prevImage(project);
-                                forceUpdate();
-                              }}
-                            >
-                              <i className="pi pi-chevron-left"></i>
-                            </button>
-                          )}
-                          <div className="image-frame">
-                            <img
-                              src={getCurrentImage(project)}
-                              alt={project.title}
-                              onClick={() => openLightbox(project)}
-                              loading="lazy"
-                            />
-                          </div>
-                          {project.images.length > 1 && (
-                            <button
-                              className="carousel-btn next"
-                              onClick={() => {
-                                nextImage(project);
-                                forceUpdate();
-                              }}
-                            >
-                              <i className="pi pi-chevron-right"></i>
-                            </button>
-                          )}
-                          {project.images.length > 1 && (
-                            <div className="carousel-indicators">
-                              {project.images.map((_, idx) => (
-                                <span
-                                  key={idx}
-                                  className={`indicator ${idx === project.currentImageIndex ? 'active' : ''}`}
-                                  onClick={() => {
-                                    project.currentImageIndex = idx;
-                                    forceUpdate();
-                                  }}
-                                ></span>
-                              ))}
+                        {project.images.length > 0 ? (
+                          <div className="image-wrapper">
+                            {project.images.length > 1 && (
+                              <button
+                                className="carousel-btn prev"
+                                onClick={() => {
+                                  prevImage(project);
+                                  forceUpdate();
+                                }}
+                              >
+                                <i className="pi pi-chevron-left"></i>
+                              </button>
+                            )}
+                            <div className="image-frame">
+                              <img
+                                src={getCurrentImage(project)}
+                                alt={project.title}
+                                onClick={() => openLightbox(project)}
+                                loading="lazy"
+                              />
                             </div>
-                          )}
-                          <button className="fullscreen-btn" onClick={() => openLightbox(project)}>
-                            <i className="pi pi-window-maximize"></i>
-                          </button>
-                        </div>
+                            {project.images.length > 1 && (
+                              <button
+                                className="carousel-btn next"
+                                onClick={() => {
+                                  nextImage(project);
+                                  forceUpdate();
+                                }}
+                              >
+                                <i className="pi pi-chevron-right"></i>
+                              </button>
+                            )}
+                            {project.images.length > 1 && (
+                              <div className="carousel-indicators">
+                                {project.images.map((_, idx) => (
+                                  <span
+                                    key={idx}
+                                    className={`indicator ${idx === project.currentImageIndex ? 'active' : ''}`}
+                                    onClick={() => {
+                                      project.currentImageIndex = idx;
+                                      forceUpdate();
+                                    }}
+                                  ></span>
+                                ))}
+                              </div>
+                            )}
+                            <button
+                              className="fullscreen-btn"
+                              onClick={() => openLightbox(project)}
+                            >
+                              <i className="pi pi-window-maximize"></i>
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="image-wrapper image-wrapper-empty">
+                            <div className="image-placeholder">
+                              <i className="pi pi-image"></i>
+                              <span>Imágenes referenciales próximamente</span>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

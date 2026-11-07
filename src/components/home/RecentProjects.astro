@@ -2,7 +2,9 @@
 import { PROJECT_SECTIONS } from '@/data/projects';
 import './RecentProjects.scss';
 
-const recentProjects = PROJECT_SECTIONS.flatMap((section) => section.projects).slice(0, 2);
+const recentProjects = PROJECT_SECTIONS.flatMap((section) => section.projects)
+  .filter((project) => project.images.length > 0)
+  .slice(0, 2);
 const colors = ['#58a6ff', '#7ee787'];
 const getCategoryColor = (index: number) => colors[index] ?? '#58a6ff';
 ---

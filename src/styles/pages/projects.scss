@@ -326,6 +326,26 @@
   @include sm-down { height: 180px; }
 }
 
+.image-wrapper-empty {
+  background: linear-gradient(135deg, rgba(#58a6ff, 0.08), rgba(#7ee787, 0.05));
+  border-style: dashed;
+}
+
+.image-placeholder {
+  @include flex-col($gap: $space-3);
+  align-items: center;
+  text-align: center;
+  padding: $space-4;
+  color: $text-secondary;
+  font-family: $font-mono;
+  font-size: $fs-ui-sm;
+
+  i {
+    font-size: $fs-h2;
+    color: $accent-blue;
+  }
+}
+
 .image-frame {
   width: 100%;
   height: 100%;
