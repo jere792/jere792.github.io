@@ -22,12 +22,13 @@ export interface UserInfo {
 export const USER_INFO: UserInfo = {
   name: 'Jeremy Anton',
   email: 'jeremyar792@gmail.com',
-  role: 'Systems Engineer',
+  role: 'Full Stack Developer & SEO',
   typingText: "Hi, I'm Jeremy Anton",
   description:
-    'Frontend Developer apasionado por React, TypeScript y diseño UI/UX. ' +
-    'Creando aplicaciones web modernas con Astro, SCSS y arquitecturas escalables. ' +
-    'De la interfaz hasta la base de datos, construyendo soluciones completas.',
+    'Full Stack Developer & SEO con experiencia en React, Angular y Java. ' +
+    'Construyo aplicaciones web modernas de extremo a extremo: interfaces con ' +
+    'TypeScript, Astro y SCSS, APIs con Node.js y Spring Boot, bases de datos SQL y NoSQL, ' +
+    'y SEO técnico para que cada proyecto cargue rápido y se posicione mejor.',
   image: 'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773540298/foto-perfil_mhaf1t.jpg',
 };
 
@@ -39,7 +40,10 @@ export const HERO_STATS = [
 
 export const HERO_BADGES = [
   { icon: 'devicon-react-original colored', label: 'React', color: '#61dafb' },
+  { icon: 'devicon-angular-plain colored', label: 'Angular', color: '#dd0031' },
+  { icon: 'devicon-java-plain colored', label: 'Java', color: '#f89820' },
   { icon: 'devicon-typescript-plain colored', label: 'TypeScript', color: '#3178c6' },
+  { icon: 'pi pi-search', label: 'SEO', color: '#7ee787' },
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -292,6 +296,7 @@ export const TECH_CARDS: TechCard[] = [
 
 export const TECHNOLOGIES: Technology[] = [
   { name: 'React', icon: 'devicon-react-original colored' },
+  { name: 'Angular', icon: 'devicon-angular-plain colored' },
   { name: 'TypeScript', icon: 'devicon-typescript-plain colored' },
   { name: 'JavaScript', icon: 'devicon-javascript-plain colored' },
   { name: 'Node.js', icon: 'devicon-nodejs-plain colored' },
