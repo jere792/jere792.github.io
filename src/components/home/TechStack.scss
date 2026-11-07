@@ -104,8 +104,32 @@
   color: $text-primary;
 }
 
-.cat-techs {
-  font-family: $font-mono;
-  font-size: $fs-ui-sm;
+.cat-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.cat-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  background: $bg-elevated;
+  border: 1px solid $border-default;
   color: $text-secondary;
+  padding: 2px $space-2;
+  border-radius: $radius-md;
+  font-family: $font-mono;
+  font-size: $fs-caption;
+  transition: $transition-base;
+
+  i {
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    border-color: $accent-blue;
+    color: $text-primary;
+    transform: translateY(-1px);
+  }
 }

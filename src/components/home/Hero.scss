@@ -80,67 +80,6 @@
   @include md-down { font-size: $fs-body; }
 }
 
-.hero-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $space-2;
-  margin-bottom: $space-8;
-}
-
-.skill-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-2;
-  background: $bg-elevated;
-  border: 1px solid $border-default;
-  border-radius: $radius-md;
-  padding: $space-2 $space-3;
-  font-size: $fs-tag;
-  font-family: $font-mono;
-  color: $text-primary;
-  transition: $transition-base;
-
-  &:hover {
-    border-color: $accent-blue;
-    background: rgba($accent-blue, 0.08);
-    transform: translateY(-2px);
-  }
-
-  i { font-size: 1rem; }
-}
-
-.hero-stats {
-  display: flex;
-  gap: $space-8;
-  margin-bottom: $space-8;
-
-  @include md-down { gap: $space-6; }
-}
-
-.stat-item {
-  text-align: left;
-  animation: fadeIn 0.6s ease forwards;
-
-  &:nth-child(2) { animation-delay: 0.15s; }
-  &:nth-child(3) { animation-delay: 0.3s; }
-}
-
-.stat-value {
-  display: block;
-  font-size: $fs-h2;
-  font-weight: $fw-bold;
-  color: $accent-blue;
-  font-family: $font-mono;
-}
-
-.stat-label {
-  display: block;
-  font-size: $fs-caption;
-  color: $text-secondary;
-  font-family: $font-mono;
-  margin-top: $space-1;
-}
-
 .cta-buttons {
   display: flex;
   gap: $space-4;
@@ -264,7 +203,3 @@
   50%      { opacity: 0.5; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}

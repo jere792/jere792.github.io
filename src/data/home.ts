@@ -32,20 +32,6 @@ export const USER_INFO: UserInfo = {
   image: 'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773540298/foto-perfil_mhaf1t.jpg',
 };
 
-export const HERO_STATS = [
-  { value: '8+', label: 'Proyectos' },
-  { value: '18+', label: 'Tecnologías' },
-  { value: '8+', label: 'Meses exp.' },
-];
-
-export const HERO_BADGES = [
-  { icon: 'devicon-react-original colored', label: 'React', color: '#61dafb' },
-  { icon: 'devicon-angular-plain colored', label: 'Angular', color: '#dd0031' },
-  { icon: 'devicon-java-plain colored', label: 'Java', color: '#f89820' },
-  { icon: 'devicon-typescript-plain colored', label: 'TypeScript', color: '#3178c6' },
-  { icon: 'pi pi-search', label: 'SEO', color: '#7ee787' },
-];
-
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     url: 'https://github.com/jere792',
@@ -161,18 +147,6 @@ export const TECH_CARDS: TechCard[] = [
     duration: 4.8,
   },
   {
-    name: 'SQL Server',
-    icon: 'devicon-microsoftsqlserver-plain colored',
-    glow: '#cc2927',
-    size: 'sm',
-    left: 6,
-    top: 44,
-    float: -7,
-    z: 6,
-    delay: -0.5,
-    duration: 3.5,
-  },
-  {
     name: 'MySQL',
     icon: 'devicon-mysql-plain colored',
     glow: '#4479a1',
@@ -245,18 +219,6 @@ export const TECH_CARDS: TechCard[] = [
     duration: 4.0,
   },
   {
-    name: 'ASP.NET Core',
-    icon: 'devicon-dotnetcore-plain colored',
-    glow: '#512bd4',
-    size: 'sm',
-    left: 24,
-    top: 58,
-    float: -5,
-    z: 6,
-    delay: -4,
-    duration: 3.5,
-  },
-  {
     name: 'Figma',
     icon: 'devicon-figma-plain colored',
     glow: '#f24e1e',
@@ -303,14 +265,12 @@ export const TECHNOLOGIES: Technology[] = [
   { name: 'Express', icon: 'devicon-express-original' },
   { name: 'CSS3', icon: 'devicon-css3-plain colored' },
   { name: 'SCSS', icon: 'devicon-sass-original colored' },
-  { name: 'SQL Server', icon: 'devicon-microsoftsqlserver-plain colored' },
   { name: 'MySQL', icon: 'devicon-mysql-plain colored' },
   { name: 'MongoDB', icon: 'devicon-mongodb-plain colored' },
   { name: 'GraphQL', icon: 'devicon-graphql-plain colored' },
   { name: 'Java', icon: 'devicon-java-plain colored' },
   { name: 'Spring Boot', icon: 'devicon-spring-plain colored' },
   { name: 'C#', icon: 'devicon-csharp-plain colored' },
-  { name: 'ASP.NET Core', icon: 'devicon-dotnetcore-plain colored' },
   { name: 'Figma', icon: 'devicon-figma-plain colored' },
   { name: 'Arduino', icon: 'devicon-arduino-plain colored' },
   { name: 'GitHub', icon: 'devicon-github-original' },
