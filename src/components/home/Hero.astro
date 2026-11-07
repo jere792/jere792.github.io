@@ -1,0 +1,101 @@
+---
+import { HERO_BADGES, HERO_STATS, SOCIAL_LINKS, USER_INFO } from '@/data/home';
+import './Hero.scss';
+---
+
+<section class="hero-section">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <span class="availability-chip">
+        <span class="avail-dot"></span>
+        Disponible para proyectos
+      </span>
+
+      <h1 class="hero-name">
+        <span
+          class="typed-text"
+          id="hero-typed-text"
+          data-text={USER_INFO.typingText}>{USER_INFO.typingText}</span
+        >
+        <span class="cursor">|</span>
+      </h1>
+      <p class="hero-role">{USER_INFO.role}</p>
+      <p class="hero-description">{USER_INFO.description}</p>
+
+      <div class="hero-skills">
+        {
+          HERO_BADGES.map((badge) => (
+            <span class="skill-chip">
+              <i class={badge.icon}></i>
+              <span>{badge.label}</span>
+            </span>
+          ))
+        }
+      </div>
+
+      <div class="hero-stats">
+        {
+          HERO_STATS.map((stat) => (
+            <div class="stat-item">
+              <span class="stat-value">{stat.value}</span>
+              <span class="stat-label">{stat.label}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="cta-buttons">
+        <a class="btn-raised" href="/projects/">
+          Ver Proyectos <i class="pi pi-arrow-right"></i>
+        </a>
+        <a class="btn-outlined" href="/contact/">
+          Contáctame <i class="pi pi-envelope"></i>
+        </a>
+      </div>
+
+      <div class="social-links">
+        {
+          SOCIAL_LINKS.map((social) => (
+            <a
+              href={social.url}
+              target={social.external ? '_blank' : '_self'}
+              rel={social.external ? 'noopener noreferrer' : undefined}
+              aria-label={social.label}
+              class="social-icon"
+            >
+              <i class={social.icon}></i>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="image-container">
+        <img
+          src={USER_INFO.image}
+          alt={USER_INFO.name}
+          class="profile-image"
+          width="420"
+          height="420"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const el = document.getElementById('hero-typed-text');
+    if (!el) return;
+    const text = el.dataset.text || '';
+    let index = 0;
+    el.textContent = '';
+    const interval = setInterval(() => {
+      index += 1;
+      el.textContent = text.slice(0, index);
+      if (index >= text.length) clearInterval(interval);
+    }, 100);
+  })();
+</script>

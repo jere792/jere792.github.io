@@ -1,59 +1,79 @@
 # Portfolio - Jere792
 
-Portfolio personal construido con [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4 y PrimeNG.
+Portfolio personal de Jeremy Anton construido con **Astro 7**, islas de **React 19**, **TypeScript** y **SCSS**.
 
-## Development server
+## Stack
 
-To start a local development server, run:
+- Astro 7 (salida 100% estática)
+- React 19 solo en las piezas interactivas (`TechCollage`, proyectos y reproductor de `/now`)
+- TypeScript
+- SCSS con variables y mixins compartidos
+- Devicon y PrimeIcons
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Desarrollo
 
 ```bash
-ng generate component component-name
+npm install
+npm run dev
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+El servidor de desarrollo arranca en `http://localhost:4321/`.
+
+## Build
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
-
-To build the project run:
+Genera el sitio estático en `dist/`. Para revisarlo localmente:
 
 ```bash
-ng build
+npm run preview
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Estructura
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+```text
+src/
+  layouts/Layout.astro
+  pages/
+    index.astro        # Home en /
+    home.astro         # Redirección de /home a /
+    about.astro
+    contact.astro
+    projects.astro     # Isla React
+    now.astro          # Isla React
+  components/
+    layout/            # Header, Navbar y Footer en Astro
+    home/              # Hero, TechStack y RecentProjects en Astro
+    home/TechCollage.tsx
+    projects/ProjectsPage.tsx
+    now/NowPage.tsx
+    shared/GithubActivity.astro
+  data/                # Contenido del portfolio
+  lib/
+  styles/
+    globals.scss
+    _variables.scss
+    _mixins.scss
+    _global.scss
+    pages/             # SCSS específico de cada página
+public/
+  _redirects           # Redirecciones de Cloudflare Pages
 ```
 
-## Running end-to-end tests
+## Deploy en Cloudflare Pages
 
-For end-to-end (e2e) testing, run:
+El proyecto está pensado para desplegarse con la integración de Git de Cloudflare Pages:
 
-```bash
-ng e2e
-```
+- **Build command:** `npm run build`
+- **Build output directory:** `dist`
+- **Node version:** 22 o superior (`NODE_VERSION=22`)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+`public/_redirects` mantiene `/home` redirigido a `/` para no romper enlaces antiguos.
 
-## Additional Resources
+## Notas
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- El home está en `/`; la antigua ruta `/home` redirige.
+- El dominio canónico se configura en `astro.config.mjs` (`site`). Actualízalo cuando tengas el dominio final de Cloudflare.
+- Las imágenes se sirven desde Cloudinary.

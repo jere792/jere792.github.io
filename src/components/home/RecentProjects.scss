@@ -73,8 +73,11 @@
 
 .project-card {
   @include card-base;
+  display: block;
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
   border-left: 3px solid var(--accent, #{$accent-blue});
 
   &:hover {

@@ -1,5 +1,5 @@
-'use client';
 import { useState, useEffect, useCallback, useRef } from 'react';
+import type * as React from 'react';
 
 interface Track {
   song: string;
@@ -14,33 +14,81 @@ interface LrcLine {
 }
 
 const tracks: Track[] = [
-  { song: 'Maldito Duende', artist: 'Héroes del Silencio', genre: 'Rock', audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606707/maldito_duende-heroes_silencio-mp3_qisfwy.mp3' },
-  { song: 'Bailando Solo', artist: 'Los Bunkers', genre: 'Rock Latino', audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606714/bailando_solo-bunkers-mp3_wga0fb.mp3' },
-  { song: 'Entre Dos Tierras', artist: 'Héroes del Silencio', genre: 'Rock', audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606703/entre_dos_tierras-heroes_silencio-mp3_dywghq.mp3' },
-  { song: 'Bye Bye', artist: 'Vicky Palma', genre: 'Rock Latino', audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606515/bye_bye-vicky_palma-mp3_jeo7k0.mp3' },
-  { song: 'Mala Vida', artist: 'Mano Negra', genre: 'Rock/Ska', audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606489/mala_vida-rancheros-mp3_y14peq.mp3' },
-  { song: 'Suna', artist: 'Mar Copas', genre: 'Rock Chileno', audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606489/suna-mar_copas-mp3_busjj9.mp3' },
-  { song: 'Sobre la Ciudad', artist: 'Los Bunkers', genre: 'Rock Latino', audioUrl: 'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606487/sobre_la_ciudad-bunkers-mp3_ywaytz.mp3' },
+  {
+    song: 'Maldito Duende',
+    artist: 'Héroes del Silencio',
+    genre: 'Rock',
+    audioUrl:
+      'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606707/maldito_duende-heroes_silencio-mp3_qisfwy.mp3',
+  },
+  {
+    song: 'Bailando Solo',
+    artist: 'Los Bunkers',
+    genre: 'Rock Latino',
+    audioUrl:
+      'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606714/bailando_solo-bunkers-mp3_wga0fb.mp3',
+  },
+  {
+    song: 'Entre Dos Tierras',
+    artist: 'Héroes del Silencio',
+    genre: 'Rock',
+    audioUrl:
+      'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606703/entre_dos_tierras-heroes_silencio-mp3_dywghq.mp3',
+  },
+  {
+    song: 'Bye Bye',
+    artist: 'Vicky Palma',
+    genre: 'Rock Latino',
+    audioUrl:
+      'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606515/bye_bye-vicky_palma-mp3_jeo7k0.mp3',
+  },
+  {
+    song: 'Mala Vida',
+    artist: 'Mano Negra',
+    genre: 'Rock/Ska',
+    audioUrl:
+      'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606489/mala_vida-rancheros-mp3_y14peq.mp3',
+  },
+  {
+    song: 'Suna',
+    artist: 'Mar Copas',
+    genre: 'Rock Chileno',
+    audioUrl:
+      'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606489/suna-mar_copas-mp3_busjj9.mp3',
+  },
+  {
+    song: 'Sobre la Ciudad',
+    artist: 'Los Bunkers',
+    genre: 'Rock Latino',
+    audioUrl:
+      'https://res.cloudinary.com/dpnxbnqxu/video/upload/v1773606487/sobre_la_ciudad-bunkers-mp3_ywaytz.mp3',
+  },
 ];
 
 const learning = [
   { title: 'Docker & Contenedores', source: 'docs oficiales + proyectos reales', percent: 29 },
-  { title: 'React Server Components', source: 'nextjs.org docs', percent: 75 },
+  { title: 'Astro Islands', source: 'docs.astro.build', percent: 75 },
   { title: 'Design Systems (Figma)', source: 'referencias de Vercel + Linear', percent: 58 },
 ];
 
 const setup = [
-  { category: 'editor', items: [
-    { icon: 'devicon-vscode-plain colored', name: 'VS Code', detail: 'One Dark Pro' },
-    { icon: 'devicon-github-original', name: 'GitHub', detail: 'control de versiones' },
-    { icon: 'devicon-powershell-plain colored', name: 'PowerShell', detail: 'terminal principal' },
-  ]},
-  { category: 'stack_diario', items: [
-    { icon: 'devicon-react-original colored', name: 'React 19+', detail: 'frontend' },
-    { icon: 'devicon-typescript-plain colored', name: 'TypeScript', detail: 'siempre tipado' },
-    { icon: 'devicon-nextjs-plain colored', name: 'Next.js', detail: 'framework' },
-    { icon: 'devicon-mysql-plain colored', name: 'MySQL', detail: 'DB principal' },
-  ]},
+  {
+    category: 'editor',
+    items: [
+      { icon: 'devicon-vscode-plain colored', name: 'VS Code', detail: 'One Dark Pro' },
+      { icon: 'devicon-github-original', name: 'GitHub', detail: 'control de versiones' },
+      { icon: 'devicon-powershell-plain colored', name: 'PowerShell', detail: 'terminal principal' },
+    ],
+  },
+  {
+    category: 'stack_diario',
+    items: [
+      { icon: 'devicon-react-original colored', name: 'React 19+', detail: 'frontend' },
+      { icon: 'devicon-typescript-plain colored', name: 'TypeScript', detail: 'siempre tipado' },
+      { icon: 'devicon-astro-plain colored', name: 'Astro', detail: 'framework' },
+      { icon: 'devicon-mysql-plain colored', name: 'MySQL', detail: 'DB principal' },
+    ],
+  },
 ];
 
 const personalNote =
@@ -77,7 +125,8 @@ export function NowPage() {
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const lastUpdated = 'Marzo 2026';
-  const mood = 'En modo construcción: proyectos reales, 8vo ciclo y aprendiendo algo nuevo cada semana.';
+  const mood =
+    'En modo construcción: proyectos reales, 8vo ciclo y aprendiendo algo nuevo cada semana.';
 
   const [showModal, setShowModal] = useState(false);
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
@@ -121,7 +170,9 @@ export function NowPage() {
     if (idx !== currentLyricIdx) {
       setCurrentLyricIdx(idx);
       setTimeout(() => {
-        document.querySelector('.lyric-line.active')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        document
+          .querySelector('.lyric-line.active')
+          ?.scrollIntoView({ block: 'center', behavior: 'smooth' });
       }, 50);
     }
   }, [lyrics, currentLyricIdx, audio]);
@@ -132,7 +183,7 @@ export function NowPage() {
     setLyrics([]);
     try {
       const res = await fetch(
-        `https://lrclib.net/api/get?artist_name=${encodeURIComponent(track.artist)}&track_name=${encodeURIComponent(track.song)}`
+        `https://lrclib.net/api/get?artist_name=${encodeURIComponent(track.artist)}&track_name=${encodeURIComponent(track.song)}`,
       );
       const data = await res.json();
       const raw: string = data?.syncedLyrics ?? null;
@@ -149,30 +200,6 @@ export function NowPage() {
     }
   }, []);
 
-  const playTrack = useCallback((track: Track) => {
-    if (currentTrack?.song === track.song) {
-      togglePlay();
-      return;
-    }
-    stopTick();
-    const a = audioRef.current;
-    if (!a) return;
-    setCurrentTrack(track);
-    setCurrentMs(0);
-    setDurationMs(0);
-    setProgressPct(0);
-    setLyrics([]);
-    setCurrentLyricIdx(-1);
-    a.src = track.audioUrl;
-    a.load();
-    a.play().then(() => {
-      a.volume = volume / 100;
-      setIsPlaying(true);
-      startTick();
-      fetchLyrics(track);
-    }).catch(() => {});
-  }, [currentTrack, volume, startTick, stopTick, fetchLyrics]);
-
   const togglePlay = useCallback(() => {
     const a = audioRef.current;
     if (!a) return;
@@ -181,12 +208,43 @@ export function NowPage() {
       setIsPlaying(false);
       stopTick();
     } else {
-      a.play().then(() => {
-        setIsPlaying(true);
-        startTick();
-      }).catch(() => {});
+      a.play()
+        .then(() => {
+          setIsPlaying(true);
+          startTick();
+        })
+        .catch(() => {});
     }
   }, [isPlaying, startTick, stopTick]);
+
+  const playTrack = useCallback(
+    (track: Track) => {
+      if (currentTrack?.song === track.song) {
+        togglePlay();
+        return;
+      }
+      stopTick();
+      const a = audioRef.current;
+      if (!a) return;
+      setCurrentTrack(track);
+      setCurrentMs(0);
+      setDurationMs(0);
+      setProgressPct(0);
+      setLyrics([]);
+      setCurrentLyricIdx(-1);
+      a.src = track.audioUrl;
+      a.load();
+      a.play()
+        .then(() => {
+          a.volume = volume / 100;
+          setIsPlaying(true);
+          startTick();
+          fetchLyrics(track);
+        })
+        .catch(() => {});
+    },
+    [currentTrack, volume, startTick, stopTick, fetchLyrics, togglePlay],
+  );
 
   const stop = useCallback(() => {
     const a = audioRef.current;
@@ -277,7 +335,8 @@ export function NowPage() {
     };
   }, [stopTick]);
 
-  const volumeIcon = volume === 0 ? 'pi pi-volume-off' : volume < 50 ? 'pi pi-volume-down' : 'pi pi-volume-up';
+  const volumeIcon =
+    volume === 0 ? 'pi pi-volume-off' : volume < 50 ? 'pi pi-volume-down' : 'pi pi-volume-up';
 
   return (
     <div className="now-container">
@@ -288,7 +347,6 @@ export function NowPage() {
           ))}
         </div>
         <div className="code-content">
-
           <header className="now-header">
             <div className="header-top">
               <div>
@@ -297,7 +355,7 @@ export function NowPage() {
               </div>
               <button className="music-btn" onClick={openModal} title="Ver mis canciones">
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 11-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 01.207.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.52-.973c3.632-1.102 8.147-.568 11.233 1.329a.78.78 0 01.257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.793c3.563-1.08 9.484-.872 13.22 1.37a.937.937 0 01-.06 1.58z"/>
+                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 11-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 01.207.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.52-.973c3.632-1.102 8.147-.568 11.233 1.329a.78.78 0 01.257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.793c3.563-1.08 9.484-.872 13.22 1.37a.937.937 0 01-.06 1.58z" />
                 </svg>
                 {isPlaying && (
                   <span className="music-badge">
@@ -374,14 +432,17 @@ export function NowPage() {
               <span className="mood-cursor">&#9608;</span>
             </div>
           </section>
-
         </div>
       </div>
 
       <div className="status-bar">
         <div className="status-left">
-          <span><i className="pi pi-check-circle"></i> now.md</span>
-          <span><i className="pi pi-map-marker"></i> Lima, Perú</span>
+          <span>
+            <i className="pi pi-check-circle"></i> now.md
+          </span>
+          <span>
+            <i className="pi pi-map-marker"></i> Lima, Perú
+          </span>
         </div>
         <div className="status-right">
           <span>{lastUpdated}</span>
@@ -391,7 +452,6 @@ export function NowPage() {
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-player" onClick={(e) => e.stopPropagation()}>
-
             <div className="modal-tab-bar">
               <div className="modal-dots">
                 <span className="dot red" onClick={closeModal}></span>
@@ -405,7 +465,6 @@ export function NowPage() {
             </div>
 
             <div className="modal-body">
-
               {currentTrack ? (
                 <div className="now-playing-block">
                   <div className="np-info">
@@ -436,11 +495,22 @@ export function NowPage() {
                       <i className="pi pi-stop"></i>
                     </button>
                     <div className="volume-wrap">
-                      <button className="ctrl-btn" onClick={() => setShowVolume(!showVolume)} title="Volumen">
+                      <button
+                        className="ctrl-btn"
+                        onClick={() => setShowVolume(!showVolume)}
+                        title="Volumen"
+                      >
                         <i className={volumeIcon}></i>
                       </button>
                       <div className={`volume-slider-wrap ${showVolume ? 'visible' : ''}`}>
-                        <input type="range" min="0" max="100" value={volume} onChange={handleSetVolume} className="volume-slider" />
+                        <input
+                          type="range"
+                          min="0"
+                          max="100"
+                          value={volume}
+                          onChange={handleSetVolume}
+                          className="volume-slider"
+                        />
                         <span className="volume-pct">{volume}%</span>
                       </div>
                     </div>
@@ -517,16 +587,18 @@ export function NowPage() {
                   </div>
                 ))}
               </div>
-
             </div>
 
             <audio ref={audioRef} onEnded={onEnded}></audio>
 
             <div className="modal-status">
               <span>{tracks.length} canciones · cloudinary</span>
-              {currentTrack && <span>{fmt(currentMs)} / {fmt(durationMs)}</span>}
+              {currentTrack && (
+                <span>
+                  {fmt(currentMs)} / {fmt(durationMs)}
+                </span>
+              )}
             </div>
-
           </div>
         </div>
       )}

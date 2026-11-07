@@ -1,0 +1,38 @@
+---
+import './Navbar.scss';
+
+const menuItems = [
+  { label: 'home.html', route: '/', icon: 'devicon-html5-plain colored' },
+  { label: 'about.ts', route: '/about/', icon: 'devicon-typescript-plain colored' },
+  { label: 'contact.json', route: '/contact/', icon: 'devicon-nodejs-plain colored' },
+  { label: 'projects.css', route: '/projects/', icon: 'devicon-css3-plain colored' },
+  { label: 'now.md', route: '/now/', icon: 'pi pi-user' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+const isActive = (route: string) => {
+  const normalized = route.replace(/\/+$/, '') || '/';
+  if (normalized === '/') return currentPath === '/';
+  return currentPath === normalized || currentPath.startsWith(`${normalized}/`);
+};
+---
+
+<nav class="code-navbar">
+  <ul class="nav-tabs">
+    {
+      menuItems.map((item) => (
+        <li class="nav-tab">
+          <a
+            href={item.route}
+            class:list={['tab-link', { active: isActive(item.route) }]}
+            aria-current={isActive(item.route) ? 'page' : undefined}
+          >
+            <i class={item.icon}></i>
+            <span>{item.label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

@@ -1,0 +1,11 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'global';
+
+.site-main {
+  padding-top: 80px;
+  min-height: 100vh;
+  background-color: $bg-base;
+  width: 100%;
+  position: relative;
+}

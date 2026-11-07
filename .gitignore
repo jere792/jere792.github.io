@@ -1,9 +1,9 @@
 # dependencies
 node_modules/
 
-# next.js
-.next/
-out/
+# astro
+.astro/
+dist/
 
 # misc
 .DS_Store
@@ -15,13 +15,9 @@ npm-debug.log*
 # env files
 .env*.local
 
-# vercel
-.vercel
+# cloudflare
+.wrangler/
+.dev.vars
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
-
-# old angular
-.angular/
-dist/

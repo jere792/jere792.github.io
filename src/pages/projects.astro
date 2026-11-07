@@ -1,0 +1,12 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { ProjectsPage } from '@/components/projects/ProjectsPage';
+import '@/styles/pages/projects.scss';
+---
+
+<Layout
+  title="Proyectos | Jeremy Anton"
+  description="Proyectos empresariales, personales y universitarios de Jeremy Anton: ERP, e-commerce, aplicaciones de reportes y sistemas de gestión."
+>
+  <ProjectsPage client:load />
+</Layout>

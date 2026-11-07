@@ -1,5 +1,5 @@
-'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import type * as React from 'react';
 import { TECH_CARDS, type TechCard } from '@/data/home';
 import './TechCollage.scss';
 

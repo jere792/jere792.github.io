@@ -1,0 +1,47 @@
+---
+import Header from '@/components/layout/Header.astro';
+import Navbar from '@/components/layout/Navbar.astro';
+import Footer from '@/components/layout/Footer.astro';
+import 'primeicons/primeicons.css';
+import '@/styles/globals.scss';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Jeremy Anton | Systems Engineer & Frontend Developer',
+  description =
+    'Portfolio de Jeremy Anton: desarrollo frontend con React, TypeScript y Astro, backend con Node.js y bases de datos relacionales y no relacionales.',
+} = Astro.props;
+
+const favicon =
+  'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773368006/logoportfolio_xggriw.jpg';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href={favicon} />
+    <link rel="canonical" href={canonical} />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <Navbar />
+    <main class="site-main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

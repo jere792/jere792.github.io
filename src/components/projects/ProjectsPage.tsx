@@ -1,33 +1,32 @@
-'use client';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { PROJECT_SECTIONS, type Project, type ProjectSection } from '@/data/projects';
 
 export function ProjectsPage() {
-  const searchParams = useSearchParams();
   const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
   const [showControls, setShowControls] = useState(true);
   const [showComingSoonModal, setShowComingSoonModal] = useState(false);
   const controlsTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const sections: ProjectSection[] = PROJECT_SECTIONS.map(section => ({
+  const sections: ProjectSection[] = PROJECT_SECTIONS.map((section) => ({
     ...section,
-    projects: section.projects.map(p => ({ ...p })),
+    projects: section.projects.map((p) => ({ ...p })),
   }));
 
   useEffect(() => {
-    const id = searchParams.get('highlight');
-    if (id) {
-      setTimeout(() => {
-        const el = document.getElementById('project-' + id);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          el.classList.add('highlighted');
-          setTimeout(() => el.classList.remove('highlighted'), 2000);
-        }
-      }, 300);
-    }
-  }, [searchParams]);
+    const id = new URLSearchParams(window.location.search).get('highlight');
+    if (!id) return;
+
+    const highlightTimeout = setTimeout(() => {
+      const el = document.getElementById('project-' + id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('highlighted');
+        setTimeout(() => el.classList.remove('highlighted'), 2000);
+      }
+    }, 300);
+
+    return () => clearTimeout(highlightTimeout);
+  }, []);
 
   const openVideoOrModal = useCallback((url: string) => {
     if (!url || url === 'https://...' || url.trim() === '') {
@@ -56,18 +55,6 @@ export function ProjectsPage() {
     }
   }, []);
 
-  const openLightbox = useCallback((project: Project) => {
-    setLightboxProject({ ...project });
-    setShowControls(true);
-    startControlsTimer();
-  }, []);
-
-  const closeLightbox = useCallback(() => {
-    setLightboxProject(null);
-    setShowControls(true);
-    clearControlsTimer();
-  }, []);
-
   const startControlsTimer = useCallback(() => {
     clearControlsTimer();
     controlsTimeout.current = setTimeout(() => {
@@ -80,6 +67,18 @@ export function ProjectsPage() {
       clearTimeout(controlsTimeout.current);
       controlsTimeout.current = null;
     }
+  }, []);
+
+  const openLightbox = useCallback((project: Project) => {
+    setLightboxProject({ ...project });
+    setShowControls(true);
+    startControlsTimer();
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxProject(null);
+    setShowControls(true);
+    clearControlsTimer();
   }, []);
 
   const resetControlsTimer = useCallback(() => {
@@ -95,7 +94,7 @@ export function ProjectsPage() {
 
   // Force re-render for image carousel
   const [, setTick] = useState(0);
-  const forceUpdate = () => setTick(t => t + 1);
+  const forceUpdate = () => setTick((t) => t + 1);
 
   return (
     <div className="projects-container">
@@ -174,14 +173,21 @@ export function ProjectsPage() {
 
                         <div className="tech-badges">
                           {project.technologies.map((tech) => (
-                            <span key={tech} className="tech-badge">{tech}</span>
+                            <span key={tech} className="tech-badge">
+                              {tech}
+                            </span>
                           ))}
                         </div>
 
                         {(project.liveUrl || project.videoUrl) && (
                           <div className="project-links">
                             {project.liveUrl && (
-                              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="project-link link-live">
+                              <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link link-live"
+                              >
                                 <i className="pi pi-external-link"></i>
                                 Ver proyecto
                               </a>
@@ -202,7 +208,13 @@ export function ProjectsPage() {
                       <div className="project-image">
                         <div className="image-wrapper">
                           {project.images.length > 1 && (
-                            <button className="carousel-btn prev" onClick={() => { prevImage(project); forceUpdate(); }}>
+                            <button
+                              className="carousel-btn prev"
+                              onClick={() => {
+                                prevImage(project);
+                                forceUpdate();
+                              }}
+                            >
                               <i className="pi pi-chevron-left"></i>
                             </button>
                           )}
@@ -211,10 +223,17 @@ export function ProjectsPage() {
                               src={getCurrentImage(project)}
                               alt={project.title}
                               onClick={() => openLightbox(project)}
+                              loading="lazy"
                             />
                           </div>
                           {project.images.length > 1 && (
-                            <button className="carousel-btn next" onClick={() => { nextImage(project); forceUpdate(); }}>
+                            <button
+                              className="carousel-btn next"
+                              onClick={() => {
+                                nextImage(project);
+                                forceUpdate();
+                              }}
+                            >
                               <i className="pi pi-chevron-right"></i>
                             </button>
                           )}
@@ -224,7 +243,10 @@ export function ProjectsPage() {
                                 <span
                                   key={idx}
                                   className={`indicator ${idx === project.currentImageIndex ? 'active' : ''}`}
-                                  onClick={() => { project.currentImageIndex = idx; forceUpdate(); }}
+                                  onClick={() => {
+                                    project.currentImageIndex = idx;
+                                    forceUpdate();
+                                  }}
                                 ></span>
                               ))}
                             </div>
@@ -245,8 +267,12 @@ export function ProjectsPage() {
 
       <div className="status-bar">
         <div className="status-left">
-          <span><i className="pi pi-check-circle"></i> TypeScript</span>
-          <span><i className="pi pi-code"></i> UTF-8</span>
+          <span>
+            <i className="pi pi-check-circle"></i> TypeScript
+          </span>
+          <span>
+            <i className="pi pi-code"></i> UTF-8
+          </span>
         </div>
         <div className="status-right">
           <span>Ln 50, Col 18</span>
@@ -258,7 +284,10 @@ export function ProjectsPage() {
           <div className="lightbox-container" onClick={(e) => e.stopPropagation()}>
             <button
               className={`close-corner-btn ${showControls ? 'visible' : ''}`}
-              onClick={(e) => { closeLightbox(); e.stopPropagation(); }}
+              onClick={(e) => {
+                closeLightbox();
+                e.stopPropagation();
+              }}
             >
               <i className="pi pi-times"></i>
             </button>
@@ -266,13 +295,23 @@ export function ProjectsPage() {
               <>
                 <button
                   className={`nav-corner-btn left ${showControls ? 'visible' : ''}`}
-                  onClick={(e) => { prevImage(lightboxProject); resetControlsTimer(); forceUpdate(); e.stopPropagation(); }}
+                  onClick={(e) => {
+                    prevImage(lightboxProject);
+                    resetControlsTimer();
+                    forceUpdate();
+                    e.stopPropagation();
+                  }}
                 >
                   <i className="pi pi-chevron-left"></i>
                 </button>
                 <button
                   className={`nav-corner-btn right ${showControls ? 'visible' : ''}`}
-                  onClick={(e) => { nextImage(lightboxProject); resetControlsTimer(); forceUpdate(); e.stopPropagation(); }}
+                  onClick={(e) => {
+                    nextImage(lightboxProject);
+                    resetControlsTimer();
+                    forceUpdate();
+                    e.stopPropagation();
+                  }}
                 >
                   <i className="pi pi-chevron-right"></i>
                 </button>
@@ -295,7 +334,11 @@ export function ProjectsPage() {
                       <div
                         key={idx}
                         className={`thumbnail-item ${idx === lightboxProject.currentImageIndex ? 'active' : ''}`}
-                        onClick={() => { lightboxProject.currentImageIndex = idx; resetControlsTimer(); forceUpdate(); }}
+                        onClick={() => {
+                          lightboxProject.currentImageIndex = idx;
+                          resetControlsTimer();
+                          forceUpdate();
+                        }}
                       >
                         <img src={img} alt={`Preview ${idx + 1}`} />
                       </div>
@@ -325,10 +368,13 @@ export function ProjectsPage() {
             <h3 className="modal-title">Demo en camino</h3>
             <p className="modal-subtitle">// video: proximamente</p>
             <p className="modal-desc">
-              Este proyecto aún no tiene una demo grabada disponible.<br />
+              Este proyecto aún no tiene una demo grabada disponible.
+              <br />
               Estará disponible próximamente.
             </p>
-            <button className="modal-btn" onClick={() => setShowComingSoonModal(false)}>Entendido</button>
+            <button className="modal-btn" onClick={() => setShowComingSoonModal(false)}>
+              Entendido
+            </button>
           </div>
         </div>
       )}

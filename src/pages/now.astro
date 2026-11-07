@@ -1,0 +1,12 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { NowPage } from '@/components/now/NowPage';
+import '@/styles/pages/now.scss';
+---
+
+<Layout
+  title="Now | Jeremy Anton"
+  description="Lo que Jeremy Anton está haciendo ahora: proyectos, aprendizaje, workspace y música."
+>
+  <NowPage client:load />
+</Layout>

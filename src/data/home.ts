@@ -26,7 +26,7 @@ export const USER_INFO: UserInfo = {
   typingText: "Hi, I'm Jeremy Anton",
   description:
     'Frontend Developer apasionado por React, TypeScript y diseño UI/UX. ' +
-    'Creando aplicaciones web modernas con Next.js, SCSS y arquitecturas escalables. ' +
+    'Creando aplicaciones web modernas con Astro, SCSS y arquitecturas escalables. ' +
     'De la interfaz hasta la base de datos, construyendo soluciones completas.',
   image: 'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773540298/foto-perfil_mhaf1t.jpg',
 };
