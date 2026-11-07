@@ -84,8 +84,10 @@ const setup = [
     category: 'stack_diario',
     items: [
       { icon: 'devicon-react-original colored', name: 'React 19+', detail: 'frontend' },
+      { icon: 'devicon-nextjs-plain colored', name: 'Next.js', detail: 'frontend' },
       { icon: 'devicon-angular-plain colored', name: 'Angular', detail: 'frontend' },
       { icon: 'devicon-typescript-plain colored', name: 'TypeScript', detail: 'siempre tipado' },
+      { icon: 'devicon-nestjs-plain colored', name: 'NestJS', detail: 'backend' },
       { icon: 'devicon-java-plain colored', name: 'Java', detail: 'backend' },
       { icon: 'devicon-spring-plain colored', name: 'Spring Boot', detail: 'APIs' },
       { icon: 'devicon-astro-plain colored', name: 'Astro', detail: 'framework' },

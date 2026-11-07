@@ -25,9 +25,9 @@ export const USER_INFO: UserInfo = {
   role: 'Full Stack Developer & SEO',
   typingText: "Hi, I'm Jeremy Anton",
   description:
-    'Full Stack Developer & SEO con experiencia en React, Angular y Java. ' +
+    'Full Stack Developer & SEO con experiencia en React, Next.js, Angular y Java. ' +
     'Construyo aplicaciones web modernas de extremo a extremo: interfaces con ' +
-    'TypeScript, Astro y SCSS, APIs con Node.js y Spring Boot, bases de datos SQL y NoSQL, ' +
+    'TypeScript, Astro y SCSS, APIs con NestJS y Spring Boot, bases de datos SQL y NoSQL, ' +
     'y SEO técnico para que cada proyecto cargue rápido y se posicione mejor.',
   image: 'https://res.cloudinary.com/dpnxbnqxu/image/upload/v1773540298/foto-perfil_mhaf1t.jpg',
 };
@@ -99,9 +99,9 @@ export const TECH_CARDS: TechCard[] = [
     duration: 4.5,
   },
   {
-    name: 'Node.js',
-    icon: 'devicon-nodejs-plain colored',
-    glow: '#68a063',
+    name: 'Next.js',
+    icon: 'devicon-nextjs-plain colored',
+    glow: '#c9d1d9',
     size: 'lg',
     left: 78,
     top: 72,
@@ -111,9 +111,9 @@ export const TECH_CARDS: TechCard[] = [
     duration: 3.6,
   },
   {
-    name: 'Express',
-    icon: 'devicon-express-original',
-    glow: '#c9d1d9',
+    name: 'NestJS',
+    icon: 'devicon-nestjs-plain colored',
+    glow: '#e0234e',
     size: 'md',
     left: 58,
     top: 88,
@@ -261,8 +261,8 @@ export const TECHNOLOGIES: Technology[] = [
   { name: 'Angular', icon: 'devicon-angular-plain colored' },
   { name: 'TypeScript', icon: 'devicon-typescript-plain colored' },
   { name: 'JavaScript', icon: 'devicon-javascript-plain colored' },
-  { name: 'Node.js', icon: 'devicon-nodejs-plain colored' },
-  { name: 'Express', icon: 'devicon-express-original' },
+  { name: 'Next.js', icon: 'devicon-nextjs-plain colored' },
+  { name: 'NestJS', icon: 'devicon-nestjs-plain colored' },
   { name: 'CSS3', icon: 'devicon-css3-plain colored' },
   { name: 'SCSS', icon: 'devicon-sass-original colored' },
   { name: 'MySQL', icon: 'devicon-mysql-plain colored' },
