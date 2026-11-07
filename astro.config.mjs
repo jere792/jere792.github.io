@@ -10,6 +10,9 @@ export default defineConfig({
   site,
   output: 'static',
   trailingSlash: 'ignore',
+  devToolbar: {
+    enabled: false,
+  },
   build: {
     format: 'directory',
   },

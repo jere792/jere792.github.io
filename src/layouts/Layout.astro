@@ -1,6 +1,7 @@
 ---
 import Header from '@/components/layout/Header.astro';
 import Navbar from '@/components/layout/Navbar.astro';
+import Main from '@/components/layout/Main.astro';
 import Footer from '@/components/layout/Footer.astro';
 import 'primeicons/primeicons.css';
 import '@/styles/globals.scss';
@@ -39,9 +40,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
   <body>
     <Header />
     <Navbar />
-    <main class="site-main">
+    <Main>
       <slot />
-    </main>
+    </Main>
     <Footer />
   </body>
 </html>
