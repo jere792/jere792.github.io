@@ -7,7 +7,7 @@
   @include flex-col($gap: $space-10);
 }
 
-.section-header {
+.recent-section .section-header {
   @include flex-between;
   align-items: flex-end;
   flex-wrap: wrap;
@@ -30,7 +30,7 @@
   i { font-size: $fs-caption; }
 }
 
-.section-title {
+.recent-section .section-title {
   font-size: $fs-h1;
   font-weight: $fw-bold;
   color: $text-primary;

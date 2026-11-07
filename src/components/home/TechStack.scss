@@ -7,7 +7,7 @@
   @include flex-col($gap: $space-12);
 }
 
-.section-header {
+.tech-stack-section .section-header {
   @include flex-col($gap: $space-3);
   align-items: center;
   text-align: center;
