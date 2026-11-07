@@ -7,10 +7,15 @@ export function ProjectsPage() {
   const [showComingSoonModal, setShowComingSoonModal] = useState(false);
   const controlsTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const sections: ProjectSection[] = PROJECT_SECTIONS.map((section) => ({
-    ...section,
-    projects: section.projects.map((p) => ({ ...p })),
-  }));
+  const [sections] = useState<ProjectSection[]>(() =>
+    PROJECT_SECTIONS.map((section) => ({
+      ...section,
+      projects: section.projects.map((p) => ({
+        ...p,
+        currentImageIndex: p.currentImageIndex ?? 0,
+      })),
+    })),
+  );
 
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get('highlight');
